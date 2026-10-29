@@ -24,7 +24,7 @@ Nothing product-facing is simulated yet. There is no beacon simulator, payment s
 - Auth, localization beyond the three scaffold languages, beacon engine, guided content, wayfinding queries, AI, offers, payments, offline packs.
 - Real BLE, NFC, Chapa, Telebirr, and speech.
 - Android phone. `adb devices` has no handset attached.
-- GitHub Actions on https://github.com/mr-Ayalk/negarit-ai passed on 29 Oct 2026 for the visitor-layout push and the remote-note push.
+- The GitHub remote is https://github.com/mr-Ayalk/Negarit_AI_Mobile_App. Actions passed on 29 Oct 2026 on https://github.com/mr-Ayalk/negarit-ai. The run on the current remote has not been confirmed yet.
 
 ## Known warnings
 
