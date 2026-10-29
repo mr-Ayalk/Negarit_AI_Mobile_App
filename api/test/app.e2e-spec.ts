@@ -27,7 +27,29 @@ describe('AppController (e2e)', () => {
     return request(app.getHttpServer())
       .get('/health')
       .expect(200)
-      .expect({ status: 'ok' });
+      .expect((response) => {
+        expect(response.body.status).toBe('ok');
+        expect(response.body.telebirr).toBe('demo');
+        expect(response.body.ai).toBe('mock');
+      });
+  });
+
+  it('/payments/chapa/session (POST) stays unavailable without a secret', () => {
+    return request(app.getHttpServer())
+      .post('/payments/chapa/session')
+      .send({ amount: 10, email: 'visitor@example.com', txRef: 'test-ref' })
+      .expect(503);
+  });
+
+  it('/payments/telebirr/session (POST) is a labeled demo', () => {
+    return request(app.getHttpServer())
+      .post('/payments/telebirr/session')
+      .expect(201)
+      .expect({
+        mode: 'demo',
+        provider: 'telebirr',
+        message: 'Telebirr is not configured. Reserve or pay at the shop.',
+      });
   });
 
   it('/venues (GET) returns the unverified Adwa placeholder', () => {

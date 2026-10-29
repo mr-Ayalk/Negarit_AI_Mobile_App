@@ -1,15 +1,39 @@
 # Apply the core schema and the Adwa placeholder seed.
-# Set PGPASSWORD to the postgres superuser password in this terminal.
-# This script does not store or invent that password.
+# Uses DATABASE_URL from the gitignored .env when it is set.
+# Otherwise uses PGPASSWORD for the local postgres superuser.
+# This script does not store or print those secrets.
 
 $ErrorActionPreference = "Stop"
+$root = Split-Path -Parent $PSScriptRoot
+$envFile = Join-Path $root ".env"
+
+function Read-DotEnvValue([string]$Name) {
+  if (-not (Test-Path $envFile)) { return $null }
+  foreach ($line in Get-Content $envFile) {
+    if ($line -match "^\s*$([regex]::Escape($Name))=(.*)$") {
+      $value = $Matches[1].Trim().Trim('"').Trim("'")
+      if ($value -and $value -notmatch 'change-me') { return $value }
+    }
+  }
+  return $null
+}
+
+if (Read-DotEnvValue "DATABASE_URL") {
+  Push-Location (Join-Path $root "api")
+  try {
+    node ./scripts/apply-db.mjs
+    exit $LASTEXITCODE
+  } finally {
+    Pop-Location
+  }
+}
+
 if (-not $env:PGPASSWORD) {
-  Write-Error "Set PGPASSWORD to the postgres superuser password in this terminal. Do not commit it."
+  Write-Error "Set DATABASE_URL in .env, or set PGPASSWORD for the local postgres superuser. Do not commit either value."
   exit 1
 }
 
 $psql = "C:\Program Files\PostgreSQL\18\bin\psql.exe"
-$root = Split-Path -Parent $PSScriptRoot
 
 function Invoke-Psql {
   param([string]$Database, [string]$File, [string]$Command)

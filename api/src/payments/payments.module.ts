@@ -1,5 +1,9 @@
 ﻿import { Module } from '@nestjs/common';
+import { ChapaService } from './chapa.service.js';
+import { PaymentsController } from './payments.controller.js';
 
-/** Registered so the modular monolith has a home for this area. */
-@Module({})
+@Module({
+  controllers: [PaymentsController],
+  providers: [ChapaService],
+})
 export class PaymentsModule {}

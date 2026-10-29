@@ -12,7 +12,13 @@ describe('HealthController', () => {
     controller = module.get(HealthController);
   });
 
-  it('reports ok', () => {
-    expect(controller.check()).toEqual({ status: 'ok' });
+  it('reports ok and keeps missing providers labeled', () => {
+    const body = controller.check();
+    expect(body.status).toBe('ok');
+    expect(body.telebirr).toBe('demo');
+    expect(body.ai).toBe('mock');
+    expect(['configured', 'not-configured']).toContain(body.database);
+    expect(['configured', 'demo']).toContain(body.chapa);
+    expect(['configured', 'floorplan']).toContain(body.maps);
   });
 });

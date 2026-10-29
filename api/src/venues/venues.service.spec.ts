@@ -4,8 +4,8 @@ import { VenuesService } from './venues.service.js';
 describe('VenuesService', () => {
   const service = new VenuesService();
 
-  it('lists Adwa as an unverified placeholder', () => {
-    expect(service.list()).toEqual({
+  it('lists Adwa as an unverified placeholder', async () => {
+    expect(await service.list()).toEqual({
       source: 'placeholder-seed',
       verified: false,
       venues: [
@@ -17,8 +17,8 @@ describe('VenuesService', () => {
     });
   });
 
-  it('returns the planned zones without claiming they are loaded content', () => {
-    const venue = service.findBySlug('adwa-museum');
+  it('returns the planned zones without claiming they are loaded content', async () => {
+    const venue = await service.findBySlug('adwa-museum');
     expect(venue.verified).toBe(false);
     expect(venue.zones.map((zone) => zone.slug)).toEqual([
       'entrance',
@@ -32,7 +32,9 @@ describe('VenuesService', () => {
     ]);
   });
 
-  it('does not invent a venue that is not in the seed', () => {
-    expect(() => service.findBySlug('other')).toThrow(NotFoundException);
+  it('does not invent a venue that is not in the seed', async () => {
+    await expect(service.findBySlug('other')).rejects.toBeInstanceOf(
+      NotFoundException,
+    );
   });
 });

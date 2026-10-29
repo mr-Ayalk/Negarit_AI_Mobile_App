@@ -2,6 +2,12 @@
 
 Short architecture decision records. The newest entry is at the top.
 
+## ADR-014 — Neon, Chapa, and Google Maps are the live credentials
+
+**Status:** Accepted (29 Oct 2026)
+
+The hosted database is a Neon `DATABASE_URL` until the API moves to a VPS. Chapa checkout is called only when `CHAPA_SECRET_KEY` is set. The Google Maps key is stored for the visitor map, and the screen stays the floor-plan preview until the map SDK is added. Telebirr, SMS OTP, and the AI providers stay labeled demos. None of those secrets are committed. `scripts/apply-db.ps1` uses the Neon URL from `.env` when it is present, and the local superuser password only as a fallback.
+
 ## ADR-013 — The first schema is SQL, applied by hand
 
 **Status:** Accepted (29 Oct 2026)
