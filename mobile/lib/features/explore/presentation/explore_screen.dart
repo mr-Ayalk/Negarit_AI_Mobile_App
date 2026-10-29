@@ -38,11 +38,8 @@ class ExploreScreen extends ConsumerWidget {
         bottom + NegaritSpacing.lg,
       ),
       children: [
-        const _BrandMark(),
-        const SizedBox(height: NegaritSpacing.lg),
         Text(
           l10n.exploreHello,
-          textAlign: TextAlign.center,
           style: textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w600),
         ),
         Text.rich(
@@ -59,12 +56,10 @@ class ExploreScreen extends ConsumerWidget {
               TextSpan(text: l10n.explorePromptEnd),
             ],
           ),
-          textAlign: TextAlign.center,
         ),
         const SizedBox(height: NegaritSpacing.xs),
         Text(
           l10n.exploreSubtitle,
-          textAlign: TextAlign.center,
           style: textTheme.bodyMedium?.copyWith(
             color: NegaritColors.textSecondary,
           ),
@@ -97,7 +92,6 @@ class ExploreScreen extends ConsumerWidget {
           const SizedBox(height: NegaritSpacing.lg),
         ],
         Wrap(
-          alignment: WrapAlignment.center,
           spacing: NegaritSpacing.xs,
           runSpacing: NegaritSpacing.xs,
           children: [
@@ -112,13 +106,8 @@ class ExploreScreen extends ConsumerWidget {
               onPressed: () => context.push('/guide'),
             ),
             NegaritChip(
-              icon: Icons.route_outlined,
+              icon: Icons.map_outlined,
               label: l10n.chipTour,
-              onPressed: () => context.go('/map'),
-            ),
-            NegaritChip(
-              icon: Icons.place_outlined,
-              label: l10n.chipZone,
               onPressed: () => context.go('/map'),
             ),
             NegaritChip(
@@ -238,37 +227,6 @@ class ExploreScreen extends ConsumerWidget {
   }
 }
 
-class _BrandMark extends StatelessWidget {
-  const _BrandMark();
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(NegaritRadius.card),
-          boxShadow: [
-            BoxShadow(
-              color: NegaritColors.primary.withValues(alpha: 0.22),
-              blurRadius: 24,
-              offset: const Offset(0, 10),
-            ),
-          ],
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(NegaritRadius.card),
-          child: Image.asset(
-            'assets/brand/logo.png',
-            width: 148,
-            height: 148,
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class _Suggestion extends StatelessWidget {
   const _Suggestion({
     required this.icon,
@@ -329,39 +287,6 @@ class _TourCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 176,
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  Image.asset(
-                    'assets/brand/logo.png',
-                    fit: BoxFit.cover,
-                  ),
-                  const DecoratedBox(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [Color(0x00000000), NegaritColors.night],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(NegaritSpacing.md),
-                    child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: _HeroPill(
-                        icon: Icons.map_outlined,
-                        label: l10n.openMap,
-                        filled: true,
-                        onPressed: () => context.go('/map'),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
             Padding(
               padding: const EdgeInsets.all(NegaritSpacing.lg),
               child: Column(
@@ -379,6 +304,13 @@ class _TourCard extends StatelessWidget {
                     style: textTheme.bodyMedium?.copyWith(
                       color: NegaritColors.textSecondary,
                     ),
+                  ),
+                  const SizedBox(height: NegaritSpacing.sm),
+                  _HeroPill(
+                    icon: Icons.map_outlined,
+                    label: l10n.openMap,
+                    filled: true,
+                    onPressed: () => context.go('/map'),
                   ),
                 ],
               ),

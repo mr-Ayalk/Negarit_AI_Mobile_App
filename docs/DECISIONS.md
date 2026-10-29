@@ -2,6 +2,12 @@
 
 Short architecture decision records. The newest entry is at the top.
 
+## ADR-021 — The indoor finder is a schematic
+
+**Status:** Accepted (29 Oct 2026)
+
+Inside the visit, the visitor can mark coffee, the restaurant, parking, restrooms, or the exits. The marked room is highlighted on the existing drawing. The card says the place is on the visit and that the drawing is not a measured route. No distance or walking time is shown, because the building has not been surveyed.
+
 ## ADR-020 — A place card shows only stored text
 
 **Status:** Accepted (29 Oct 2026)

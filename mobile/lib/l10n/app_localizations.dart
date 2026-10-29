@@ -663,6 +663,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This place was already announced.'**
   String get beaconCooldown;
+
+  /// No description provided for @facilityOnVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is on this visit.'**
+  String facilityOnVisit(String name);
+
+  /// No description provided for @facilitySchematic.
+  ///
+  /// In en, this message translates to:
+  /// **'The drawing is not a measured route.'**
+  String get facilitySchematic;
+
+  /// No description provided for @facilityOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open place'**
+  String get facilityOpen;
 }
 
 class _AppLocalizationsDelegate

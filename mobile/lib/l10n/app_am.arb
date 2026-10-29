@@ -98,5 +98,8 @@
   "beaconChoose": "የቆሙበትን ቦታ ይምረጡ።",
   "beaconWelcome": "ሰላም {name}፣ ወደ አድዋ ሙዚየም እንኳን በደህና መጡ።",
   "beaconAt": "እርስዎ በ{name} ላይ ነዎት።",
-  "beaconCooldown": "ይህ ቦታ አስቀድሞ ተነግሯል።"
+  "beaconCooldown": "ይህ ቦታ አስቀድሞ ተነግሯል።",
+  "facilityOnVisit": "{name} በዚህ ጉብኝት ላይ ነው።",
+  "facilitySchematic": "ይህ ሥዕል የተለካ መንገድ አይደለም።",
+  "facilityOpen": "ቦታውን ክፈት"
 }

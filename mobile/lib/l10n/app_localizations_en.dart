@@ -309,4 +309,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get beaconCooldown => 'This place was already announced.';
+
+  @override
+  String facilityOnVisit(String name) {
+    return '$name is on this visit.';
+  }
+
+  @override
+  String get facilitySchematic => 'The drawing is not a measured route.';
+
+  @override
+  String get facilityOpen => 'Open place';
 }

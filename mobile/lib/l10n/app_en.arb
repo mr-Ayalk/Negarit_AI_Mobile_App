@@ -109,5 +109,13 @@
       "name": { "type": "String" }
     }
   },
-  "beaconCooldown": "This place was already announced."
+  "beaconCooldown": "This place was already announced.",
+  "facilityOnVisit": "{name} is on this visit.",
+  "@facilityOnVisit": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "facilitySchematic": "The drawing is not a measured route.",
+  "facilityOpen": "Open place"
 }

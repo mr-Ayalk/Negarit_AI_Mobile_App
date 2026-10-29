@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:negarit_mobile/core/theme/negarit_colors.dart';
 import 'package:negarit_mobile/core/theme/negarit_radius.dart';
 import 'package:negarit_mobile/core/theme/negarit_spacing.dart';
 import 'package:negarit_mobile/core/widgets/negarit_background.dart';
 import 'package:negarit_mobile/features/guide/data/visit_guide.dart';
+import 'package:negarit_mobile/features/map/data/map_focus.dart';
 import 'package:negarit_mobile/l10n/app_localizations.dart';
 
-class GuideScreen extends StatefulWidget {
+class GuideScreen extends ConsumerStatefulWidget {
   const GuideScreen({super.key});
 
   @override
-  State<GuideScreen> createState() => _GuideScreenState();
+  ConsumerState<GuideScreen> createState() => _GuideScreenState();
 }
 
 class _GuideMessage {
-  const _GuideMessage({required this.text, required this.mine});
+  const _GuideMessage({required this.text, required this.mine, this.placeSlug});
 
   final String text;
   final bool mine;
+  final String? placeSlug;
 }
 
-class _GuideScreenState extends State<GuideScreen> {
+class _GuideScreenState extends ConsumerState<GuideScreen> {
   final _controller = TextEditingController();
   final _messages = <_GuideMessage>[];
 
@@ -39,7 +42,11 @@ class _GuideScreenState extends State<GuideScreen> {
     setState(() {
       _messages.add(_GuideMessage(text: text, mine: true));
       _messages.add(
-        _GuideMessage(text: replyForVisit(text, l10n), mine: false),
+        _GuideMessage(
+          text: replyForVisit(text, l10n),
+          mine: false,
+          placeSlug: placeSlugForQuestion(text),
+        ),
       );
       _controller.clear();
     });
@@ -121,13 +128,28 @@ class _GuideScreenState extends State<GuideScreen> {
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(NegaritSpacing.md),
-                            child: Text(
-                              message.text,
-                              style: textTheme.bodyMedium?.copyWith(
-                                color: message.mine
-                                    ? Colors.white
-                                    : NegaritColors.text,
-                              ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  message.text,
+                                  style: textTheme.bodyMedium?.copyWith(
+                                    color: message.mine
+                                        ? Colors.white
+                                        : NegaritColors.text,
+                                  ),
+                                ),
+                                if (!message.mine && message.placeSlug != null)
+                                  TextButton(
+                                    onPressed: () {
+                                      ref
+                                          .read(mapFocusProvider.notifier)
+                                          .show(message.placeSlug!);
+                                      context.go('/map');
+                                    },
+                                    child: Text(l10n.openMap),
+                                  ),
+                              ],
                             ),
                           ),
                         ),

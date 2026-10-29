@@ -98,5 +98,8 @@
   "beaconChoose": "اختر المكان الذي تقف فيه.",
   "beaconWelcome": "مرحباً {name}، أهلاً بك في متحف عدوا.",
   "beaconAt": "أنت عند {name}.",
-  "beaconCooldown": "تم الإعلان عن هذا المكان مسبقاً."
+  "beaconCooldown": "تم الإعلان عن هذا المكان مسبقاً.",
+  "facilityOnVisit": "{name} ضمن هذه الزيارة.",
+  "facilitySchematic": "هذا الرسم ليس مساراً مقيساً.",
+  "facilityOpen": "افتح المكان"
 }

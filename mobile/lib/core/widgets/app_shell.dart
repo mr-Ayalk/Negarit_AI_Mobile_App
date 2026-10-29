@@ -11,10 +11,10 @@ class AppShell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return Scaffold(
+    return NegaritBackground(
+      child: Scaffold(
       backgroundColor: Colors.transparent,
-      extendBody: true,
-      body: NegaritBackground(child: navigationShell),
+      body: navigationShell,
       bottomNavigationBar: NavigationBar(
         selectedIndex: navigationShell.currentIndex,
         onDestinationSelected: (index) {
@@ -45,6 +45,7 @@ class AppShell extends StatelessWidget {
             label: l10n.navProfile,
           ),
         ],
+      ),
       ),
     );
   }

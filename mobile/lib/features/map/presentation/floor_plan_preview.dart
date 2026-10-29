@@ -3,19 +3,24 @@ import 'package:negarit_mobile/core/theme/negarit_colors.dart';
 
 /// Schematic of the named Adwa visit places. It is not a measured floor plan.
 class FloorPlanPreview extends StatelessWidget {
-  const FloorPlanPreview({super.key});
+  const FloorPlanPreview({this.highlight, super.key});
+
+  /// English place name to mark. The drawing stays a schematic.
+  final String? highlight;
 
   @override
   Widget build(BuildContext context) {
-    return const CustomPaint(
-      painter: _FloorPlanPainter(),
-      child: SizedBox.expand(),
+    return CustomPaint(
+      painter: _FloorPlanPainter(highlight: highlight),
+      child: const SizedBox.expand(),
     );
   }
 }
 
 class _FloorPlanPainter extends CustomPainter {
-  const _FloorPlanPainter();
+  const _FloorPlanPainter({this.highlight});
+
+  final String? highlight;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -54,6 +59,7 @@ class _FloorPlanPainter extends CustomPainter {
     ];
 
     final block = Paint()..color = NegaritColors.surface;
+    final marked = Paint()..color = NegaritColors.primary;
     final border = Paint()
       ..color = NegaritColors.primary.withValues(alpha: 0.35)
       ..style = PaintingStyle.stroke
@@ -66,18 +72,21 @@ class _FloorPlanPainter extends CustomPainter {
         size.height * room.h,
       );
       final shape = RRect.fromRectAndRadius(rect, const Radius.circular(16));
-      canvas.drawRRect(shape, block);
-      canvas.drawRRect(shape, border);
-      _label(canvas, room.name, rect.center);
+      final selected = room.name == highlight;
+      canvas.drawRRect(shape, selected ? marked : block);
+      if (!selected) {
+        canvas.drawRRect(shape, border);
+      }
+      _label(canvas, room.name, rect.center, selected: selected);
     }
   }
 
-  void _label(Canvas canvas, String text, Offset center) {
+  void _label(Canvas canvas, String text, Offset center, {required bool selected}) {
     final painter = TextPainter(
       text: TextSpan(
         text: text,
-        style: const TextStyle(
-          color: NegaritColors.text,
+        style: TextStyle(
+          color: selected ? Colors.white : NegaritColors.text,
           fontSize: 11,
           fontWeight: FontWeight.w600,
           fontFamily: 'PlusJakartaSans',
@@ -92,7 +101,9 @@ class _FloorPlanPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  bool shouldRepaint(covariant _FloorPlanPainter oldDelegate) {
+    return oldDelegate.highlight != highlight;
+  }
 }
 
 class _Room {

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:negarit_mobile/app.dart';
+import 'package:negarit_mobile/core/widgets/opening_splash.dart';
+import 'package:negarit_mobile/features/map/presentation/map_screen.dart';
 import 'package:negarit_mobile/core/widgets/negarit_button.dart';
 import 'package:negarit_mobile/core/widgets/negarit_chip.dart';
 
@@ -81,6 +83,19 @@ void main() {
       find.text(
         'Entrance, halls, coffee, restaurant, parking, restrooms, and exits.',
       ),
+      findsOneWidget,
+    );
+
+    await tester.tap(
+      find.descendant(
+        of: find.byType(MapScreen),
+        matching: find.text('Coffee'),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('Coffee is on this visit.'), findsOneWidget);
+    expect(
+      find.text('The drawing is not a measured route.'),
       findsOneWidget,
     );
   });
@@ -194,6 +209,39 @@ void main() {
     await tester.tap(find.widgetWithText(ListTile, '5gna Ber'));
     await tester.pumpAndSettle();
     expect(find.text('You are at 5gna Ber.'), findsOneWidget);
+  });
+
+  testWidgets('asking for coffee opens that place on the map', (tester) async {
+    await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Ask a question'));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextField), 'Where is the coffee?');
+    await tester.tap(find.byTooltip('Send'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Map'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Coffee is on this visit.'), findsOneWidget);
+    expect(find.text('The drawing is not a measured route.'), findsOneWidget);
+  });
+
+  testWidgets('opening grows the logo from a dot', (tester) async {
+    var finished = false;
+    await tester.pumpWidget(
+      MaterialApp(
+        home: OpeningSplash(onFinished: () => finished = true),
+      ),
+    );
+
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    await tester.pump(const Duration(milliseconds: 600));
+    await tester.pump();
+    expect(find.byType(Image), findsOneWidget);
+
+    await tester.pump(const Duration(seconds: 2));
+    expect(finished, isTrue);
   });
 
   testWidgets('primary button ignores taps while loading', (tester) async {

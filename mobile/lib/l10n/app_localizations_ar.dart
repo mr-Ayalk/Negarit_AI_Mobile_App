@@ -307,4 +307,15 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get beaconCooldown => 'تم الإعلان عن هذا المكان مسبقاً.';
+
+  @override
+  String facilityOnVisit(String name) {
+    return '$name ضمن هذه الزيارة.';
+  }
+
+  @override
+  String get facilitySchematic => 'هذا الرسم ليس مساراً مقيساً.';
+
+  @override
+  String get facilityOpen => 'افتح المكان';
 }
