@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0b4dff;
+  --color-primary-dark: #0836b8;
+  --color-ink: #14213d;
+  --color-muted: #5b6475;
+  --color-sky-top: #eaf2ff;
+  --color-sky-bottom: #cfe3ff;
+  --color-success: #1fa971;
+  --color-warning: #f5a524;
+  --color-danger: #e5484d;
+  --radius-card: 1.5rem;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--color-ink);
+  background: linear-gradient(180deg, var(--color-sky-top), var(--color-sky-bottom));
+  font-family: "Segoe UI", sans-serif;
+}
