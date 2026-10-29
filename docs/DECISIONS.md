@@ -2,6 +2,12 @@
 
 Short architecture decision records. The newest entry is at the top.
 
+## ADR-020 — A place card shows only stored text
+
+**Status:** Accepted (29 Oct 2026)
+
+Choosing a simulated place opens that place. The card asks the API for text already stored for the zone. The entrance has the placeholder sentence from the Adwa seed, in English and Amharic, and its provenance is `placeholder`. The other seven places have no story, so the card says a reviewed story is not loaded. The app does not write museum copy, and it does not offer audio.
+
 ## ADR-019 — Place arrival is simulated until real beacons exist
 
 **Status:** Accepted (29 Oct 2026)

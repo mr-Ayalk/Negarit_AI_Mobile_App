@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:negarit_mobile/core/theme/negarit_colors.dart';
 import 'package:negarit_mobile/core/theme/negarit_spacing.dart';
 import 'package:negarit_mobile/features/beacons/data/beacon_engine.dart';
@@ -7,9 +8,9 @@ import 'package:negarit_mobile/features/beacons/data/presence_controller.dart';
 import 'package:negarit_mobile/features/visit/data/visit_places.dart';
 import 'package:negarit_mobile/l10n/app_localizations.dart';
 
-Future<void> showSimulatedPlaces(BuildContext context) {
+Future<void> showSimulatedPlaces(BuildContext hostContext) {
   return showModalBottomSheet<void>(
-    context: context,
+    context: hostContext,
     isScrollControlled: true,
     backgroundColor: NegaritColors.surface,
     shape: const RoundedRectangleBorder(
@@ -55,6 +56,7 @@ Future<void> showSimulatedPlaces(BuildContext context) {
                       onTap: () {
                         ref.read(presenceProvider.notifier).choose(place.slug);
                         Navigator.of(context).pop();
+                        hostContext.push('/place/${place.slug}');
                       },
                     ),
                 ],

@@ -30,6 +30,25 @@ describe('VenuesService', () => {
       'restrooms',
       'exits',
     ]);
+    expect(venue.zones.find((zone) => zone.slug === 'entrance')?.content).toEqual(
+      [
+        {
+          language: 'en',
+          body: 'Placeholder. This is not a reviewed museum source.',
+          provenance: 'placeholder',
+          status: 'placeholder',
+        },
+        {
+          language: 'am',
+          body: 'ይህ የተረጋገጠ የሙዚየም ጽሑፍ አይደለም።',
+          provenance: 'placeholder',
+          status: 'placeholder',
+        },
+      ],
+    );
+    expect(venue.zones.find((zone) => zone.slug === 'coffee')?.content).toEqual(
+      [],
+    );
   });
 
   it('does not invent a venue that is not in the seed', async () => {

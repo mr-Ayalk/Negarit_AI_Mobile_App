@@ -8,7 +8,6 @@ import 'package:negarit_mobile/core/widgets/negarit_card.dart';
 import 'package:negarit_mobile/core/widgets/negarit_chip.dart';
 import 'package:negarit_mobile/features/beacons/data/presence_controller.dart';
 import 'package:negarit_mobile/features/beacons/presentation/presence_sheet.dart';
-import 'package:negarit_mobile/features/profile/data/session_controller.dart';
 import 'package:negarit_mobile/features/visit/data/interests_controller.dart';
 import 'package:negarit_mobile/features/visit/data/saved_places_controller.dart';
 import 'package:negarit_mobile/features/visit/data/visit_places.dart';
@@ -25,7 +24,9 @@ class ExploreScreen extends ConsumerWidget {
     final interests = ref.watch(interestsProvider).value ?? const <String>[];
     final matches = placesForInterests(interests);
     final presence = ref.watch(presenceProvider);
-    final signedIn = ref.watch(sessionProvider).value;
+    final currentPlace = presence == null
+        ? null
+        : placeBySlug(presence.zoneSlug);
     final textTheme = Theme.of(context).textTheme;
     final bottom = MediaQuery.paddingOf(context).bottom;
 
@@ -69,34 +70,28 @@ class ExploreScreen extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: NegaritSpacing.lg),
-        if (presence != null) ...[
-          NegaritCard(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  presenceMessage(l10n, presence, signedIn, languageCode),
-                  style: textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                const SizedBox(height: NegaritSpacing.xs),
-                Text(
-                  l10n.beaconSimulated,
-                  style: textTheme.bodySmall?.copyWith(
-                    color: NegaritColors.textSecondary,
-                  ),
-                ),
-                if (presence.kind != 'cooldown') ...[
-                  const SizedBox(height: NegaritSpacing.xxs),
+        if (presence != null && currentPlace != null) ...[
+          GestureDetector(
+            onTap: () => context.push('/place/${presence.zoneSlug}'),
+            child: NegaritCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   Text(
-                    l10n.placeStoryMissing,
+                    currentPlace.nameFor(languageCode),
+                    style: textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: NegaritSpacing.xs),
+                  Text(
+                    l10n.beaconSimulated,
                     style: textTheme.bodySmall?.copyWith(
                       color: NegaritColors.textSecondary,
                     ),
                   ),
                 ],
-              ],
+              ),
             ),
           ),
           const SizedBox(height: NegaritSpacing.lg),

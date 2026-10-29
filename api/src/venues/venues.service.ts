@@ -23,6 +23,14 @@ type ZoneRow = {
   name_am: string;
 };
 
+type ContentRow = {
+  slug: string;
+  status: string | null;
+  language: string | null;
+  body: string | null;
+  provenance: string | null;
+};
+
 @Injectable()
 export class VenuesService {
   async list() {
@@ -78,6 +86,14 @@ export class VenuesService {
          ORDER BY sort_order`,
         [venue.id],
       );
+      const content = await query<ContentRow>(
+        `SELECT z.slug, ci.status, ct.language, ct.body, ct.provenance
+         FROM zones z
+         LEFT JOIN content_items ci ON ci.zone_id = z.id
+         LEFT JOIN content_translations ct ON ct.content_id = ci.id
+         WHERE z.venue_id = $1`,
+        [venue.id],
+      );
       return {
         source: 'database' as const,
         verified: false,
@@ -87,6 +103,7 @@ export class VenuesService {
           slug: zone.slug,
           type: zone.zone_type,
           name: { en: zone.name_en, am: zone.name_am },
+          content: contentFor(content.rows, zone.slug),
         })),
       };
     } catch (error) {
@@ -98,6 +115,23 @@ export class VenuesService {
       );
     }
   }
+}
+
+function contentFor(rows: ContentRow[], slug: string) {
+  return rows
+    .filter(
+      (row) =>
+        row.slug === slug &&
+        row.language !== null &&
+        row.body !== null &&
+        row.provenance !== null,
+    )
+    .map((row) => ({
+      language: row.language,
+      body: row.body,
+      provenance: row.provenance,
+      status: row.status ?? 'placeholder',
+    }));
 }
 
 function toVenue(row: VenueRow) {

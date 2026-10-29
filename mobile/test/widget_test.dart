@@ -174,13 +174,21 @@ void main() {
       find.text('Hello Guest, welcome to Adwa Museum.'),
       findsOneWidget,
     );
+    expect(
+      find.text('A reviewed story is not loaded for this place.'),
+      findsOneWidget,
+    );
 
+    await tester.tap(find.byTooltip('Back'));
+    await tester.pumpAndSettle();
     await tester.tap(find.widgetWithText(NegaritChip, "I'm here"));
     await tester.pumpAndSettle();
     await tester.tap(find.widgetWithText(ListTile, 'Entrance'));
     await tester.pumpAndSettle();
     expect(find.text('This place was already announced.'), findsOneWidget);
 
+    await tester.tap(find.byTooltip('Back'));
+    await tester.pumpAndSettle();
     await tester.tap(find.widgetWithText(NegaritChip, "I'm here"));
     await tester.pumpAndSettle();
     await tester.tap(find.widgetWithText(ListTile, '5gna Ber'));

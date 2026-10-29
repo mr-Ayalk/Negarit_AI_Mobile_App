@@ -9,6 +9,7 @@ and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
 ### Added
 
+- Choosing a place opens its card. The entrance shows the stored placeholder sentence. The other places say a reviewed story is not loaded.
 - Visitors can mark the place they are standing in. The control is labeled simulated, and the same place is not announced again for five minutes. The phone does not scan Bluetooth.
 - Profile keeps the signed-in address, language, interests, and saved places on the phone. Each Adwa place can be opened and saved. A reviewed story is still not loaded.
 - Profile can switch English, Amharic, and Arabic on the phone. Sign-in asks for a code that the API prints in its log.
