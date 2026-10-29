@@ -2,6 +2,12 @@
 
 Short architecture decision records. The newest entry is at the top.
 
+## ADR-013 — The first schema is SQL, applied by hand
+
+**Status:** Accepted (29 Oct 2026)
+
+The core tables and the Adwa placeholder seed live in `infra/postgres`. `scripts/apply-db.ps1` applies them when `PGPASSWORD` is set to the PostgreSQL superuser password. That password is not in the repo, so the script has not been run successfully. Until it has, `GET /venues` returns the same placeholder from the API process and marks it unverified. PostGIS geography and pgvector embeddings are not columns yet, because `CREATE EXTENSION` is still unverified.
+
 ## ADR-012 — Visitor screens follow the sky-gradient reference
 
 **Status:** Accepted (29 Oct 2026)

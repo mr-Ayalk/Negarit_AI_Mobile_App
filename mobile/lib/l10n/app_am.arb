@@ -43,5 +43,7 @@
   "profileLanguage": "ቋንቋ",
   "profilePrivacy": "ግላዊነት",
   "profileOffline": "ከመስመር ውጭ ጥቅል",
-  "notSetUp": "አልተዘጋጀም"
+  "notSetUp": "አልተዘጋጀም",
+  "stopsHeading": "የእቅድ ማቆሚያዎች",
+  "stopsBody": "እነዚህ የአድዋ እቅድ ቦታዎች ናቸው። ታሪኮች አልተጫኑም።"
 }

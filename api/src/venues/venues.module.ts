@@ -1,5 +1,9 @@
 ﻿import { Module } from '@nestjs/common';
+import { VenuesController } from './venues.controller.js';
+import { VenuesService } from './venues.service.js';
 
-/** Registered so the modular monolith has a home for this area. */
-@Module({})
+@Module({
+  controllers: [VenuesController],
+  providers: [VenuesService],
+})
 export class VenuesModule {}

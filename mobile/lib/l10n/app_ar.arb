@@ -43,5 +43,7 @@
   "profileLanguage": "اللغة",
   "profilePrivacy": "الخصوصية",
   "profileOffline": "حزمة دون اتصال",
-  "notSetUp": "غير مُعد"
+  "notSetUp": "غير مُعد",
+  "stopsHeading": "محطات مخططة",
+  "stopsBody": "هذه مناطق عدوا المخططة. القصص غير محمّلة."
 }

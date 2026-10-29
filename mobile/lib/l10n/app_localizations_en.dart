@@ -146,4 +146,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notSetUp => 'Not set up';
+
+  @override
+  String get stopsHeading => 'Placeholder stops';
+
+  @override
+  String get stopsBody =>
+      'These are the planned Adwa areas. Stories are not loaded.';
 }

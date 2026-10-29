@@ -5,6 +5,7 @@ import 'package:negarit_mobile/core/theme/negarit_radius.dart';
 import 'package:negarit_mobile/core/theme/negarit_spacing.dart';
 import 'package:negarit_mobile/core/widgets/negarit_card.dart';
 import 'package:negarit_mobile/core/widgets/negarit_chip.dart';
+import 'package:negarit_mobile/features/explore/data/adwa_stops.dart';
 import 'package:negarit_mobile/l10n/app_localizations.dart';
 
 class ExploreScreen extends StatelessWidget {
@@ -111,6 +112,42 @@ class ExploreScreen extends StatelessWidget {
               ),
             ),
           ],
+        ),
+        const SizedBox(height: NegaritSpacing.lg),
+        Text(
+          l10n.stopsHeading,
+          style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+        ),
+        const SizedBox(height: NegaritSpacing.xxs),
+        Text(
+          l10n.stopsBody,
+          style: textTheme.bodyMedium?.copyWith(
+            color: NegaritColors.textSecondary,
+          ),
+        ),
+        const SizedBox(height: NegaritSpacing.sm),
+        SizedBox(
+          height: 72,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemCount: adwaStopNames.length,
+            separatorBuilder: (context, index) =>
+                const SizedBox(width: NegaritSpacing.xs),
+            itemBuilder: (context, index) {
+              return DecoratedBox(
+                decoration: BoxDecoration(
+                  color: NegaritColors.surface,
+                  borderRadius: BorderRadius.circular(999),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: NegaritSpacing.md,
+                  ),
+                  child: Center(child: Text(adwaStopNames[index])),
+                ),
+              );
+            },
+          ),
         ),
         const SizedBox(height: NegaritSpacing.lg),
         _TourCard(l10n: l10n),

@@ -30,6 +30,19 @@ describe('AppController (e2e)', () => {
       .expect({ status: 'ok' });
   });
 
+  it('/venues (GET) returns the unverified Adwa placeholder', () => {
+    return request(app.getHttpServer())
+      .get('/venues')
+      .expect(200)
+      .expect((response) => {
+        expect(response.body).toMatchObject({
+          source: 'placeholder-seed',
+          verified: false,
+        });
+        expect(response.body.venues[0].slug).toBe('adwa-museum');
+      });
+  });
+
   afterEach(async () => {
     await app.close();
   });

@@ -363,6 +363,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Not set up'**
   String get notSetUp;
+
+  /// No description provided for @stopsHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Placeholder stops'**
+  String get stopsHeading;
+
+  /// No description provided for @stopsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'These are the planned Adwa areas. Stories are not loaded.'**
+  String get stopsBody;
 }
 
 class _AppLocalizationsDelegate

@@ -10,7 +10,7 @@ Honest capability list. Updated 29 Oct 2026 after the monorepo scaffold.
 - PostGIS 3.6.2 files and pgvector 0.8.7 files are on disk under PostgreSQL 18.
 - `scripts/check-env.ps1` exits 0.
 - `mobile`: `flutter analyze` reports no issues. `flutter test` passes (explore, guide reply, map, Arabic right-to-left, loading button). A release web build opened in Chrome: Explore shows the sky gradient, chips, and unloaded story cards; Map shows the labeled floor-plan preview; Ask Negarit shows the unconnected guide and message field.
-- `api`: `npm run lint`, `npm test`, `npm run test:e2e`, and `npm run build` pass. `GET /health` returns `{ "status": "ok" }` in the e2e test. OpenAPI is mounted at `/docs`.
+- `api`: `npm run lint`, `npm test`, `npm run test:e2e`, and `npm run build` pass. `GET /health` returns `{ "status": "ok" }`. `GET /venues` returns the Adwa placeholder and `verified: false`. OpenAPI is mounted at `/docs`.
 - `admin`: `npm run lint` and `npm run build` pass. In Chrome, Overview, Venues, Content, Beacons, Offers, and Analytics each returned HTTP 200 on `http://localhost:3001`. The pages state that sign-in and venue data are not connected.
 - Production npm dependencies report no known vulnerabilities (`npm audit --omit=dev`). Dev dependencies still report findings; they were not force-upgraded.
 
@@ -20,7 +20,7 @@ Nothing product-facing is simulated yet. There is no beacon simulator, payment s
 
 ## Not started
 
-- `CREATE EXTENSION postgis` and `CREATE EXTENSION vector` (blocked on the PostgreSQL superuser password).
+- Applying `scripts/apply-db.ps1`, including `CREATE EXTENSION postgis` and `CREATE EXTENSION vector`. The script exits before connecting when `PGPASSWORD` is unset. The SQL files are in the repo.
 - Auth, localization beyond the three scaffold languages, beacon engine, guided content, wayfinding queries, AI, offers, payments, offline packs.
 - Real BLE, NFC, Chapa, Telebirr, and speech.
 - Android phone. `adb devices` has no handset attached.

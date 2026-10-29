@@ -143,4 +143,10 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get notSetUp => 'አልተዘጋጀም';
+
+  @override
+  String get stopsHeading => 'የእቅድ ማቆሚያዎች';
+
+  @override
+  String get stopsBody => 'እነዚህ የአድዋ እቅድ ቦታዎች ናቸው። ታሪኮች አልተጫኑም።';
 }

@@ -145,4 +145,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get notSetUp => 'غير مُعد';
+
+  @override
+  String get stopsHeading => 'محطات مخططة';
+
+  @override
+  String get stopsBody => 'هذه مناطق عدوا المخططة. القصص غير محمّلة.';
 }

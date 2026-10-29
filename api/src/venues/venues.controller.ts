@@ -1,0 +1,17 @@
+import { Controller, Get, Param } from '@nestjs/common';
+import { VenuesService } from './venues.service.js';
+
+@Controller('venues')
+export class VenuesController {
+  constructor(private readonly venues: VenuesService) {}
+
+  @Get()
+  list() {
+    return this.venues.list();
+  }
+
+  @Get(':slug')
+  findOne(@Param('slug') slug: string) {
+    return this.venues.findBySlug(slug);
+  }
+}

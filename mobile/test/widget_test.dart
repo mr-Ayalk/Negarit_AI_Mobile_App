@@ -10,12 +10,14 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Hi there,'), findsOneWidget);
+    await tester.scrollUntilVisible(find.text('5gna Ber'), 400);
+    expect(find.text('5gna Ber'), findsOneWidget);
+    expect(find.text('Placeholder stops'), findsOneWidget);
     expect(
       find.text('Stories, audio, and stops are not loaded yet.'),
       findsOneWidget,
     );
     expect(find.text('Explore'), findsOneWidget);
-    expect(find.text('Ask a question'), findsOneWidget);
   });
 
   testWidgets('ask a question opens the unconnected guide', (tester) async {

@@ -44,5 +44,7 @@
   "profileLanguage": "Language",
   "profilePrivacy": "Privacy",
   "profileOffline": "Offline pack",
-  "notSetUp": "Not set up"
+  "notSetUp": "Not set up",
+  "stopsHeading": "Placeholder stops",
+  "stopsBody": "These are the planned Adwa areas. Stories are not loaded."
 }
