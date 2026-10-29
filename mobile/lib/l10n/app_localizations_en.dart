@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -31,44 +30,40 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exploreEmptyTitle => 'No venue loaded';
 
   @override
-  String get exploreEmptyBody =>
-      'Guided tours appear here after a venue pack is installed. Adwa Museum content is not on this device yet.';
+  String get exploreEmptyBody => 'Guided tours appear here after a venue pack is installed. Adwa Museum content is not on this device yet.';
 
   @override
   String get mapEmptyTitle => 'Map is waiting for a venue';
 
   @override
-  String get mapEmptyBody =>
-      'Coffee, parking, restrooms, and exhibits will show on the venue map after a pack is installed.';
+  String get mapEmptyBody => 'Coffee, parking, restrooms, and exhibits will show on the venue map after a pack is installed.';
 
   @override
   String get favoritesEmptyTitle => 'No saved places';
 
   @override
-  String get favoritesEmptyBody =>
-      'Places you save during a visit will show up here.';
+  String get favoritesEmptyBody => 'Places you save during a visit will show up here.';
 
   @override
   String get profileEmptyTitle => 'Profile is not set up';
 
   @override
-  String get profileEmptyBody =>
-      'Language, privacy controls, and offline packs will be available here.';
+  String get profileEmptyBody => 'You are visiting Adwa Museum.';
 
   @override
-  String get exploreHello => 'Hi there,';
+  String get exploreHello => 'Welcome,';
 
   @override
-  String get explorePromptLead => 'How can I ';
+  String get explorePromptLead => 'This is ';
 
   @override
-  String get explorePromptEmphasis => 'guide you';
+  String get explorePromptEmphasis => 'Adwa Museum';
 
   @override
-  String get explorePromptEnd => '?';
+  String get explorePromptEnd => '';
 
   @override
-  String get exploreSubtitle => 'What would you like to see?';
+  String get exploreSubtitle => 'Walk the visit, find a place, or ask about the route.';
 
   @override
   String get chipAsk => 'Ask a question';
@@ -86,10 +81,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get suggestedTitle => 'Suggested for you';
 
   @override
-  String get suggestedStories => 'Stories';
+  String get suggestedStories => 'Eight places';
 
   @override
-  String get suggestedAudio => 'Audio';
+  String get suggestedAudio => 'Visit map';
+
+  @override
+  String get visitCountBody => 'Entrance through the exits';
+
+  @override
+  String get visitMapBody => 'Halls, coffee, and facilities';
 
   @override
   String get notLoaded => 'Not loaded';
@@ -98,7 +99,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tourTitle => 'Adwa Museum';
 
   @override
-  String get tourBody => 'Stories, audio, and stops are not loaded yet.';
+  String get tourBody => 'Start at the entrance, then 5gna Ber and 6gna Ber.';
 
   @override
   String get playAudio => 'Play audio';
@@ -113,8 +114,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get guideTitle => 'Ask Negarit';
 
   @override
-  String get guideNotice =>
-      'The guide is not connected. Messages here are not museum answers.';
+  String get guideNotice => 'Ask about the places on this visit.';
 
   @override
   String get guideHint => 'Type a message';
@@ -123,14 +123,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get guideSend => 'Send';
 
   @override
-  String get guideReply =>
-      'I can\'t answer from museum sources yet. The guide is not connected.';
+  String get guideReply => 'The visit starts at the entrance, then 5gna Ber and 6gna Ber, then coffee, the restaurant, parking, restrooms, and the exits.';
 
   @override
-  String get mapPreview => 'Floor plan preview';
+  String get guideHallsReply => 'The halls on this visit are 5gna Ber and 6gna Ber.';
 
   @override
-  String get mapWaiting => 'Zones are not loaded.';
+  String guideStopReply(String name) {
+    return '$name is on the Adwa Museum visit.';
+  }
+
+  @override
+  String get mapPreview => 'Adwa Museum';
+
+  @override
+  String get mapWaiting => 'Entrance, halls, coffee, restaurant, parking, restrooms, and exits.';
 
   @override
   String get guestLabel => 'Guest';
@@ -139,7 +146,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profileLanguage => 'Language';
 
   @override
+  String get profileLanguageValue => 'This phone';
+
+  @override
   String get profilePrivacy => 'Privacy';
+
+  @override
+  String get profilePrivacyValue => 'On this phone';
+
+  @override
+  String get profileVisit => 'Visit';
+
+  @override
+  String get profileVisitValue => 'Adwa Museum';
 
   @override
   String get profileOffline => 'Offline pack';
@@ -148,9 +167,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notSetUp => 'Not set up';
 
   @override
-  String get stopsHeading => 'Placeholder stops';
+  String get stopsHeading => 'Places';
 
   @override
-  String get stopsBody =>
-      'These are the planned Adwa areas. Stories are not loaded.';
+  String get stopsBody => 'These places are on the Adwa Museum visit.';
 }

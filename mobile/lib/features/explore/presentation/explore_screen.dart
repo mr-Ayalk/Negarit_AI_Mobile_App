@@ -25,7 +25,7 @@ class ExploreScreen extends StatelessWidget {
         bottom + NegaritSpacing.lg,
       ),
       children: [
-        const _SparkMark(),
+        const _BrandMark(),
         const SizedBox(height: NegaritSpacing.lg),
         Text(
           l10n.exploreHello,
@@ -97,7 +97,7 @@ class ExploreScreen extends StatelessWidget {
                 child: _Suggestion(
                   icon: Icons.menu_book_outlined,
                   title: l10n.suggestedStories,
-                  body: l10n.notLoaded,
+                  body: l10n.visitCountBody,
                 ),
               ),
             ),
@@ -107,7 +107,7 @@ class ExploreScreen extends StatelessWidget {
                 child: _Suggestion(
                   icon: Icons.headphones_outlined,
                   title: l10n.suggestedAudio,
-                  body: l10n.notLoaded,
+                  body: l10n.visitMapBody,
                 ),
               ),
             ),
@@ -156,28 +156,31 @@ class ExploreScreen extends StatelessWidget {
   }
 }
 
-class _SparkMark extends StatelessWidget {
-  const _SparkMark();
+class _BrandMark extends StatelessWidget {
+  const _BrandMark();
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: NegaritColors.primary,
-          shape: BoxShape.circle,
+          borderRadius: BorderRadius.circular(NegaritRadius.card),
           boxShadow: [
             BoxShadow(
-              color: NegaritColors.primary.withValues(alpha: 0.28),
+              color: NegaritColors.primary.withValues(alpha: 0.22),
               blurRadius: 24,
               offset: const Offset(0, 10),
             ),
           ],
         ),
-        child: const SizedBox(
-          width: 84,
-          height: 84,
-          child: Icon(Icons.auto_awesome, color: Colors.white, size: 36),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(NegaritRadius.card),
+          child: Image.asset(
+            'assets/brand/logo.png',
+            width: 148,
+            height: 148,
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );
@@ -249,44 +252,28 @@ class _TourCard extends StatelessWidget {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
+                  Image.asset(
+                    'assets/brand/logo.png',
+                    fit: BoxFit.cover,
+                  ),
                   const DecoratedBox(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          NegaritColors.skyBottom,
-                          NegaritColors.primary,
-                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [Color(0x00000000), NegaritColors.night],
                       ),
                     ),
                   ),
-                  const Positioned(right: -24, top: -36, child: _SoftOrb()),
                   Padding(
                     padding: const EdgeInsets.all(NegaritSpacing.md),
                     child: Align(
                       alignment: Alignment.bottomLeft,
-                      child: Wrap(
-                        spacing: NegaritSpacing.xs,
-                        runSpacing: NegaritSpacing.xs,
-                        children: [
-                          _HeroPill(
-                            icon: Icons.play_arrow_rounded,
-                            label: l10n.playAudio,
-                            filled: true,
-                            onPressed: () {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text(l10n.audioUnavailable)),
-                              );
-                            },
-                          ),
-                          _HeroPill(
-                            icon: Icons.map_outlined,
-                            label: l10n.openMap,
-                            filled: false,
-                            onPressed: () => context.go('/map'),
-                          ),
-                        ],
+                      child: _HeroPill(
+                        icon: Icons.map_outlined,
+                        label: l10n.openMap,
+                        filled: true,
+                        onPressed: () => context.go('/map'),
                       ),
                     ),
                   ),
@@ -321,22 +308,6 @@ class _TourCard extends StatelessWidget {
   }
 }
 
-class _SoftOrb extends StatelessWidget {
-  const _SoftOrb();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 140,
-      height: 140,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.white.withValues(alpha: 0.18),
-      ),
-    );
-  }
-}
-
 class _HeroPill extends StatelessWidget {
   const _HeroPill({
     required this.icon,
@@ -354,7 +325,7 @@ class _HeroPill extends StatelessWidget {
   Widget build(BuildContext context) {
     final foreground = filled ? Colors.white : NegaritColors.text;
     return Material(
-      color: filled ? NegaritColors.text : NegaritColors.surface,
+      color: filled ? NegaritColors.primary : NegaritColors.surface,
       borderRadius: BorderRadius.circular(999),
       child: InkWell(
         onTap: onPressed,

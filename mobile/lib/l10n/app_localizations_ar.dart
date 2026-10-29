@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -31,44 +30,40 @@ class AppLocalizationsAr extends AppLocalizations {
   String get exploreEmptyTitle => 'لم يُحمَّل موقع';
 
   @override
-  String get exploreEmptyBody =>
-      'تظهر الجولات الإرشادية هنا بعد تثبيت حزمة الموقع. محتوى متحف عدوا غير موجود على هذا الجهاز بعد.';
+  String get exploreEmptyBody => 'تظهر الجولات الإرشادية هنا بعد تثبيت حزمة الموقع. محتوى متحف عدوا غير موجود على هذا الجهاز بعد.';
 
   @override
   String get mapEmptyTitle => 'الخريطة بانتظار موقع';
 
   @override
-  String get mapEmptyBody =>
-      'ستظهر القهوة ومواقف السيارات ودورات المياه والمعارض على خريطة الموقع بعد تثبيت الحزمة.';
+  String get mapEmptyBody => 'ستظهر القهوة ومواقف السيارات ودورات المياه والمعارض على خريطة الموقع بعد تثبيت الحزمة.';
 
   @override
   String get favoritesEmptyTitle => 'لا أماكن محفوظة';
 
   @override
-  String get favoritesEmptyBody =>
-      'ستظهر هنا الأماكن التي تحفظها أثناء الزيارة.';
+  String get favoritesEmptyBody => 'ستظهر هنا الأماكن التي تحفظها أثناء الزيارة.';
 
   @override
   String get profileEmptyTitle => 'الملف غير مُعد';
 
   @override
-  String get profileEmptyBody =>
-      'ستتوفر هنا اللغة وضوابط الخصوصية وحزم الاستخدام دون اتصال.';
+  String get profileEmptyBody => 'أنت تزور متحف عدوا.';
 
   @override
-  String get exploreHello => 'أهلاً،';
+  String get exploreHello => 'أهلاً بك،';
 
   @override
-  String get explorePromptLead => 'كيف يمكنني ';
+  String get explorePromptLead => 'هذه زيارة ';
 
   @override
-  String get explorePromptEmphasis => 'إرشادك';
+  String get explorePromptEmphasis => 'متحف عدوا';
 
   @override
-  String get explorePromptEnd => '؟';
+  String get explorePromptEnd => '';
 
   @override
-  String get exploreSubtitle => 'ماذا تود أن ترى؟';
+  String get exploreSubtitle => 'امشِ في الزيارة، أو ابحث عن مكان، أو اسأل عن المسار.';
 
   @override
   String get chipAsk => 'اسأل سؤالاً';
@@ -86,10 +81,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get suggestedTitle => 'مقترح لك';
 
   @override
-  String get suggestedStories => 'قصص';
+  String get suggestedStories => 'ثمانية أماكن';
 
   @override
-  String get suggestedAudio => 'صوت';
+  String get suggestedAudio => 'خريطة الزيارة';
+
+  @override
+  String get visitCountBody => 'من المدخل إلى المخارج';
+
+  @override
+  String get visitMapBody => 'القاعات والقهوة والمرافق';
 
   @override
   String get notLoaded => 'غير محمّل';
@@ -98,7 +99,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get tourTitle => 'متحف عدوا';
 
   @override
-  String get tourBody => 'القصص والصوت والمحطات غير محمّلة بعد.';
+  String get tourBody => 'ابدأ من المدخل، ثم القاعة الخامسة والقاعة السادسة.';
 
   @override
   String get playAudio => 'تشغيل الصوت';
@@ -113,7 +114,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get guideTitle => 'اسأل نيغاريت';
 
   @override
-  String get guideNotice => 'الدليل غير متصل. الرسائل هنا ليست إجابات المتحف.';
+  String get guideNotice => 'اسأل عن أماكن هذه الزيارة.';
 
   @override
   String get guideHint => 'اكتب رسالة';
@@ -122,14 +123,21 @@ class AppLocalizationsAr extends AppLocalizations {
   String get guideSend => 'إرسال';
 
   @override
-  String get guideReply =>
-      'لا أستطيع الإجابة من مصادر المتحف بعد. الدليل غير متصل.';
+  String get guideReply => 'تبدأ الزيارة من المدخل، ثم القاعة الخامسة والسادسة، ثم القهوة والمطعم ومواقف السيارات ودورات المياه والمخارج.';
 
   @override
-  String get mapPreview => 'معاينة مخطط الطابق';
+  String get guideHallsReply => 'القاعات في هذه الزيارة هي القاعة الخامسة والقاعة السادسة.';
 
   @override
-  String get mapWaiting => 'المناطق غير محمّلة.';
+  String guideStopReply(String name) {
+    return '$name ضمن زيارة متحف عدوا.';
+  }
+
+  @override
+  String get mapPreview => 'متحف عدوا';
+
+  @override
+  String get mapWaiting => 'المدخل والقاعات والقهوة والمطعم ومواقف السيارات ودورات المياه والمخارج.';
 
   @override
   String get guestLabel => 'زائر';
@@ -138,7 +146,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get profileLanguage => 'اللغة';
 
   @override
+  String get profileLanguageValue => 'هذا الهاتف';
+
+  @override
   String get profilePrivacy => 'الخصوصية';
+
+  @override
+  String get profilePrivacyValue => 'على هذا الهاتف';
+
+  @override
+  String get profileVisit => 'الزيارة';
+
+  @override
+  String get profileVisitValue => 'متحف عدوا';
 
   @override
   String get profileOffline => 'حزمة دون اتصال';
@@ -147,8 +167,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get notSetUp => 'غير مُعد';
 
   @override
-  String get stopsHeading => 'محطات مخططة';
+  String get stopsHeading => 'الأماكن';
 
   @override
-  String get stopsBody => 'هذه مناطق عدوا المخططة. القصص غير محمّلة.';
+  String get stopsBody => 'هذه الأماكن ضمن زيارة متحف عدوا.';
 }

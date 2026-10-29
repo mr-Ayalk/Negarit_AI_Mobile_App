@@ -2,6 +2,12 @@
 
 Short architecture decision records. The newest entry is at the top.
 
+## ADR-015 — The visitor app follows the drum logo
+
+**Status:** Accepted (29 Oct 2026)
+
+The phone icon and the in-app mark use the drum artwork. The interface uses the sunset, ember, and earth colors from that image. The eight Adwa places are the visit on the phone: entrance, 5gna Ber, 6gna Ber, coffee, restaurant, parking, restrooms, and exits. Asking about those places answers from that visit path. Recorded exhibit audio and reviewed museum stories are not in the app.
+
 ## ADR-014 — Neon, Chapa, and Google Maps are the live credentials
 
 **Status:** Accepted (29 Oct 2026)

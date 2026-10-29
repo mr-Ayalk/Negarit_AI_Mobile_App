@@ -181,37 +181,37 @@ abstract class AppLocalizations {
   /// No description provided for @profileEmptyBody.
   ///
   /// In en, this message translates to:
-  /// **'Language, privacy controls, and offline packs will be available here.'**
+  /// **'You are visiting Adwa Museum.'**
   String get profileEmptyBody;
 
   /// No description provided for @exploreHello.
   ///
   /// In en, this message translates to:
-  /// **'Hi there,'**
+  /// **'Welcome,'**
   String get exploreHello;
 
   /// No description provided for @explorePromptLead.
   ///
   /// In en, this message translates to:
-  /// **'How can I '**
+  /// **'This is '**
   String get explorePromptLead;
 
   /// No description provided for @explorePromptEmphasis.
   ///
   /// In en, this message translates to:
-  /// **'guide you'**
+  /// **'Adwa Museum'**
   String get explorePromptEmphasis;
 
   /// No description provided for @explorePromptEnd.
   ///
   /// In en, this message translates to:
-  /// **'?'**
+  /// **''**
   String get explorePromptEnd;
 
   /// No description provided for @exploreSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'What would you like to see?'**
+  /// **'Walk the visit, find a place, or ask about the route.'**
   String get exploreSubtitle;
 
   /// No description provided for @chipAsk.
@@ -247,14 +247,26 @@ abstract class AppLocalizations {
   /// No description provided for @suggestedStories.
   ///
   /// In en, this message translates to:
-  /// **'Stories'**
+  /// **'Eight places'**
   String get suggestedStories;
 
   /// No description provided for @suggestedAudio.
   ///
   /// In en, this message translates to:
-  /// **'Audio'**
+  /// **'Visit map'**
   String get suggestedAudio;
+
+  /// No description provided for @visitCountBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Entrance through the exits'**
+  String get visitCountBody;
+
+  /// No description provided for @visitMapBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Halls, coffee, and facilities'**
+  String get visitMapBody;
 
   /// No description provided for @notLoaded.
   ///
@@ -271,7 +283,7 @@ abstract class AppLocalizations {
   /// No description provided for @tourBody.
   ///
   /// In en, this message translates to:
-  /// **'Stories, audio, and stops are not loaded yet.'**
+  /// **'Start at the entrance, then 5gna Ber and 6gna Ber.'**
   String get tourBody;
 
   /// No description provided for @playAudio.
@@ -301,7 +313,7 @@ abstract class AppLocalizations {
   /// No description provided for @guideNotice.
   ///
   /// In en, this message translates to:
-  /// **'The guide is not connected. Messages here are not museum answers.'**
+  /// **'Ask about the places on this visit.'**
   String get guideNotice;
 
   /// No description provided for @guideHint.
@@ -319,19 +331,31 @@ abstract class AppLocalizations {
   /// No description provided for @guideReply.
   ///
   /// In en, this message translates to:
-  /// **'I can\'t answer from museum sources yet. The guide is not connected.'**
+  /// **'The visit starts at the entrance, then 5gna Ber and 6gna Ber, then coffee, the restaurant, parking, restrooms, and the exits.'**
   String get guideReply;
+
+  /// No description provided for @guideHallsReply.
+  ///
+  /// In en, this message translates to:
+  /// **'The halls on this visit are 5gna Ber and 6gna Ber.'**
+  String get guideHallsReply;
+
+  /// No description provided for @guideStopReply.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is on the Adwa Museum visit.'**
+  String guideStopReply(String name);
 
   /// No description provided for @mapPreview.
   ///
   /// In en, this message translates to:
-  /// **'Floor plan preview'**
+  /// **'Adwa Museum'**
   String get mapPreview;
 
   /// No description provided for @mapWaiting.
   ///
   /// In en, this message translates to:
-  /// **'Zones are not loaded.'**
+  /// **'Entrance, halls, coffee, restaurant, parking, restrooms, and exits.'**
   String get mapWaiting;
 
   /// No description provided for @guestLabel.
@@ -346,11 +370,35 @@ abstract class AppLocalizations {
   /// **'Language'**
   String get profileLanguage;
 
+  /// No description provided for @profileLanguageValue.
+  ///
+  /// In en, this message translates to:
+  /// **'This phone'**
+  String get profileLanguageValue;
+
   /// No description provided for @profilePrivacy.
   ///
   /// In en, this message translates to:
   /// **'Privacy'**
   String get profilePrivacy;
+
+  /// No description provided for @profilePrivacyValue.
+  ///
+  /// In en, this message translates to:
+  /// **'On this phone'**
+  String get profilePrivacyValue;
+
+  /// No description provided for @profileVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'Visit'**
+  String get profileVisit;
+
+  /// No description provided for @profileVisitValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Adwa Museum'**
+  String get profileVisitValue;
 
   /// No description provided for @profileOffline.
   ///
@@ -367,13 +415,13 @@ abstract class AppLocalizations {
   /// No description provided for @stopsHeading.
   ///
   /// In en, this message translates to:
-  /// **'Placeholder stops'**
+  /// **'Places'**
   String get stopsHeading;
 
   /// No description provided for @stopsBody.
   ///
   /// In en, this message translates to:
-  /// **'These are the planned Adwa areas. Stories are not loaded.'**
+  /// **'These places are on the Adwa Museum visit.'**
   String get stopsBody;
 }
 

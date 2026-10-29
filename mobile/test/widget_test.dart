@@ -9,12 +9,12 @@ void main() {
     await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
     await tester.pumpAndSettle();
 
-    expect(find.text('Hi there,'), findsOneWidget);
+    expect(find.text('Welcome,'), findsOneWidget);
     await tester.scrollUntilVisible(find.text('5gna Ber'), 400);
     expect(find.text('5gna Ber'), findsOneWidget);
-    expect(find.text('Placeholder stops'), findsOneWidget);
+    expect(find.text('Places'), findsOneWidget);
     expect(
-      find.text('Stories, audio, and stops are not loaded yet.'),
+      find.text('Start at the entrance, then 5gna Ber and 6gna Ber.'),
       findsOneWidget,
     );
     expect(find.text('Explore'), findsOneWidget);
@@ -27,12 +27,7 @@ void main() {
     await tester.tap(find.text('Ask a question'));
     await tester.pumpAndSettle();
 
-    expect(
-      find.text(
-        'The guide is not connected. Messages here are not museum answers.',
-      ),
-      findsOneWidget,
-    );
+    expect(find.text('Ask about the places on this visit.'), findsOneWidget);
 
     await tester.enterText(find.byType(TextField), 'Where is the hall?');
     await tester.tap(find.byTooltip('Send'));
@@ -40,9 +35,7 @@ void main() {
 
     expect(find.text('Where is the hall?'), findsOneWidget);
     expect(
-      find.text(
-        "I can't answer from museum sources yet. The guide is not connected.",
-      ),
+      find.text('The halls on this visit are 5gna Ber and 6gna Ber.'),
       findsOneWidget,
     );
   });
@@ -59,8 +52,12 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.text('Floor plan preview'), findsOneWidget);
-    expect(find.text('Zones are not loaded.'), findsOneWidget);
+    expect(
+      find.text(
+        'Entrance, halls, coffee, restaurant, parking, restrooms, and exits.',
+      ),
+      findsOneWidget,
+    );
   });
 
   testWidgets('Arabic locale lays out right to left', (tester) async {

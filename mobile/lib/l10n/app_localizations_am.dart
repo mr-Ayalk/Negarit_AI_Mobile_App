@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -31,15 +30,13 @@ class AppLocalizationsAm extends AppLocalizations {
   String get exploreEmptyTitle => 'ቦታ አልተጫነም';
 
   @override
-  String get exploreEmptyBody =>
-      'የጉብኝት መመሪያ የቦታ ጥቅል ከተጫነ በኋላ እዚህ ይታያል። የአድዋ ሙዚየም ይዘት በዚህ መሣሪያ ላይ እስካሁን የለም።';
+  String get exploreEmptyBody => 'የጉብኝት መመሪያ የቦታ ጥቅል ከተጫነ በኋላ እዚህ ይታያል። የአድዋ ሙዚየም ይዘት በዚህ መሣሪያ ላይ እስካሁን የለም።';
 
   @override
   String get mapEmptyTitle => 'ካርታው ቦታ እየጠበቀ ነው';
 
   @override
-  String get mapEmptyBody =>
-      'ቡና፣ ማቆሚያ፣ መጸዳጃ ቤት እና ኤግዚቢሽኖች የቦታ ጥቅል ከተጫነ በኋላ በካርታው ላይ ይታያሉ።';
+  String get mapEmptyBody => 'ቡና፣ ማቆሚያ፣ መጸዳጃ ቤት እና ኤግዚቢሽኖች የቦታ ጥቅል ከተጫነ በኋላ በካርታው ላይ ይታያሉ።';
 
   @override
   String get favoritesEmptyTitle => 'የተቀመጡ ቦታዎች የሉም';
@@ -51,23 +48,22 @@ class AppLocalizationsAm extends AppLocalizations {
   String get profileEmptyTitle => 'መገለጫ አልተዘጋጀም';
 
   @override
-  String get profileEmptyBody =>
-      'ቋንቋ፣ የግላዊነት መቆጣጠሪያዎች እና ከመስመር ውጭ ጥቅሎች እዚህ ይገኛሉ።';
+  String get profileEmptyBody => 'የአድዋ ሙዚየም እየጎበኙ ነው።';
 
   @override
-  String get exploreHello => 'ሰላም፣';
+  String get exploreHello => 'እንኳን ደህና መጡ፣';
 
   @override
-  String get explorePromptLead => 'እንዴት ';
+  String get explorePromptLead => 'ይህ ';
 
   @override
-  String get explorePromptEmphasis => 'እረዳዎታለሁ';
+  String get explorePromptEmphasis => 'የአድዋ ሙዚየም';
 
   @override
-  String get explorePromptEnd => '?';
+  String get explorePromptEnd => ' ነው';
 
   @override
-  String get exploreSubtitle => 'ምን ማየት ይፈልጋሉ?';
+  String get exploreSubtitle => 'ጉብኝቱን ይራመዱ፣ ቦታ ያግኙ፣ ወይም ስለ መንገዱ ይጠይቁ።';
 
   @override
   String get chipAsk => 'ጥያቄ ይጠይቁ';
@@ -85,10 +81,16 @@ class AppLocalizationsAm extends AppLocalizations {
   String get suggestedTitle => 'ለእርስዎ የተጠቆመ';
 
   @override
-  String get suggestedStories => 'ታሪኮች';
+  String get suggestedStories => 'ስምንት ቦታዎች';
 
   @override
-  String get suggestedAudio => 'ድምጽ';
+  String get suggestedAudio => 'የጉብኝት ካርታ';
+
+  @override
+  String get visitCountBody => 'ከመግቢያ እስከ መውጫ';
+
+  @override
+  String get visitMapBody => 'አዳራሾች፣ ቡና እና አገልግሎቶች';
 
   @override
   String get notLoaded => 'አልተጫነም';
@@ -97,7 +99,7 @@ class AppLocalizationsAm extends AppLocalizations {
   String get tourTitle => 'የአድዋ ሙዚየም';
 
   @override
-  String get tourBody => 'ታሪኮች፣ ድምጽ እና ማቆሚያዎች እስካሁን አልተጫኑም።';
+  String get tourBody => 'ከመግቢያ ይጀምሩ፣ ከዚያ 5ኛ ቤር እና 6ኛ ቤር።';
 
   @override
   String get playAudio => 'ድምጽ ያጫውቱ';
@@ -112,7 +114,7 @@ class AppLocalizationsAm extends AppLocalizations {
   String get guideTitle => 'ነጋሪትን ይጠይቁ';
 
   @override
-  String get guideNotice => 'መመሪያው አልተገናኘም። እዚህ ያሉ መልዕክቶች የሙዚየም መልሶች አይደሉም።';
+  String get guideNotice => 'ስለ የጉብኝቱ ቦታዎች ይጠይቁ።';
 
   @override
   String get guideHint => 'መልዕክት ይጻፉ';
@@ -121,13 +123,21 @@ class AppLocalizationsAm extends AppLocalizations {
   String get guideSend => 'ላክ';
 
   @override
-  String get guideReply => 'ከሙዚየም ምንጮች እስካሁን መመለስ አልችልም። መመሪያው አልተገናኘም።';
+  String get guideReply => 'ጉብኝቱ ከመግቢያ ይጀምራል፣ ከዚያ 5ኛ ቤር እና 6ኛ ቤር፣ ቡና፣ ምግብ ቤት፣ ማቆሚያ፣ መጸዳጃ እና መውጫ።';
 
   @override
-  String get mapPreview => 'የወለል ካርታ ናሙና';
+  String get guideHallsReply => 'በዚህ ጉብኝት ላይ ያሉ አዳራሾች 5ኛ ቤር እና 6ኛ ቤር ናቸው።';
 
   @override
-  String get mapWaiting => 'ዞኖች አልተጫኑም።';
+  String guideStopReply(String name) {
+    return '$name በየአድዋ ሙዚየም ጉብኝት ላይ ነው።';
+  }
+
+  @override
+  String get mapPreview => 'የአድዋ ሙዚየም';
+
+  @override
+  String get mapWaiting => 'መግቢያ፣ አዳራሾች፣ ቡና፣ ምግብ ቤት፣ ማቆሚያ፣ መጸዳጃ እና መውጫ።';
 
   @override
   String get guestLabel => 'እንግዳ';
@@ -136,7 +146,19 @@ class AppLocalizationsAm extends AppLocalizations {
   String get profileLanguage => 'ቋንቋ';
 
   @override
+  String get profileLanguageValue => 'የዚህ ስልክ';
+
+  @override
   String get profilePrivacy => 'ግላዊነት';
+
+  @override
+  String get profilePrivacyValue => 'በዚህ ስልክ ላይ';
+
+  @override
+  String get profileVisit => 'ጉብኝት';
+
+  @override
+  String get profileVisitValue => 'የአድዋ ሙዚየም';
 
   @override
   String get profileOffline => 'ከመስመር ውጭ ጥቅል';
@@ -145,8 +167,8 @@ class AppLocalizationsAm extends AppLocalizations {
   String get notSetUp => 'አልተዘጋጀም';
 
   @override
-  String get stopsHeading => 'የእቅድ ማቆሚያዎች';
+  String get stopsHeading => 'ቦታዎች';
 
   @override
-  String get stopsBody => 'እነዚህ የአድዋ እቅድ ቦታዎች ናቸው። ታሪኮች አልተጫኑም።';
+  String get stopsBody => 'እነዚህ ቦታዎች በየአድዋ ሙዚየም ጉብኝት ላይ ናቸው።';
 }

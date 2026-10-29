@@ -9,6 +9,7 @@ and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
 ### Added
 
+- Visitor app uses the drum logo as its icon and a sunset, ember, and earth palette. The Adwa visit places are shown on the phone.
 - API reads venues from `DATABASE_URL` when it is set, starts a Chapa checkout when the secret is set, and keeps Telebirr and AI labeled as demo.
 - Adwa placeholder venue, zones, and a SQL schema. Apply it with `scripts/apply-db.ps1` after `DATABASE_URL` is in `.env`.
 - Visitor screens use the sky-gradient layout: explore, floor-plan map, favorites, profile, and an unconnected guide.

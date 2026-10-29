@@ -32,7 +32,7 @@ class NegaritChip extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(icon, size: 16, color: NegaritColors.textSecondary),
+              Icon(icon, size: 16, color: NegaritColors.primary),
               const SizedBox(width: NegaritSpacing.xs),
               Text(
                 label,

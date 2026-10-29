@@ -21,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
         bottom + NegaritSpacing.lg,
       ),
       children: [
-        const Center(child: _GuestMark()),
+        const Center(child: _BrandMark()),
         const SizedBox(height: NegaritSpacing.md),
         Text(
           l10n.guestLabel,
@@ -41,11 +41,20 @@ class ProfileScreen extends StatelessWidget {
           padding: EdgeInsets.zero,
           child: Column(
             children: [
-              _ProfileRow(label: l10n.profileLanguage, value: l10n.notSetUp),
+              _ProfileRow(
+                label: l10n.profileVisit,
+                value: l10n.profileVisitValue,
+              ),
               const Divider(height: 1),
-              _ProfileRow(label: l10n.profilePrivacy, value: l10n.notSetUp),
+              _ProfileRow(
+                label: l10n.profileLanguage,
+                value: l10n.profileLanguageValue,
+              ),
               const Divider(height: 1),
-              _ProfileRow(label: l10n.profileOffline, value: l10n.notSetUp),
+              _ProfileRow(
+                label: l10n.profilePrivacy,
+                value: l10n.profilePrivacyValue,
+              ),
             ],
           ),
         ),
@@ -54,20 +63,18 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-class _GuestMark extends StatelessWidget {
-  const _GuestMark();
+class _BrandMark extends StatelessWidget {
+  const _BrandMark();
 
   @override
   Widget build(BuildContext context) {
-    return const DecoratedBox(
-      decoration: BoxDecoration(
-        color: NegaritColors.primary,
-        shape: BoxShape.circle,
-      ),
-      child: SizedBox(
-        width: 72,
-        height: 72,
-        child: Icon(Icons.person, color: Colors.white, size: 32),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Image.asset(
+        'assets/brand/logo.png',
+        width: 88,
+        height: 88,
+        fit: BoxFit.cover,
       ),
     );
   }

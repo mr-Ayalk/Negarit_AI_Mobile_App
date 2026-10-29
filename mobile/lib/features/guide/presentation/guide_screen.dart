@@ -4,6 +4,7 @@ import 'package:negarit_mobile/core/theme/negarit_colors.dart';
 import 'package:negarit_mobile/core/theme/negarit_radius.dart';
 import 'package:negarit_mobile/core/theme/negarit_spacing.dart';
 import 'package:negarit_mobile/core/widgets/negarit_background.dart';
+import 'package:negarit_mobile/features/guide/data/visit_guide.dart';
 import 'package:negarit_mobile/l10n/app_localizations.dart';
 
 class GuideScreen extends StatefulWidget {
@@ -37,7 +38,9 @@ class _GuideScreenState extends State<GuideScreen> {
     }
     setState(() {
       _messages.add(_GuideMessage(text: text, mine: true));
-      _messages.add(_GuideMessage(text: l10n.guideReply, mine: false));
+      _messages.add(
+        _GuideMessage(text: replyForVisit(text, l10n), mine: false),
+      );
       _controller.clear();
     });
   }
