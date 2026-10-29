@@ -627,6 +627,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Remove'**
   String get favoritesRemove;
+
+  /// No description provided for @beaconHere.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m here'**
+  String get beaconHere;
+
+  /// No description provided for @beaconSimulated.
+  ///
+  /// In en, this message translates to:
+  /// **'Simulated. This phone is not scanning Bluetooth.'**
+  String get beaconSimulated;
+
+  /// No description provided for @beaconChoose.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the place you are standing in.'**
+  String get beaconChoose;
+
+  /// No description provided for @beaconWelcome.
+  ///
+  /// In en, this message translates to:
+  /// **'Hello {name}, welcome to Adwa Museum.'**
+  String beaconWelcome(String name);
+
+  /// No description provided for @beaconAt.
+  ///
+  /// In en, this message translates to:
+  /// **'You are at {name}.'**
+  String beaconAt(String name);
+
+  /// No description provided for @beaconCooldown.
+  ///
+  /// In en, this message translates to:
+  /// **'This place was already announced.'**
+  String get beaconCooldown;
 }
 
 class _AppLocalizationsDelegate

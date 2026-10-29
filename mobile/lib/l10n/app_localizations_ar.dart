@@ -285,4 +285,26 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get favoritesRemove => 'إزالة';
+
+  @override
+  String get beaconHere => 'أنا هنا';
+
+  @override
+  String get beaconSimulated => 'محاكاة. هذا الهاتف لا يمسح البلوتوث.';
+
+  @override
+  String get beaconChoose => 'اختر المكان الذي تقف فيه.';
+
+  @override
+  String beaconWelcome(String name) {
+    return 'مرحباً $name، أهلاً بك في متحف عدوا.';
+  }
+
+  @override
+  String beaconAt(String name) {
+    return 'أنت عند $name.';
+  }
+
+  @override
+  String get beaconCooldown => 'تم الإعلان عن هذا المكان مسبقاً.';
 }

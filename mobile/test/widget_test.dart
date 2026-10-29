@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:negarit_mobile/app.dart';
 import 'package:negarit_mobile/core/widgets/negarit_button.dart';
+import 'package:negarit_mobile/core/widgets/negarit_chip.dart';
 
 void main() {
   setUp(() {
@@ -154,6 +155,37 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Guest'), findsOneWidget);
     expect(find.text('Sign in'), findsOneWidget);
+  });
+
+  testWidgets('simulated entrance welcomes the visitor once', (tester) async {
+    await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.widgetWithText(NegaritChip, "I'm here"));
+    await tester.pumpAndSettle();
+    expect(
+      find.text('Simulated. This phone is not scanning Bluetooth.'),
+      findsOneWidget,
+    );
+
+    await tester.tap(find.widgetWithText(ListTile, 'Entrance'));
+    await tester.pumpAndSettle();
+    expect(
+      find.text('Hello Guest, welcome to Adwa Museum.'),
+      findsOneWidget,
+    );
+
+    await tester.tap(find.widgetWithText(NegaritChip, "I'm here"));
+    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(ListTile, 'Entrance'));
+    await tester.pumpAndSettle();
+    expect(find.text('This place was already announced.'), findsOneWidget);
+
+    await tester.tap(find.widgetWithText(NegaritChip, "I'm here"));
+    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(ListTile, '5gna Ber'));
+    await tester.pumpAndSettle();
+    expect(find.text('You are at 5gna Ber.'), findsOneWidget);
   });
 
   testWidgets('primary button ignores taps while loading', (tester) async {

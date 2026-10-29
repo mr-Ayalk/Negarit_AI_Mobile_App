@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -31,15 +30,13 @@ class AppLocalizationsAm extends AppLocalizations {
   String get exploreEmptyTitle => 'ቦታ አልተጫነም';
 
   @override
-  String get exploreEmptyBody =>
-      'የጉብኝት መመሪያ የቦታ ጥቅል ከተጫነ በኋላ እዚህ ይታያል። የአድዋ ሙዚየም ይዘት በዚህ መሣሪያ ላይ እስካሁን የለም።';
+  String get exploreEmptyBody => 'የጉብኝት መመሪያ የቦታ ጥቅል ከተጫነ በኋላ እዚህ ይታያል። የአድዋ ሙዚየም ይዘት በዚህ መሣሪያ ላይ እስካሁን የለም።';
 
   @override
   String get mapEmptyTitle => 'ካርታው ቦታ እየጠበቀ ነው';
 
   @override
-  String get mapEmptyBody =>
-      'ቡና፣ ማቆሚያ፣ መጸዳጃ ቤት እና ኤግዚቢሽኖች የቦታ ጥቅል ከተጫነ በኋላ በካርታው ላይ ይታያሉ።';
+  String get mapEmptyBody => 'ቡና፣ ማቆሚያ፣ መጸዳጃ ቤት እና ኤግዚቢሽኖች የቦታ ጥቅል ከተጫነ በኋላ በካርታው ላይ ይታያሉ።';
 
   @override
   String get favoritesEmptyTitle => 'የተቀመጡ ቦታዎች የሉም';
@@ -126,8 +123,7 @@ class AppLocalizationsAm extends AppLocalizations {
   String get guideSend => 'ላክ';
 
   @override
-  String get guideReply =>
-      'ጉብኝቱ ከመግቢያ ይጀምራል፣ ከዚያ 5ኛ ቤር እና 6ኛ ቤር፣ ቡና፣ ምግብ ቤት፣ ማቆሚያ፣ መጸዳጃ እና መውጫ።';
+  String get guideReply => 'ጉብኝቱ ከመግቢያ ይጀምራል፣ ከዚያ 5ኛ ቤር እና 6ኛ ቤር፣ ቡና፣ ምግብ ቤት፣ ማቆሚያ፣ መጸዳጃ እና መውጫ።';
 
   @override
   String get guideHallsReply => 'በዚህ ጉብኝት ላይ ያሉ አዳራሾች 5ኛ ቤር እና 6ኛ ቤር ናቸው።';
@@ -183,8 +179,7 @@ class AppLocalizationsAm extends AppLocalizations {
   String get signInInvalid => 'ኮዱ ትክክል አይደለም።';
 
   @override
-  String get signInUnreachable =>
-      'ይህ ስልክ ኤፒአይውን ማግኘት አልቻለም። ከኮምፒዩተሩ ጋር ተገናኝቶ እንደገና ይሞክሩ።';
+  String get signInUnreachable => 'ይህ ስልክ ኤፒአይውን ማግኘት አልቻለም። ከኮምፒዩተሩ ጋር ተገናኝቶ እንደገና ይሞክሩ።';
 
   @override
   String get profileLanguage => 'ቋንቋ';
@@ -278,4 +273,26 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get favoritesRemove => 'አስወግድ';
+
+  @override
+  String get beaconHere => 'እዚህ ነኝ';
+
+  @override
+  String get beaconSimulated => 'የተመሰለ ነው። ይህ ስልክ ብሉቱዝ አይቃኝም።';
+
+  @override
+  String get beaconChoose => 'የቆሙበትን ቦታ ይምረጡ።';
+
+  @override
+  String beaconWelcome(String name) {
+    return 'ሰላም $name፣ ወደ አድዋ ሙዚየም እንኳን በደህና መጡ።';
+  }
+
+  @override
+  String beaconAt(String name) {
+    return 'እርስዎ በ$name ላይ ነዎት።';
+  }
+
+  @override
+  String get beaconCooldown => 'ይህ ቦታ አስቀድሞ ተነግሯል።';
 }

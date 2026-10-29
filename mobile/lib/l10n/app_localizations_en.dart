@@ -286,4 +286,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get favoritesRemove => 'Remove';
+
+  @override
+  String get beaconHere => 'I\'m here';
+
+  @override
+  String get beaconSimulated =>
+      'Simulated. This phone is not scanning Bluetooth.';
+
+  @override
+  String get beaconChoose => 'Choose the place you are standing in.';
+
+  @override
+  String beaconWelcome(String name) {
+    return 'Hello $name, welcome to Adwa Museum.';
+  }
+
+  @override
+  String beaconAt(String name) {
+    return 'You are at $name.';
+  }
+
+  @override
+  String get beaconCooldown => 'This place was already announced.';
 }

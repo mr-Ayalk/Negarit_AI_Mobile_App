@@ -92,5 +92,11 @@
   "profileAccountBody": "ቋንቋ፣ ፍላጎቶች እና የተቀመጡ ቦታዎች በዚህ ስልክ ላይ ይቆያሉ።",
   "profilePrivacyBody": "የመግቢያ ኮዱ አይቀመጥም። እስካሁን ወደ የደመና መገለጫ አይላክም።",
   "suggestedInterests": "ከፍላጎትዎ ጋር የሚሄዱ",
-  "favoritesRemove": "አስወግድ"
+  "favoritesRemove": "አስወግድ",
+  "beaconHere": "እዚህ ነኝ",
+  "beaconSimulated": "የተመሰለ ነው። ይህ ስልክ ብሉቱዝ አይቃኝም።",
+  "beaconChoose": "የቆሙበትን ቦታ ይምረጡ።",
+  "beaconWelcome": "ሰላም {name}፣ ወደ አድዋ ሙዚየም እንኳን በደህና መጡ።",
+  "beaconAt": "እርስዎ በ{name} ላይ ነዎት።",
+  "beaconCooldown": "ይህ ቦታ አስቀድሞ ተነግሯል።"
 }

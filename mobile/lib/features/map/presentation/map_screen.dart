@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:negarit_mobile/core/theme/negarit_colors.dart';
 import 'package:negarit_mobile/core/theme/negarit_spacing.dart';
 import 'package:negarit_mobile/core/widgets/negarit_card.dart';
+import 'package:negarit_mobile/features/beacons/presentation/presence_sheet.dart';
 import 'package:negarit_mobile/features/map/presentation/floor_plan_preview.dart';
 import 'package:negarit_mobile/features/map/presentation/museum_map.dart';
 import 'package:negarit_mobile/l10n/app_localizations.dart';
@@ -73,6 +74,13 @@ class _MapScreenState extends State<MapScreen> {
                   showInside ? l10n.mapWaiting : l10n.mapAroundBody,
                   style: textTheme.bodyMedium?.copyWith(
                     color: NegaritColors.textSecondary,
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: TextButton(
+                    onPressed: () => showSimulatedPlaces(context),
+                    child: Text(l10n.beaconHere),
                   ),
                 ),
               ],

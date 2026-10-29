@@ -92,5 +92,11 @@
   "profileAccountBody": "تبقى اللغة والاهتمامات والأماكن المحفوظة على هذا الهاتف.",
   "profilePrivacyBody": "لا يُحفظ رمز الدخول. لا يُرسل شيء إلى ملف سحابي بعد.",
   "suggestedInterests": "حسب اهتماماتك",
-  "favoritesRemove": "إزالة"
+  "favoritesRemove": "إزالة",
+  "beaconHere": "أنا هنا",
+  "beaconSimulated": "محاكاة. هذا الهاتف لا يمسح البلوتوث.",
+  "beaconChoose": "اختر المكان الذي تقف فيه.",
+  "beaconWelcome": "مرحباً {name}، أهلاً بك في متحف عدوا.",
+  "beaconAt": "أنت عند {name}.",
+  "beaconCooldown": "تم الإعلان عن هذا المكان مسبقاً."
 }

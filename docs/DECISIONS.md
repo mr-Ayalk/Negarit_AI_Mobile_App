@@ -2,6 +2,12 @@
 
 Short architecture decision records. The newest entry is at the top.
 
+## ADR-019 — Place arrival is simulated until real beacons exist
+
+**Status:** Accepted (29 Oct 2026)
+
+The phone does not scan Bluetooth. Explore and the map let the visitor choose the place they are standing in, and that control is labeled simulated. The zone rules still smooth a signal, wait 3 seconds before entering, leave only below a lower threshold, prefer the stronger stable signal, and suppress a repeat announcement for 5 minutes. Those rules are covered by unit tests with fed samples. The entrance welcome is shown once in a session. QR, NFC, and installed beacons are not in the app. A reviewed story is still not loaded.
+
 ## ADR-018 — The visitor profile stays on the phone
 
 **Status:** Accepted (29 Oct 2026)

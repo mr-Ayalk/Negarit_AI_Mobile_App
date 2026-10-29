@@ -93,5 +93,21 @@
   "profileAccountBody": "Language, interests, and saved places stay on this phone.",
   "profilePrivacyBody": "The sign-in code is not stored. Nothing is sent to a cloud profile yet.",
   "suggestedInterests": "Matching your interests",
-  "favoritesRemove": "Remove"
+  "favoritesRemove": "Remove",
+  "beaconHere": "I'm here",
+  "beaconSimulated": "Simulated. This phone is not scanning Bluetooth.",
+  "beaconChoose": "Choose the place you are standing in.",
+  "beaconWelcome": "Hello {name}, welcome to Adwa Museum.",
+  "@beaconWelcome": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "beaconAt": "You are at {name}.",
+  "@beaconAt": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "beaconCooldown": "This place was already announced."
 }
