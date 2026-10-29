@@ -70,7 +70,9 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
         _destination.text.trim(),
         _code.text.trim(),
       );
-      ref.read(sessionProvider.notifier).signIn(_destination.text.trim());
+      await ref
+          .read(sessionProvider.notifier)
+          .signIn(_destination.text.trim());
       if (mounted) {
         context.pop();
       }

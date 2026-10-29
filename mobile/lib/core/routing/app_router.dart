@@ -7,12 +7,18 @@ import 'package:negarit_mobile/features/guide/presentation/guide_screen.dart';
 import 'package:negarit_mobile/features/map/presentation/map_screen.dart';
 import 'package:negarit_mobile/features/profile/presentation/profile_screen.dart';
 import 'package:negarit_mobile/features/profile/presentation/sign_in_screen.dart';
+import 'package:negarit_mobile/features/visit/presentation/place_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: '/explore',
     routes: [
       GoRoute(path: '/guide', builder: (context, state) => const GuideScreen()),
+      GoRoute(
+        path: '/place/:slug',
+        builder: (context, state) =>
+            PlaceScreen(slug: state.pathParameters['slug'] ?? ''),
+      ),
       GoRoute(
         path: '/sign-in',
         builder: (context, state) => const SignInScreen(),

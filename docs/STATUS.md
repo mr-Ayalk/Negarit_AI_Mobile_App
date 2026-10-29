@@ -9,7 +9,7 @@ Honest capability list. Updated 29 Oct 2026 after the monorepo scaffold.
 - Chrome is available for UI runs (`flutter devices` lists Chrome and Edge).
 - PostGIS 3.6.2 files and pgvector 0.8.7 files are on disk under PostgreSQL 18.
 - `scripts/check-env.ps1` exits 0.
-- `mobile`: `flutter analyze` reports no issues. `flutter test` passes, including a profile switch from English to Arabic. The visitor screens use the drum logo and the sunset palette. Explore lists the eight Adwa places. Ask Negarit answers from that visit path. Profile can change the language and offers sign-in.
+- `mobile`: `flutter analyze` reports no issues. `flutter test` passes (8 tests), including a profile switch from English to Arabic, saving 5gna Ber into Favorites, choosing the Halls interest, and signing out a stored visitor. The visitor screens use the drum logo and the sunset palette. Explore lists the eight Adwa places and opens each one. Ask Negarit answers from that visit path. Profile keeps the sign-in address, language, interests, and saved places on the phone.
 - `api`: `npm run lint`, `npm test`, `npm run test:e2e`, and `npm run build` pass. With `DATABASE_URL` set, the venue service returns `source: database` and slug `adwa-museum`. Chapa accepted the saved secret (`GET /v1/banks` returned 200). `POST /payments/telebirr/session` returns a labeled demo. OpenAPI is mounted at `/docs`.
 - `scripts/apply-db.ps1` applied the Adwa schema on 29 Oct 2026. The hosted database has PostGIS 3.6.4, pgvector 0.8.6, one venue (`adwa-museum`), and eight zones.
 - Android phone. A debug build was installed on the Samsung SM A105F and opened.
@@ -25,7 +25,7 @@ Honest capability list. Updated 29 Oct 2026 after the monorepo scaffold.
 
 ## Not started
 
-- Auth, localization beyond the three scaffold languages, beacon engine, guided content, wayfinding queries, offers, and offline packs.
+- A cloud account, visit history, localization beyond the three scaffold languages, beacon engine, guided content, wayfinding queries, offers, and offline packs. Sign-in still stores only the address on this phone.
 - Real BLE, NFC, Telebirr, and speech.
 - The GitHub remote is https://github.com/mr-Ayalk/Negarit_AI_Mobile_App. Actions passed on 29 Oct 2026 on https://github.com/mr-Ayalk/negarit-ai. The run on the current remote has not been confirmed yet.
 

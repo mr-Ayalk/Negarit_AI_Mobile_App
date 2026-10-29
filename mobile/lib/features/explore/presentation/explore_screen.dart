@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:negarit_mobile/core/theme/negarit_colors.dart';
 import 'package:negarit_mobile/core/theme/negarit_radius.dart';
 import 'package:negarit_mobile/core/theme/negarit_spacing.dart';
 import 'package:negarit_mobile/core/widgets/negarit_card.dart';
 import 'package:negarit_mobile/core/widgets/negarit_chip.dart';
-import 'package:negarit_mobile/features/explore/data/adwa_stops.dart';
+import 'package:negarit_mobile/features/visit/data/interests_controller.dart';
+import 'package:negarit_mobile/features/visit/data/saved_places_controller.dart';
+import 'package:negarit_mobile/features/visit/data/visit_places.dart';
 import 'package:negarit_mobile/l10n/app_localizations.dart';
 
-class ExploreScreen extends StatelessWidget {
+class ExploreScreen extends ConsumerWidget {
   const ExploreScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
+    final languageCode = Localizations.localeOf(context).languageCode;
+    final saved = ref.watch(savedPlacesProvider).value ?? const <String>[];
+    final interests = ref.watch(interestsProvider).value ?? const <String>[];
+    final matches = placesForInterests(interests);
     final textTheme = Theme.of(context).textTheme;
     final bottom = MediaQuery.paddingOf(context).bottom;
 
@@ -90,6 +97,27 @@ class ExploreScreen extends StatelessWidget {
           style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
         ),
         const SizedBox(height: NegaritSpacing.sm),
+        if (matches.isNotEmpty) ...[
+          Text(
+            l10n.suggestedInterests,
+            style: textTheme.bodyMedium?.copyWith(
+              color: NegaritColors.textSecondary,
+            ),
+          ),
+          const SizedBox(height: NegaritSpacing.sm),
+          Wrap(
+            spacing: NegaritSpacing.xs,
+            runSpacing: NegaritSpacing.xs,
+            children: [
+              for (final place in matches)
+                ActionChip(
+                  label: Text(place.nameFor(languageCode)),
+                  onPressed: () => context.push('/place/${place.slug}'),
+                ),
+            ],
+          ),
+          const SizedBox(height: NegaritSpacing.sm),
+        ],
         Row(
           children: [
             Expanded(
@@ -130,20 +158,37 @@ class ExploreScreen extends StatelessWidget {
           height: 72,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            itemCount: adwaStopNames.length,
+            itemCount: adwaPlaces.length,
             separatorBuilder: (context, index) =>
                 const SizedBox(width: NegaritSpacing.xs),
             itemBuilder: (context, index) {
-              return DecoratedBox(
-                decoration: BoxDecoration(
-                  color: NegaritColors.surface,
+              final place = adwaPlaces[index];
+              final isSaved = saved.contains(place.slug);
+              return Material(
+                color: NegaritColors.surface,
+                borderRadius: BorderRadius.circular(999),
+                child: InkWell(
                   borderRadius: BorderRadius.circular(999),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: NegaritSpacing.md,
+                  onTap: () => context.push('/place/${place.slug}'),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: NegaritSpacing.md,
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(place.nameFor(languageCode)),
+                        if (isSaved) ...[
+                          const SizedBox(width: NegaritSpacing.xxs),
+                          const Icon(
+                            Icons.favorite,
+                            size: 16,
+                            color: NegaritColors.primary,
+                          ),
+                        ],
+                      ],
+                    ),
                   ),
-                  child: Center(child: Text(adwaStopNames[index])),
                 ),
               );
             },

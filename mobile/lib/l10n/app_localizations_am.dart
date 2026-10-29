@@ -215,4 +215,67 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get stopsBody => 'እነዚህ ቦታዎች በየአድዋ ሙዚየም ጉብኝት ላይ ናቸው።';
+
+  @override
+  String get placeSave => 'ቦታ አስቀምጥ';
+
+  @override
+  String get placeSaved => 'ተቀምጧል';
+
+  @override
+  String get placeStoryMissing => 'ለዚህ ቦታ የተገመገመ ታሪክ አልተጫነም።';
+
+  @override
+  String get placeTypeEntrance => 'መግቢያ';
+
+  @override
+  String get placeTypeHall => 'አዳራሽ';
+
+  @override
+  String get placeTypeFacility => 'አገልግሎት';
+
+  @override
+  String get placeMissing => 'ይህ ቦታ በጉብኝቱ ላይ የለም።';
+
+  @override
+  String get interestsTitle => 'ፍላጎቶች';
+
+  @override
+  String get interestsNone => 'ምንም አልተመረጠም';
+
+  @override
+  String get interestsDone => 'ተጠናቋል';
+
+  @override
+  String get interestHalls => 'አዳራሾች';
+
+  @override
+  String get interestCoffee => 'ቡና';
+
+  @override
+  String get interestFood => 'ምግብ';
+
+  @override
+  String get interestParking => 'ማቆሚያ';
+
+  @override
+  String get interestRestrooms => 'መጸዳጃ';
+
+  @override
+  String get profileSaved => 'የተቀመጡ ቦታዎች';
+
+  @override
+  String get profileSignOut => 'ውጣ';
+
+  @override
+  String get profileAccountBody => 'ቋንቋ፣ ፍላጎቶች እና የተቀመጡ ቦታዎች በዚህ ስልክ ላይ ይቆያሉ።';
+
+  @override
+  String get profilePrivacyBody => 'የመግቢያ ኮዱ አይቀመጥም። እስካሁን ወደ የደመና መገለጫ አይላክም።';
+
+  @override
+  String get suggestedInterests => 'ከፍላጎትዎ ጋር የሚሄዱ';
+
+  @override
+  String get favoritesRemove => 'አስወግድ';
 }

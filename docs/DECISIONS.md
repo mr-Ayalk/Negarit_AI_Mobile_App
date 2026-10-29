@@ -2,6 +2,12 @@
 
 Short architecture decision records. The newest entry is at the top.
 
+## ADR-018 — The visitor profile stays on the phone
+
+**Status:** Accepted (29 Oct 2026)
+
+Sign-in still uses a code printed in the API log. After the code is accepted, the phone stores the address, the chosen interests, and the saved places on the device. Sign out clears the address and leaves the language, interests, and saved places. There is no cloud profile and no visit history. A place screen names the stop and says a reviewed story is not loaded. Amharic and Arabic strings for these controls are still drafts.
+
 ## ADR-017 — Sign-in codes are printed in the API log
 
 **Status:** Accepted (29 Oct 2026)

@@ -220,4 +220,70 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get stopsBody => 'These places are on the Adwa Museum visit.';
+
+  @override
+  String get placeSave => 'Save place';
+
+  @override
+  String get placeSaved => 'Saved';
+
+  @override
+  String get placeStoryMissing =>
+      'A reviewed story is not loaded for this place.';
+
+  @override
+  String get placeTypeEntrance => 'Entrance';
+
+  @override
+  String get placeTypeHall => 'Hall';
+
+  @override
+  String get placeTypeFacility => 'Facility';
+
+  @override
+  String get placeMissing => 'This place is not on the visit.';
+
+  @override
+  String get interestsTitle => 'Interests';
+
+  @override
+  String get interestsNone => 'None chosen';
+
+  @override
+  String get interestsDone => 'Done';
+
+  @override
+  String get interestHalls => 'Halls';
+
+  @override
+  String get interestCoffee => 'Coffee';
+
+  @override
+  String get interestFood => 'Food';
+
+  @override
+  String get interestParking => 'Parking';
+
+  @override
+  String get interestRestrooms => 'Restrooms';
+
+  @override
+  String get profileSaved => 'Saved places';
+
+  @override
+  String get profileSignOut => 'Sign out';
+
+  @override
+  String get profileAccountBody =>
+      'Language, interests, and saved places stay on this phone.';
+
+  @override
+  String get profilePrivacyBody =>
+      'The sign-in code is not stored. Nothing is sent to a cloud profile yet.';
+
+  @override
+  String get suggestedInterests => 'Matching your interests';
+
+  @override
+  String get favoritesRemove => 'Remove';
 }

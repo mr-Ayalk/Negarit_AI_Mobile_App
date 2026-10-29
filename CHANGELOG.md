@@ -9,6 +9,7 @@ and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
 ### Added
 
+- Profile keeps the signed-in address, language, interests, and saved places on the phone. Each Adwa place can be opened and saved. A reviewed story is still not loaded.
 - Profile can switch English, Amharic, and Arabic on the phone. Sign-in asks for a code that the API prints in its log.
 - API reads venues from `DATABASE_URL` when it is set, starts a Chapa checkout when the secret is set, and keeps Telebirr and AI labeled as demo.
 - Adwa placeholder venue, zones, and a SQL schema. Apply it with `scripts/apply-db.ps1` after `DATABASE_URL` is in `.env`.

@@ -7,6 +7,10 @@ import 'package:negarit_mobile/core/theme/negarit_spacing.dart';
 import 'package:negarit_mobile/core/widgets/negarit_button.dart';
 import 'package:negarit_mobile/core/widgets/negarit_card.dart';
 import 'package:negarit_mobile/features/profile/data/session_controller.dart';
+import 'package:negarit_mobile/features/visit/data/interests_controller.dart';
+import 'package:negarit_mobile/features/visit/data/saved_places_controller.dart';
+import 'package:negarit_mobile/features/visit/data/visit_labels.dart';
+import 'package:negarit_mobile/features/visit/data/visit_places.dart';
 import 'package:negarit_mobile/l10n/app_localizations.dart';
 
 class ProfileScreen extends ConsumerWidget {
@@ -20,7 +24,9 @@ class ProfileScreen extends ConsumerWidget {
     final savedLanguage = ref.watch(localeProvider).value;
     final languageCode =
         savedLanguage ?? Localizations.localeOf(context).languageCode;
-    final signedIn = ref.watch(sessionProvider);
+    final signedIn = ref.watch(sessionProvider).value;
+    final interests = ref.watch(interestsProvider).value ?? const <String>[];
+    final savedCount = ref.watch(savedPlacesProvider).value?.length ?? 0;
 
     return ListView(
       padding: EdgeInsets.fromLTRB(
@@ -45,10 +51,24 @@ class ProfileScreen extends ConsumerWidget {
             color: NegaritColors.textSecondary,
           ),
         ),
+        const SizedBox(height: NegaritSpacing.xxs),
+        Text(
+          l10n.profileAccountBody,
+          textAlign: TextAlign.center,
+          style: textTheme.bodySmall?.copyWith(
+            color: NegaritColors.textSecondary,
+          ),
+        ),
         const SizedBox(height: NegaritSpacing.lg),
         NegaritButton(
-          label: l10n.signIn,
-          onPressed: signedIn == null ? () => context.push('/sign-in') : null,
+          label: signedIn == null ? l10n.signIn : l10n.profileSignOut,
+          onPressed: () {
+            if (signedIn == null) {
+              context.push('/sign-in');
+              return;
+            }
+            ref.read(sessionProvider.notifier).signOut();
+          },
         ),
         const SizedBox(height: NegaritSpacing.lg),
         NegaritCard(
@@ -67,8 +87,25 @@ class ProfileScreen extends ConsumerWidget {
               ),
               const Divider(height: 1),
               _ProfileRow(
+                label: l10n.interestsTitle,
+                value: interests.isEmpty
+                    ? l10n.interestsNone
+                    : interests
+                          .map((id) => interestLabel(l10n, id))
+                          .join(', '),
+                onTap: () => _chooseInterests(context, ref),
+              ),
+              const Divider(height: 1),
+              _ProfileRow(
+                label: l10n.profileSaved,
+                value: '$savedCount',
+                onTap: () => context.go('/favorites'),
+              ),
+              const Divider(height: 1),
+              _ProfileRow(
                 label: l10n.profilePrivacy,
                 value: l10n.profilePrivacyValue,
+                onTap: () => _showPrivacy(context),
               ),
             ],
           ),
@@ -128,6 +165,92 @@ class ProfileScreen extends ConsumerWidget {
       },
     );
   }
+
+  Future<void> _chooseInterests(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    return showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: NegaritColors.surface,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (context) {
+        return Consumer(
+          builder: (context, ref, child) {
+            final selected =
+                ref.watch(interestsProvider).value ?? const <String>[];
+            return SafeArea(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(NegaritSpacing.lg),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      l10n.interestsTitle,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: NegaritSpacing.sm),
+                    for (final interestId in visitInterestIds)
+                      CheckboxListTile(
+                        contentPadding: EdgeInsets.zero,
+                        value: selected.contains(interestId),
+                        title: Text(interestLabel(l10n, interestId)),
+                        onChanged: (_) => ref
+                            .read(interestsProvider.notifier)
+                            .toggle(interestId),
+                      ),
+                    const SizedBox(height: NegaritSpacing.sm),
+                    NegaritButton(
+                      label: l10n.interestsDone,
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Future<void> _showPrivacy(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: NegaritColors.surface,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (context) {
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(NegaritSpacing.lg),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.profilePrivacy,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: NegaritSpacing.sm),
+                Text(l10n.profileAccountBody),
+                const SizedBox(height: NegaritSpacing.xs),
+                Text(l10n.profilePrivacyBody),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 }
 
 class _BrandMark extends StatelessWidget {
@@ -174,12 +297,25 @@ class _ProfileRow extends StatelessWidget {
                 ),
               ),
             ),
-            Text(
-              value,
-              style: textTheme.bodyMedium?.copyWith(
-                color: NegaritColors.textSecondary,
+            Flexible(
+              child: Text(
+                value,
+                textAlign: TextAlign.end,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: textTheme.bodyMedium?.copyWith(
+                  color: NegaritColors.textSecondary,
+                ),
               ),
             ),
+            if (onTap != null) ...[
+              const SizedBox(width: NegaritSpacing.xxs),
+              const Icon(
+                Icons.chevron_right,
+                size: 18,
+                color: NegaritColors.textSecondary,
+              ),
+            ],
           ],
         ),
       ),

@@ -220,4 +220,69 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get stopsBody => 'هذه الأماكن ضمن زيارة متحف عدوا.';
+
+  @override
+  String get placeSave => 'حفظ المكان';
+
+  @override
+  String get placeSaved => 'محفوظ';
+
+  @override
+  String get placeStoryMissing => 'لا توجد قصة مراجعة لهذا المكان.';
+
+  @override
+  String get placeTypeEntrance => 'المدخل';
+
+  @override
+  String get placeTypeHall => 'قاعة';
+
+  @override
+  String get placeTypeFacility => 'مرفق';
+
+  @override
+  String get placeMissing => 'هذا المكان ليس ضمن الزيارة.';
+
+  @override
+  String get interestsTitle => 'الاهتمامات';
+
+  @override
+  String get interestsNone => 'لم يُختر شيء';
+
+  @override
+  String get interestsDone => 'تم';
+
+  @override
+  String get interestHalls => 'القاعات';
+
+  @override
+  String get interestCoffee => 'القهوة';
+
+  @override
+  String get interestFood => 'الطعام';
+
+  @override
+  String get interestParking => 'المواقف';
+
+  @override
+  String get interestRestrooms => 'دورات المياه';
+
+  @override
+  String get profileSaved => 'الأماكن المحفوظة';
+
+  @override
+  String get profileSignOut => 'تسجيل الخروج';
+
+  @override
+  String get profileAccountBody =>
+      'تبقى اللغة والاهتمامات والأماكن المحفوظة على هذا الهاتف.';
+
+  @override
+  String get profilePrivacyBody =>
+      'لا يُحفظ رمز الدخول. لا يُرسل شيء إلى ملف سحابي بعد.';
+
+  @override
+  String get suggestedInterests => 'حسب اهتماماتك';
+
+  @override
+  String get favoritesRemove => 'إزالة';
 }

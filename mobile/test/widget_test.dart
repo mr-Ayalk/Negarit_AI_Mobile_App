@@ -94,6 +94,68 @@ void main() {
     expect(Directionality.of(context), TextDirection.rtl);
   });
 
+  testWidgets('saving a place shows it in favorites', (tester) async {
+    await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
+    await tester.pumpAndSettle();
+
+    await tester.scrollUntilVisible(find.text('5gna Ber'), 400);
+    await tester.tap(find.text('5gna Ber'));
+    await tester.pumpAndSettle();
+
+    expect(
+      find.text('A reviewed story is not loaded for this place.'),
+      findsOneWidget,
+    );
+    await tester.tap(find.text('Save place'));
+    await tester.pumpAndSettle();
+    expect(find.text('Saved'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Back'));
+    await tester.pumpAndSettle();
+    await tester.tap(
+      find.descendant(
+        of: find.byType(NavigationBar),
+        matching: find.text('Favorites'),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('5gna Ber'), findsOneWidget);
+    expect(find.text('Hall'), findsOneWidget);
+  });
+
+  testWidgets('profile stores interests and a signed-in visitor', (
+    tester,
+  ) async {
+    SharedPreferences.setMockInitialValues({
+      'signed-in-destination': 'visitor@example.com',
+    });
+    await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
+    await tester.pumpAndSettle();
+
+    await tester.tap(
+      find.descendant(
+        of: find.byType(NavigationBar),
+        matching: find.text('Profile'),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('visitor@example.com'), findsOneWidget);
+
+    await tester.tap(find.text('Interests'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Halls'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Done'));
+    await tester.pumpAndSettle();
+    expect(find.text('Halls'), findsOneWidget);
+
+    await tester.tap(find.text('Sign out'));
+    await tester.pumpAndSettle();
+    expect(find.text('Guest'), findsOneWidget);
+    expect(find.text('Sign in'), findsOneWidget);
+  });
+
   testWidgets('primary button ignores taps while loading', (tester) async {
     var taps = 0;
     await tester.pumpWidget(

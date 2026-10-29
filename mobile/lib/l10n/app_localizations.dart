@@ -501,6 +501,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'These places are on the Adwa Museum visit.'**
   String get stopsBody;
+
+  /// No description provided for @placeSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save place'**
+  String get placeSave;
+
+  /// No description provided for @placeSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get placeSaved;
+
+  /// No description provided for @placeStoryMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'A reviewed story is not loaded for this place.'**
+  String get placeStoryMissing;
+
+  /// No description provided for @placeTypeEntrance.
+  ///
+  /// In en, this message translates to:
+  /// **'Entrance'**
+  String get placeTypeEntrance;
+
+  /// No description provided for @placeTypeHall.
+  ///
+  /// In en, this message translates to:
+  /// **'Hall'**
+  String get placeTypeHall;
+
+  /// No description provided for @placeTypeFacility.
+  ///
+  /// In en, this message translates to:
+  /// **'Facility'**
+  String get placeTypeFacility;
+
+  /// No description provided for @placeMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'This place is not on the visit.'**
+  String get placeMissing;
+
+  /// No description provided for @interestsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Interests'**
+  String get interestsTitle;
+
+  /// No description provided for @interestsNone.
+  ///
+  /// In en, this message translates to:
+  /// **'None chosen'**
+  String get interestsNone;
+
+  /// No description provided for @interestsDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get interestsDone;
+
+  /// No description provided for @interestHalls.
+  ///
+  /// In en, this message translates to:
+  /// **'Halls'**
+  String get interestHalls;
+
+  /// No description provided for @interestCoffee.
+  ///
+  /// In en, this message translates to:
+  /// **'Coffee'**
+  String get interestCoffee;
+
+  /// No description provided for @interestFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Food'**
+  String get interestFood;
+
+  /// No description provided for @interestParking.
+  ///
+  /// In en, this message translates to:
+  /// **'Parking'**
+  String get interestParking;
+
+  /// No description provided for @interestRestrooms.
+  ///
+  /// In en, this message translates to:
+  /// **'Restrooms'**
+  String get interestRestrooms;
+
+  /// No description provided for @profileSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved places'**
+  String get profileSaved;
+
+  /// No description provided for @profileSignOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get profileSignOut;
+
+  /// No description provided for @profileAccountBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Language, interests, and saved places stay on this phone.'**
+  String get profileAccountBody;
+
+  /// No description provided for @profilePrivacyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The sign-in code is not stored. Nothing is sent to a cloud profile yet.'**
+  String get profilePrivacyBody;
+
+  /// No description provided for @suggestedInterests.
+  ///
+  /// In en, this message translates to:
+  /// **'Matching your interests'**
+  String get suggestedInterests;
+
+  /// No description provided for @favoritesRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get favoritesRemove;
 }
 
 class _AppLocalizationsDelegate
