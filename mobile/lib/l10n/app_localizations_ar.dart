@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -30,19 +31,22 @@ class AppLocalizationsAr extends AppLocalizations {
   String get exploreEmptyTitle => 'لم يُحمَّل موقع';
 
   @override
-  String get exploreEmptyBody => 'تظهر الجولات الإرشادية هنا بعد تثبيت حزمة الموقع. محتوى متحف عدوا غير موجود على هذا الجهاز بعد.';
+  String get exploreEmptyBody =>
+      'تظهر الجولات الإرشادية هنا بعد تثبيت حزمة الموقع. محتوى متحف عدوا غير موجود على هذا الجهاز بعد.';
 
   @override
   String get mapEmptyTitle => 'الخريطة بانتظار موقع';
 
   @override
-  String get mapEmptyBody => 'ستظهر القهوة ومواقف السيارات ودورات المياه والمعارض على خريطة الموقع بعد تثبيت الحزمة.';
+  String get mapEmptyBody =>
+      'ستظهر القهوة ومواقف السيارات ودورات المياه والمعارض على خريطة الموقع بعد تثبيت الحزمة.';
 
   @override
   String get favoritesEmptyTitle => 'لا أماكن محفوظة';
 
   @override
-  String get favoritesEmptyBody => 'ستظهر هنا الأماكن التي تحفظها أثناء الزيارة.';
+  String get favoritesEmptyBody =>
+      'ستظهر هنا الأماكن التي تحفظها أثناء الزيارة.';
 
   @override
   String get profileEmptyTitle => 'الملف غير مُعد';
@@ -63,7 +67,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get explorePromptEnd => '';
 
   @override
-  String get exploreSubtitle => 'امشِ في الزيارة، أو ابحث عن مكان، أو اسأل عن المسار.';
+  String get exploreSubtitle =>
+      'امشِ في الزيارة، أو ابحث عن مكان، أو اسأل عن المسار.';
 
   @override
   String get chipAsk => 'اسأل سؤالاً';
@@ -123,10 +128,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get guideSend => 'إرسال';
 
   @override
-  String get guideReply => 'تبدأ الزيارة من المدخل، ثم القاعة الخامسة والسادسة، ثم القهوة والمطعم ومواقف السيارات ودورات المياه والمخارج.';
+  String get guideReply =>
+      'تبدأ الزيارة من المدخل، ثم القاعة الخامسة والسادسة، ثم القهوة والمطعم ومواقف السيارات ودورات المياه والمخارج.';
 
   @override
-  String get guideHallsReply => 'القاعات في هذه الزيارة هي القاعة الخامسة والقاعة السادسة.';
+  String get guideHallsReply =>
+      'القاعات في هذه الزيارة هي القاعة الخامسة والقاعة السادسة.';
 
   @override
   String guideStopReply(String name) {
@@ -137,7 +144,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get mapPreview => 'متحف عدوا';
 
   @override
-  String get mapWaiting => 'المدخل والقاعات والقهوة والمطعم ومواقف السيارات ودورات المياه والمخارج.';
+  String get mapWaiting =>
+      'المدخل والقاعات والقهوة والمطعم ومواقف السيارات ودورات المياه والمخارج.';
 
   @override
   String get guestLabel => 'زائر';

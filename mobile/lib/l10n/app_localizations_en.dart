@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -30,19 +31,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exploreEmptyTitle => 'No venue loaded';
 
   @override
-  String get exploreEmptyBody => 'Guided tours appear here after a venue pack is installed. Adwa Museum content is not on this device yet.';
+  String get exploreEmptyBody =>
+      'Guided tours appear here after a venue pack is installed. Adwa Museum content is not on this device yet.';
 
   @override
   String get mapEmptyTitle => 'Map is waiting for a venue';
 
   @override
-  String get mapEmptyBody => 'Coffee, parking, restrooms, and exhibits will show on the venue map after a pack is installed.';
+  String get mapEmptyBody =>
+      'Coffee, parking, restrooms, and exhibits will show on the venue map after a pack is installed.';
 
   @override
   String get favoritesEmptyTitle => 'No saved places';
 
   @override
-  String get favoritesEmptyBody => 'Places you save during a visit will show up here.';
+  String get favoritesEmptyBody =>
+      'Places you save during a visit will show up here.';
 
   @override
   String get profileEmptyTitle => 'Profile is not set up';
@@ -63,7 +67,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get explorePromptEnd => '';
 
   @override
-  String get exploreSubtitle => 'Walk the visit, find a place, or ask about the route.';
+  String get exploreSubtitle =>
+      'Walk the visit, find a place, or ask about the route.';
 
   @override
   String get chipAsk => 'Ask a question';
@@ -123,10 +128,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get guideSend => 'Send';
 
   @override
-  String get guideReply => 'The visit starts at the entrance, then 5gna Ber and 6gna Ber, then coffee, the restaurant, parking, restrooms, and the exits.';
+  String get guideReply =>
+      'The visit starts at the entrance, then 5gna Ber and 6gna Ber, then coffee, the restaurant, parking, restrooms, and the exits.';
 
   @override
-  String get guideHallsReply => 'The halls on this visit are 5gna Ber and 6gna Ber.';
+  String get guideHallsReply =>
+      'The halls on this visit are 5gna Ber and 6gna Ber.';
 
   @override
   String guideStopReply(String name) {
@@ -137,7 +144,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mapPreview => 'Adwa Museum';
 
   @override
-  String get mapWaiting => 'Entrance, halls, coffee, restaurant, parking, restrooms, and exits.';
+  String get mapWaiting =>
+      'Entrance, halls, coffee, restaurant, parking, restrooms, and exits.';
 
   @override
   String get guestLabel => 'Guest';

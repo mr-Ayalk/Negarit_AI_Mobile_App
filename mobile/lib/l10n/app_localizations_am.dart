@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -30,13 +31,15 @@ class AppLocalizationsAm extends AppLocalizations {
   String get exploreEmptyTitle => 'ቦታ አልተጫነም';
 
   @override
-  String get exploreEmptyBody => 'የጉብኝት መመሪያ የቦታ ጥቅል ከተጫነ በኋላ እዚህ ይታያል። የአድዋ ሙዚየም ይዘት በዚህ መሣሪያ ላይ እስካሁን የለም።';
+  String get exploreEmptyBody =>
+      'የጉብኝት መመሪያ የቦታ ጥቅል ከተጫነ በኋላ እዚህ ይታያል። የአድዋ ሙዚየም ይዘት በዚህ መሣሪያ ላይ እስካሁን የለም።';
 
   @override
   String get mapEmptyTitle => 'ካርታው ቦታ እየጠበቀ ነው';
 
   @override
-  String get mapEmptyBody => 'ቡና፣ ማቆሚያ፣ መጸዳጃ ቤት እና ኤግዚቢሽኖች የቦታ ጥቅል ከተጫነ በኋላ በካርታው ላይ ይታያሉ።';
+  String get mapEmptyBody =>
+      'ቡና፣ ማቆሚያ፣ መጸዳጃ ቤት እና ኤግዚቢሽኖች የቦታ ጥቅል ከተጫነ በኋላ በካርታው ላይ ይታያሉ።';
 
   @override
   String get favoritesEmptyTitle => 'የተቀመጡ ቦታዎች የሉም';
@@ -123,7 +126,8 @@ class AppLocalizationsAm extends AppLocalizations {
   String get guideSend => 'ላክ';
 
   @override
-  String get guideReply => 'ጉብኝቱ ከመግቢያ ይጀምራል፣ ከዚያ 5ኛ ቤር እና 6ኛ ቤር፣ ቡና፣ ምግብ ቤት፣ ማቆሚያ፣ መጸዳጃ እና መውጫ።';
+  String get guideReply =>
+      'ጉብኝቱ ከመግቢያ ይጀምራል፣ ከዚያ 5ኛ ቤር እና 6ኛ ቤር፣ ቡና፣ ምግብ ቤት፣ ማቆሚያ፣ መጸዳጃ እና መውጫ።';
 
   @override
   String get guideHallsReply => 'በዚህ ጉብኝት ላይ ያሉ አዳራሾች 5ኛ ቤር እና 6ኛ ቤር ናቸው።';
