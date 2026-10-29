@@ -48,6 +48,9 @@
     }
   },
   "mapPreview": "Adwa Museum",
+  "mapAround": "Around the museum",
+  "mapInside": "Inside the visit",
+  "mapAroundBody": "Adwa 00KM Museum, Piassa, Addis Ababa.",
   "mapWaiting": "Entrance, halls, coffee, restaurant, parking, restrooms, and exits.",
   "guestLabel": "Guest",
   "profileLanguage": "Language",

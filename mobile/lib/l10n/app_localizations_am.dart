@@ -141,6 +141,15 @@ class AppLocalizationsAm extends AppLocalizations {
   String get mapPreview => 'የአድዋ ሙዚየም';
 
   @override
+  String get mapAround => 'በሙዚየሙ ዙሪያ';
+
+  @override
+  String get mapInside => 'በጉብኝቱ ውስጥ';
+
+  @override
+  String get mapAroundBody => 'አድዋ 00 ኪ.ሜ ሙዚየም፣ ፒያሳ፣ አዲስ አበባ።';
+
+  @override
   String get mapWaiting => 'መግቢያ፣ አዳራሾች፣ ቡና፣ ምግብ ቤት፣ ማቆሚያ፣ መጸዳጃ እና መውጫ።';
 
   @override

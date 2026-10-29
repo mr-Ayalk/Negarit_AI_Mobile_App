@@ -10,23 +10,23 @@ Honest capability list. Updated 29 Oct 2026 after the monorepo scaffold.
 - PostGIS 3.6.2 files and pgvector 0.8.7 files are on disk under PostgreSQL 18.
 - `scripts/check-env.ps1` exits 0.
 - `mobile`: `flutter analyze` reports no issues. `flutter test` passes (explore, guide reply, map, Arabic right-to-left, loading button). The visitor screens use the drum logo and the sunset palette. Explore lists the eight Adwa places. The map is a schematic of those places. Ask Negarit answers from that visit path.
-- `api`: `npm run lint`, `npm test`, `npm run test:e2e`, and `npm run build` pass. `GET /health` returns status ok and labels Telebirr as demo and AI as mock. `GET /venues` returns the Adwa placeholder and `verified: false` until `DATABASE_URL` is set. `POST /payments/chapa/session` returns 503 until the Chapa secret is set. `POST /payments/telebirr/session` returns a labeled demo. OpenAPI is mounted at `/docs`.
+- `api`: `npm run lint`, `npm test`, `npm run test:e2e`, and `npm run build` pass. With `DATABASE_URL` set, the venue service returns `source: database` and slug `adwa-museum`. Chapa accepted the saved secret (`GET /v1/banks` returned 200). `POST /payments/telebirr/session` returns a labeled demo. OpenAPI is mounted at `/docs`.
+- `scripts/apply-db.ps1` applied the Adwa schema on 29 Oct 2026. The hosted database has PostGIS 3.6.4, pgvector 0.8.6, one venue (`adwa-museum`), and eight zones.
+- Android phone. A debug build was installed on the Samsung SM A105F and opened.
 - `admin`: `npm run lint` and `npm run build` pass. In Chrome, Overview, Venues, Content, Beacons, Offers, and Analytics each returned HTTP 200 on `http://localhost:3001`. The pages state that sign-in and venue data are not connected.
 - Production npm dependencies report no known vulnerabilities (`npm audit --omit=dev`). Dev dependencies still report findings; they were not force-upgraded.
 
 ## Simulated
 
 - Telebirr checkout. `POST /payments/telebirr/session` returns a labeled demo and does not call Telebirr.
-- AI answers. `AI_PROVIDER=mock`. The visitor guide still says it is not connected.
+- AI answers. `AI_PROVIDER=mock`. Ask Negarit answers from the eight place names stored on the phone.
 - OTP. `OTP_DELIVERY=log`. No SMS provider is configured.
-- Visitor map. The screen is still the floor-plan preview. A Google Maps key can be stored in `.env`, and the Android map SDK is not wired yet.
+- Visitor map. The installed debug app opens the outdoor map for Adwa 00KM Museum in Piassa, with "Inside the visit" for the eight-place schematic. The maps key is packaged from gitignored `local.properties`. A phone screenshot does not capture the map surface, and the recent device log had no maps key error.
 
 ## Not started
 
-- Applying `scripts/apply-db.ps1`. It reads `DATABASE_URL` from `.env`. That value is still blank, so the Adwa schema has not been applied to Neon. `CREATE EXTENSION` is still unverified.
 - Auth, localization beyond the three scaffold languages, beacon engine, guided content, wayfinding queries, offers, and offline packs.
 - Real BLE, NFC, Telebirr, and speech.
-- Android phone install. A Samsung SM A105F was detected, and the debug build result was not confirmed.
 - The GitHub remote is https://github.com/mr-Ayalk/Negarit_AI_Mobile_App. Actions passed on 29 Oct 2026 on https://github.com/mr-Ayalk/negarit-ai. The run on the current remote has not been confirmed yet.
 
 ## Known warnings
@@ -34,4 +34,4 @@ Honest capability list. Updated 29 Oct 2026 after the monorepo scaffold.
 - `flutter doctor` reports an unknown Flutter upstream repository. The SDK runs.
 - `flutter doctor` reports Visual Studio missing. That blocks Windows desktop builds only.
 - `sdkmanager` is deprecated in favor of the Android CLI. Flutter accepts the installed SDK.
-- pgvector on Windows is a community binary. `CREATE EXTENSION` has not succeeded yet.
+- pgvector on the local Windows install is a community binary. The hosted database accepted `CREATE EXTENSION` for PostGIS and pgvector.

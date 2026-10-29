@@ -47,6 +47,9 @@
     }
   },
   "mapPreview": "የአድዋ ሙዚየም",
+  "mapAround": "በሙዚየሙ ዙሪያ",
+  "mapInside": "በጉብኝቱ ውስጥ",
+  "mapAroundBody": "አድዋ 00 ኪ.ሜ ሙዚየም፣ ፒያሳ፣ አዲስ አበባ።",
   "mapWaiting": "መግቢያ፣ አዳራሾች፣ ቡና፣ ምግብ ቤት፣ ማቆሚያ፣ መጸዳጃ እና መውጫ።",
   "guestLabel": "እንግዳ",
   "profileLanguage": "ቋንቋ",

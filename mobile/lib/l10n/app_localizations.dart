@@ -352,6 +352,24 @@ abstract class AppLocalizations {
   /// **'Adwa Museum'**
   String get mapPreview;
 
+  /// No description provided for @mapAround.
+  ///
+  /// In en, this message translates to:
+  /// **'Around the museum'**
+  String get mapAround;
+
+  /// No description provided for @mapInside.
+  ///
+  /// In en, this message translates to:
+  /// **'Inside the visit'**
+  String get mapInside;
+
+  /// No description provided for @mapAroundBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Adwa 00KM Museum, Piassa, Addis Ababa.'**
+  String get mapAroundBody;
+
   /// No description provided for @mapWaiting.
   ///
   /// In en, this message translates to:

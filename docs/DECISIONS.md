@@ -2,6 +2,12 @@
 
 Short architecture decision records. The newest entry is at the top.
 
+## ADR-016 — The outdoor pin is the published Adwa 00KM location
+
+**Status:** Accepted (29 Oct 2026)
+
+The phone map uses Google Maps when `MAPS_API_KEY` is present in the gitignored Android `local.properties` file. The pin is the Wikipedia coordinate for the Adwa 00KM Museum, 9.0332° N, 38.7533° E, in Piassa. The indoor screen stays a schematic of the eight visit places because the building has not been surveyed into map coordinates. The key is not committed.
+
 ## ADR-015 — The visitor app follows the drum logo
 
 **Status:** Accepted (29 Oct 2026)

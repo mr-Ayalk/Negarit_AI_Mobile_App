@@ -144,6 +144,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mapPreview => 'Adwa Museum';
 
   @override
+  String get mapAround => 'Around the museum';
+
+  @override
+  String get mapInside => 'Inside the visit';
+
+  @override
+  String get mapAroundBody => 'Adwa 00KM Museum, Piassa, Addis Ababa.';
+
+  @override
   String get mapWaiting =>
       'Entrance, halls, coffee, restaurant, parking, restrooms, and exits.';
 

@@ -144,6 +144,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get mapPreview => 'متحف عدوا';
 
   @override
+  String get mapAround => 'حول المتحف';
+
+  @override
+  String get mapInside => 'داخل الزيارة';
+
+  @override
+  String get mapAroundBody => 'متحف عدوا 00 كم، بياسا، أديس أبابا.';
+
+  @override
   String get mapWaiting =>
       'المدخل والقاعات والقهوة والمطعم ومواقف السيارات ودورات المياه والمخارج.';
 

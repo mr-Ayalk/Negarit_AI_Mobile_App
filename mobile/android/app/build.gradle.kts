@@ -4,6 +4,13 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+val mapsApiKey = rootProject.file("local.properties")
+    .takeIf { it.exists() }
+    ?.readLines()
+    ?.firstOrNull { it.startsWith("MAPS_API_KEY=") }
+    ?.substringAfter("=", "")
+    ?: ""
+
 android {
     namespace = "ai.negarit.negarit_mobile"
     compileSdk = flutter.compileSdkVersion
@@ -27,6 +34,7 @@ android {
         // flag during build.
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        manifestPlaceholders["MAPS_API_KEY"] = mapsApiKey
     }
 
     buildTypes {
