@@ -9,6 +9,8 @@ and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
 ### Added
 
+- Visitor screens use the sky-gradient layout: explore, floor-plan map, favorites, profile, and an unconnected guide.
+- Windows notes for installing a debug build on an Android phone.
 - Extracted SRS v2.0 into `docs/SRS.md`.
 - Windows toolchain guide and `scripts/check-env.ps1`.
 - Proprietary license, ignore rules, and environment template.

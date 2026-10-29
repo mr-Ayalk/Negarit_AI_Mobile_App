@@ -2,6 +2,12 @@
 
 Short architecture decision records. The newest entry is at the top.
 
+## ADR-012 — Visitor screens follow the sky-gradient reference
+
+**Status:** Accepted (29 Oct 2026)
+
+The visitor app uses the reference layout for type, color, rounded cards, chips, and the bottom bar. Plus Jakarta Sans and the existing brand colors stay. Place names and photos from those reference images are not used. Adwa Museum is named as the first venue, and stories, audio, zones, and guide answers stay unloaded until real content and a connected guide exist. Amharic and Arabic strings added for this screen are still drafts.
+
 ## ADR-011 — Drift waits for the offline venue schema
 
 **Status:** Accepted (29 Oct 2026)

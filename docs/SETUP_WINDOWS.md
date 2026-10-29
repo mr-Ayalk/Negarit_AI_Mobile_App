@@ -144,19 +144,47 @@ powershell -NoProfile -ExecutionPolicy Bypass -File ".\scripts\check-env.ps1"
 
 The script exits 0 when every required check passes. Python, GitHub CLI, and Docker are optional.
 
-## Phone
+## Run the app on an Android phone
 
-Enable Developer options and USB debugging, then connect the phone with a data cable:
+The SDK and `adb` are already on this PC. Android Studio is not required. No phone was attached on 29 Oct 2026.
+
+1. On the phone, open Settings, then About phone, and tap Build number seven times until Developer options turns on.
+2. Open Developer options and turn on USB debugging. On Android 11 or newer you can also use Wireless debugging.
+3. Plug the phone into this PC with a data cable. If the phone asks to allow USB debugging, tap Allow.
+4. From `mobile/`:
 
 ```powershell
 adb devices
 flutter devices
+flutter run
 ```
 
-No Android phone was attached on 29 Oct 2026. UI work can use Chrome:
+`adb devices` should list the phone as `device`. If it says `unauthorized`, unlock the phone and accept the prompt, then run `adb devices` again. `flutter run` installs a debug build and leaves a hot-reload session open. Press `r` in that terminal to reload, and `q` to stop.
+
+Wireless debugging, when the phone and PC are on the same network:
 
 ```powershell
+adb pair <phone-ip>:<pairing-port>
+adb connect <phone-ip>:<connection-port>
+flutter devices
+flutter run
+```
+
+The pairing code, IP, and ports are on the phone under Developer options, Wireless debugging.
+
+To install a debug build without a live session:
+
+```powershell
+cd mobile
+flutter build apk --debug
+adb install -r "build\app\outputs\flutter-apk\app-debug.apk"
+```
+
+Chrome is the stand-in until a phone is connected:
+
+```powershell
+cd mobile
 flutter run -d chrome
 ```
 
-Real BLE and NFC still need a physical Android device. An emulator is a poor fit on 8 GB RAM.
+Real BLE and NFC still need the physical Android device. An emulator is a poor fit on 8 GB RAM.
