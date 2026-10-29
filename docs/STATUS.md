@@ -24,7 +24,7 @@ Nothing product-facing is simulated yet. There is no beacon simulator, payment s
 - Auth, localization beyond the three scaffold languages, beacon engine, guided content, wayfinding queries, AI, offers, payments, offline packs.
 - Real BLE, NFC, Chapa, Telebirr, and speech.
 - Android phone. `adb devices` has no handset attached.
-- GitHub remote. The Actions workflow is committed and has not run, because there is no remote. GitHub CLI is installed and is not signed in yet.
+- GitHub Actions on https://github.com/mr-Ayalk/negarit-ai. The workflow is pushed and has not been confirmed green yet.
 
 ## Known warnings
 
