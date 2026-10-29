@@ -1,5 +1,9 @@
 ﻿import { Module } from '@nestjs/common';
+import { AuthController } from './auth.controller.js';
+import { OtpService } from './otp.service.js';
 
-/** Registered so the modular monolith has a home for this area. */
-@Module({})
+@Module({
+  controllers: [AuthController],
+  providers: [OtpService],
+})
 export class AuthModule {}

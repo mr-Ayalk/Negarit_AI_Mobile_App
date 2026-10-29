@@ -382,6 +382,66 @@ abstract class AppLocalizations {
   /// **'Guest'**
   String get guestLabel;
 
+  /// No description provided for @chooseLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a language'**
+  String get chooseLanguage;
+
+  /// No description provided for @signIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get signIn;
+
+  /// No description provided for @signInBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Use a phone number or email. The code is printed in the API log, not sent by SMS.'**
+  String get signInBody;
+
+  /// No description provided for @signInHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone or email'**
+  String get signInHint;
+
+  /// No description provided for @signInSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send code'**
+  String get signInSend;
+
+  /// No description provided for @signInCodeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Code from the API log'**
+  String get signInCodeHint;
+
+  /// No description provided for @signInConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm code'**
+  String get signInConfirm;
+
+  /// No description provided for @signInWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'The code is printed in the API log.'**
+  String get signInWaiting;
+
+  /// No description provided for @signInInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'That code is not valid.'**
+  String get signInInvalid;
+
+  /// No description provided for @signInUnreachable.
+  ///
+  /// In en, this message translates to:
+  /// **'This phone cannot reach the API. Keep it connected to the computer and try again.'**
+  String get signInUnreachable;
+
   /// No description provided for @profileLanguage.
   ///
   /// In en, this message translates to:

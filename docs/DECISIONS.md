@@ -2,6 +2,12 @@
 
 Short architecture decision records. The newest entry is at the top.
 
+## ADR-017 — Sign-in codes are printed in the API log
+
+**Status:** Accepted (29 Oct 2026)
+
+There is no SMS provider. `POST /auth/otp/request` creates a six-digit code, prints it in the API log, and does not return the code. The phone profile can switch among English, Amharic, and Arabic, and that choice stays on the device. Amharic and Arabic strings are still drafts.
+
 ## ADR-016 — The outdoor pin is the published Adwa 00KM location
 
 **Status:** Accepted (29 Oct 2026)

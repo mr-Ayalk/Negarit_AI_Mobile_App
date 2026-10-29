@@ -52,6 +52,24 @@ describe('AppController (e2e)', () => {
       });
   });
 
+  it('/auth/otp/request (POST) does not return the code', () => {
+    return request(app.getHttpServer())
+      .post('/auth/otp/request')
+      .send({ destination: 'visitor@example.com' })
+      .expect(201)
+      .expect((response) => {
+        expect(response.body.delivery).toBe('log');
+        expect(JSON.stringify(response.body)).not.toMatch(/\d{6}/);
+      });
+  });
+
+  it('/auth/otp/verify (POST) rejects an unknown code', () => {
+    return request(app.getHttpServer())
+      .post('/auth/otp/verify')
+      .send({ destination: 'visitor@example.com', code: '000000' })
+      .expect(401);
+  });
+
   it('/venues (GET) returns the unverified Adwa placeholder', () => {
     return request(app.getHttpServer())
       .get('/venues')

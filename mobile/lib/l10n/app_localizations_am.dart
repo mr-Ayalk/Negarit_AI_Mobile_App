@@ -156,6 +156,37 @@ class AppLocalizationsAm extends AppLocalizations {
   String get guestLabel => 'እንግዳ';
 
   @override
+  String get chooseLanguage => 'ቋንቋ ይምረጡ';
+
+  @override
+  String get signIn => 'ይግቡ';
+
+  @override
+  String get signInBody => 'ስልክ ወይም ኢሜይል ይጠቀሙ። ኮዱ በኤፒአይ መዝገብ ላይ ይታተማል።';
+
+  @override
+  String get signInHint => 'ስልክ ወይም ኢሜይል';
+
+  @override
+  String get signInSend => 'ኮድ ላክ';
+
+  @override
+  String get signInCodeHint => 'ከኤፒአይ መዝገብ የመጣ ኮድ';
+
+  @override
+  String get signInConfirm => 'ኮዱን ያረጋግጡ';
+
+  @override
+  String get signInWaiting => 'ኮዱ በኤፒአይ መዝገብ ላይ ታትሟል።';
+
+  @override
+  String get signInInvalid => 'ኮዱ ትክክል አይደለም።';
+
+  @override
+  String get signInUnreachable =>
+      'ይህ ስልክ ኤፒአይውን ማግኘት አልቻለም። ከኮምፒዩተሩ ጋር ተገናኝቶ እንደገና ይሞክሩ።';
+
+  @override
   String get profileLanguage => 'ቋንቋ';
 
   @override

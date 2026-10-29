@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:negarit_mobile/core/locale/locale_controller.dart';
 import 'package:negarit_mobile/core/theme/negarit_colors.dart';
 import 'package:negarit_mobile/core/theme/negarit_spacing.dart';
+import 'package:negarit_mobile/core/widgets/negarit_button.dart';
 import 'package:negarit_mobile/core/widgets/negarit_card.dart';
+import 'package:negarit_mobile/features/profile/data/session_controller.dart';
 import 'package:negarit_mobile/l10n/app_localizations.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final textTheme = Theme.of(context).textTheme;
     final bottom = MediaQuery.paddingOf(context).bottom;
+    final savedLanguage = ref.watch(localeProvider).value;
+    final languageCode =
+        savedLanguage ?? Localizations.localeOf(context).languageCode;
+    final signedIn = ref.watch(sessionProvider);
 
     return ListView(
       padding: EdgeInsets.fromLTRB(
@@ -24,7 +33,7 @@ class ProfileScreen extends StatelessWidget {
         const Center(child: _BrandMark()),
         const SizedBox(height: NegaritSpacing.md),
         Text(
-          l10n.guestLabel,
+          signedIn ?? l10n.guestLabel,
           textAlign: TextAlign.center,
           style: textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w600),
         ),
@@ -35,6 +44,11 @@ class ProfileScreen extends StatelessWidget {
           style: textTheme.bodyMedium?.copyWith(
             color: NegaritColors.textSecondary,
           ),
+        ),
+        const SizedBox(height: NegaritSpacing.lg),
+        NegaritButton(
+          label: l10n.signIn,
+          onPressed: signedIn == null ? () => context.push('/sign-in') : null,
         ),
         const SizedBox(height: NegaritSpacing.lg),
         NegaritCard(
@@ -48,7 +62,8 @@ class ProfileScreen extends StatelessWidget {
               const Divider(height: 1),
               _ProfileRow(
                 label: l10n.profileLanguage,
-                value: l10n.profileLanguageValue,
+                value: _languageLabel(languageCode),
+                onTap: () => _chooseLanguage(context, ref),
               ),
               const Divider(height: 1),
               _ProfileRow(
@@ -59,6 +74,58 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  String _languageLabel(String languageCode) {
+    for (final language in visitLanguages) {
+      if (language.code == languageCode) {
+        return language.label;
+      }
+    }
+    return visitLanguages.first.label;
+  }
+
+  Future<void> _chooseLanguage(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    return showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: NegaritColors.surface,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (context) {
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(NegaritSpacing.lg),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.chooseLanguage,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: NegaritSpacing.sm),
+                for (final language in visitLanguages)
+                  ListTile(
+                    title: Text(language.label),
+                    onTap: () async {
+                      await ref
+                          .read(localeProvider.notifier)
+                          .select(language.code);
+                      if (context.mounted) {
+                        Navigator.of(context).pop();
+                      }
+                    },
+                  ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
@@ -81,36 +148,40 @@ class _BrandMark extends StatelessWidget {
 }
 
 class _ProfileRow extends StatelessWidget {
-  const _ProfileRow({required this.label, required this.value});
+  const _ProfileRow({required this.label, required this.value, this.onTap});
 
   final String label;
   final String value;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: NegaritSpacing.lg,
-        vertical: NegaritSpacing.md,
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              label,
-              style: textTheme.titleSmall?.copyWith(
-                fontWeight: FontWeight.w600,
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: NegaritSpacing.lg,
+          vertical: NegaritSpacing.md,
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                label,
+                style: textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
-          ),
-          Text(
-            value,
-            style: textTheme.bodyMedium?.copyWith(
-              color: NegaritColors.textSecondary,
+            Text(
+              value,
+              style: textTheme.bodyMedium?.copyWith(
+                color: NegaritColors.textSecondary,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -160,6 +160,38 @@ class AppLocalizationsAr extends AppLocalizations {
   String get guestLabel => 'زائر';
 
   @override
+  String get chooseLanguage => 'اختر لغة';
+
+  @override
+  String get signIn => 'تسجيل الدخول';
+
+  @override
+  String get signInBody =>
+      'استخدم هاتفاً أو بريداً. يُطبع الرمز في سجل واجهة البرمجة، ولا يُرسل برسالة.';
+
+  @override
+  String get signInHint => 'الهاتف أو البريد';
+
+  @override
+  String get signInSend => 'إرسال الرمز';
+
+  @override
+  String get signInCodeHint => 'الرمز من سجل واجهة البرمجة';
+
+  @override
+  String get signInConfirm => 'تأكيد الرمز';
+
+  @override
+  String get signInWaiting => 'طُبع الرمز في سجل واجهة البرمجة.';
+
+  @override
+  String get signInInvalid => 'هذا الرمز غير صالح.';
+
+  @override
+  String get signInUnreachable =>
+      'لا يستطيع هذا الهاتف الوصول إلى الواجهة. أبقه متصلاً بالحاسوب ثم أعد المحاولة.';
+
+  @override
   String get profileLanguage => 'اللغة';
 
   @override

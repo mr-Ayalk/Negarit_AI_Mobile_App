@@ -1,3 +1,4 @@
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -5,6 +6,10 @@ import 'package:negarit_mobile/app.dart';
 import 'package:negarit_mobile/core/widgets/negarit_button.dart';
 
 void main() {
+  setUp(() {
+    SharedPreferences.setMockInitialValues({});
+  });
+
   testWidgets('explore shell shows the empty venue state', (tester) async {
     await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
     await tester.pumpAndSettle();
@@ -18,6 +23,25 @@ void main() {
       findsOneWidget,
     );
     expect(find.text('Explore'), findsOneWidget);
+  });
+
+  testWidgets('profile can switch the visit language to Arabic', (tester) async {
+    await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
+    await tester.pumpAndSettle();
+
+    await tester.tap(
+      find.descendant(
+        of: find.byType(NavigationBar),
+        matching: find.text('Profile'),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Language'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('العربية'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('الملف'), findsWidgets);
   });
 
   testWidgets('ask a question opens the unconnected guide', (tester) async {

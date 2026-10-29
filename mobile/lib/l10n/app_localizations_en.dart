@@ -160,6 +160,38 @@ class AppLocalizationsEn extends AppLocalizations {
   String get guestLabel => 'Guest';
 
   @override
+  String get chooseLanguage => 'Choose a language';
+
+  @override
+  String get signIn => 'Sign in';
+
+  @override
+  String get signInBody =>
+      'Use a phone number or email. The code is printed in the API log, not sent by SMS.';
+
+  @override
+  String get signInHint => 'Phone or email';
+
+  @override
+  String get signInSend => 'Send code';
+
+  @override
+  String get signInCodeHint => 'Code from the API log';
+
+  @override
+  String get signInConfirm => 'Confirm code';
+
+  @override
+  String get signInWaiting => 'The code is printed in the API log.';
+
+  @override
+  String get signInInvalid => 'That code is not valid.';
+
+  @override
+  String get signInUnreachable =>
+      'This phone cannot reach the API. Keep it connected to the computer and try again.';
+
+  @override
   String get profileLanguage => 'Language';
 
   @override
