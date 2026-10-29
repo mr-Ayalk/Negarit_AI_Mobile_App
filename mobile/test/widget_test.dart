@@ -9,20 +9,56 @@ void main() {
     await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
     await tester.pumpAndSettle();
 
-    expect(find.text('Welcome to Negarit'), findsOneWidget);
-    expect(find.text('No venue loaded'), findsOneWidget);
+    expect(find.text('Hi there,'), findsOneWidget);
+    expect(
+      find.text('Stories, audio, and stops are not loaded yet.'),
+      findsOneWidget,
+    );
     expect(find.text('Explore'), findsOneWidget);
-    expect(find.text('Map'), findsOneWidget);
+    expect(find.text('Ask a question'), findsOneWidget);
+  });
+
+  testWidgets('ask a question opens the unconnected guide', (tester) async {
+    await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Ask a question'));
+    await tester.pumpAndSettle();
+
+    expect(
+      find.text(
+        'The guide is not connected. Messages here are not museum answers.',
+      ),
+      findsOneWidget,
+    );
+
+    await tester.enterText(find.byType(TextField), 'Where is the hall?');
+    await tester.tap(find.byTooltip('Send'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Where is the hall?'), findsOneWidget);
+    expect(
+      find.text(
+        "I can't answer from museum sources yet. The guide is not connected.",
+      ),
+      findsOneWidget,
+    );
   });
 
   testWidgets('map tab shows the map empty state', (tester) async {
     await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
     await tester.pumpAndSettle();
 
-    await tester.tap(find.text('Map'));
+    await tester.tap(
+      find.descendant(
+        of: find.byType(NavigationBar),
+        matching: find.text('Map'),
+      ),
+    );
     await tester.pumpAndSettle();
 
-    expect(find.text('Map is waiting for a venue'), findsOneWidget);
+    expect(find.text('Floor plan preview'), findsOneWidget);
+    expect(find.text('Zones are not loaded.'), findsOneWidget);
   });
 
   testWidgets('Arabic locale lays out right to left', (tester) async {

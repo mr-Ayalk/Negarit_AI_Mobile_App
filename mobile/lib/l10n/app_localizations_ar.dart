@@ -54,4 +54,95 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get profileEmptyBody =>
       'ستتوفر هنا اللغة وضوابط الخصوصية وحزم الاستخدام دون اتصال.';
+
+  @override
+  String get exploreHello => 'أهلاً،';
+
+  @override
+  String get explorePromptLead => 'كيف يمكنني ';
+
+  @override
+  String get explorePromptEmphasis => 'إرشادك';
+
+  @override
+  String get explorePromptEnd => '؟';
+
+  @override
+  String get exploreSubtitle => 'ماذا تود أن ترى؟';
+
+  @override
+  String get chipAsk => 'اسأل سؤالاً';
+
+  @override
+  String get chipTour => 'ابدأ الجولة';
+
+  @override
+  String get chipZone => 'اعثر على منطقة';
+
+  @override
+  String get chipSaved => 'الأماكن المحفوظة';
+
+  @override
+  String get suggestedTitle => 'مقترح لك';
+
+  @override
+  String get suggestedStories => 'قصص';
+
+  @override
+  String get suggestedAudio => 'صوت';
+
+  @override
+  String get notLoaded => 'غير محمّل';
+
+  @override
+  String get tourTitle => 'متحف عدوا';
+
+  @override
+  String get tourBody => 'القصص والصوت والمحطات غير محمّلة بعد.';
+
+  @override
+  String get playAudio => 'تشغيل الصوت';
+
+  @override
+  String get audioUnavailable => 'الصوت غير موجود على هذا الجهاز بعد.';
+
+  @override
+  String get openMap => 'الخريطة';
+
+  @override
+  String get guideTitle => 'اسأل نيغاريت';
+
+  @override
+  String get guideNotice => 'الدليل غير متصل. الرسائل هنا ليست إجابات المتحف.';
+
+  @override
+  String get guideHint => 'اكتب رسالة';
+
+  @override
+  String get guideSend => 'إرسال';
+
+  @override
+  String get guideReply =>
+      'لا أستطيع الإجابة من مصادر المتحف بعد. الدليل غير متصل.';
+
+  @override
+  String get mapPreview => 'معاينة مخطط الطابق';
+
+  @override
+  String get mapWaiting => 'المناطق غير محمّلة.';
+
+  @override
+  String get guestLabel => 'زائر';
+
+  @override
+  String get profileLanguage => 'اللغة';
+
+  @override
+  String get profilePrivacy => 'الخصوصية';
+
+  @override
+  String get profileOffline => 'حزمة دون اتصال';
+
+  @override
+  String get notSetUp => 'غير مُعد';
 }

@@ -14,10 +14,12 @@ abstract final class NegaritTheme {
       onError: Colors.white,
       surface: NegaritColors.surface,
       onSurface: NegaritColors.text,
+      surfaceTint: Colors.transparent,
     );
 
     final textTheme = Typography.material2021().black.apply(
       fontFamily: 'PlusJakartaSans',
+      fontFamilyFallback: const ['NotoSansEthiopic', 'NotoNaskhArabic'],
       bodyColor: NegaritColors.text,
       displayColor: NegaritColors.text,
     );
@@ -29,10 +31,27 @@ abstract final class NegaritTheme {
       textTheme: textTheme,
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: NegaritColors.surface,
-        indicatorColor: NegaritColors.primary.withValues(alpha: 0.12),
-        labelTextStyle: WidgetStatePropertyAll(
-          textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w600),
-        ),
+        elevation: 12,
+        shadowColor: NegaritColors.primary.withValues(alpha: 0.08),
+        surfaceTintColor: Colors.transparent,
+        indicatorColor: Colors.transparent,
+        iconTheme: WidgetStateProperty.resolveWith((states) {
+          final selected = states.contains(WidgetState.selected);
+          return IconThemeData(
+            color: selected
+                ? NegaritColors.primary
+                : NegaritColors.textSecondary,
+          );
+        }),
+        labelTextStyle: WidgetStateProperty.resolveWith((states) {
+          final selected = states.contains(WidgetState.selected);
+          return textTheme.labelMedium?.copyWith(
+            fontWeight: FontWeight.w600,
+            color: selected
+                ? NegaritColors.primary
+                : NegaritColors.textSecondary,
+          );
+        }),
       ),
       cardTheme: CardThemeData(
         color: NegaritColors.surface,

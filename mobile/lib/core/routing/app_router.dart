@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:negarit_mobile/core/widgets/app_shell.dart';
 import 'package:negarit_mobile/features/explore/presentation/explore_screen.dart';
 import 'package:negarit_mobile/features/favorites/presentation/favorites_screen.dart';
+import 'package:negarit_mobile/features/guide/presentation/guide_screen.dart';
 import 'package:negarit_mobile/features/map/presentation/map_screen.dart';
 import 'package:negarit_mobile/features/profile/presentation/profile_screen.dart';
 
@@ -10,6 +11,7 @@ final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: '/explore',
     routes: [
+      GoRoute(path: '/guide', builder: (context, state) => const GuideScreen()),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
           return AppShell(navigationShell: navigationShell);

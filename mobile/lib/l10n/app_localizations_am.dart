@@ -53,4 +53,94 @@ class AppLocalizationsAm extends AppLocalizations {
   @override
   String get profileEmptyBody =>
       'ቋንቋ፣ የግላዊነት መቆጣጠሪያዎች እና ከመስመር ውጭ ጥቅሎች እዚህ ይገኛሉ።';
+
+  @override
+  String get exploreHello => 'ሰላም፣';
+
+  @override
+  String get explorePromptLead => 'እንዴት ';
+
+  @override
+  String get explorePromptEmphasis => 'እረዳዎታለሁ';
+
+  @override
+  String get explorePromptEnd => '?';
+
+  @override
+  String get exploreSubtitle => 'ምን ማየት ይፈልጋሉ?';
+
+  @override
+  String get chipAsk => 'ጥያቄ ይጠይቁ';
+
+  @override
+  String get chipTour => 'ጉብኝት ይጀምሩ';
+
+  @override
+  String get chipZone => 'ቦታ ያግኙ';
+
+  @override
+  String get chipSaved => 'የተቀመጡ ቦታዎች';
+
+  @override
+  String get suggestedTitle => 'ለእርስዎ የተጠቆመ';
+
+  @override
+  String get suggestedStories => 'ታሪኮች';
+
+  @override
+  String get suggestedAudio => 'ድምጽ';
+
+  @override
+  String get notLoaded => 'አልተጫነም';
+
+  @override
+  String get tourTitle => 'የአድዋ ሙዚየም';
+
+  @override
+  String get tourBody => 'ታሪኮች፣ ድምጽ እና ማቆሚያዎች እስካሁን አልተጫኑም።';
+
+  @override
+  String get playAudio => 'ድምጽ ያጫውቱ';
+
+  @override
+  String get audioUnavailable => 'ድምጽ በዚህ መሣሪያ ላይ እስካሁን የለም።';
+
+  @override
+  String get openMap => 'ካርታ';
+
+  @override
+  String get guideTitle => 'ነጋሪትን ይጠይቁ';
+
+  @override
+  String get guideNotice => 'መመሪያው አልተገናኘም። እዚህ ያሉ መልዕክቶች የሙዚየም መልሶች አይደሉም።';
+
+  @override
+  String get guideHint => 'መልዕክት ይጻፉ';
+
+  @override
+  String get guideSend => 'ላክ';
+
+  @override
+  String get guideReply => 'ከሙዚየም ምንጮች እስካሁን መመለስ አልችልም። መመሪያው አልተገናኘም።';
+
+  @override
+  String get mapPreview => 'የወለል ካርታ ናሙና';
+
+  @override
+  String get mapWaiting => 'ዞኖች አልተጫኑም።';
+
+  @override
+  String get guestLabel => 'እንግዳ';
+
+  @override
+  String get profileLanguage => 'ቋንቋ';
+
+  @override
+  String get profilePrivacy => 'ግላዊነት';
+
+  @override
+  String get profileOffline => 'ከመስመር ውጭ ጥቅል';
+
+  @override
+  String get notSetUp => 'አልተዘጋጀም';
 }

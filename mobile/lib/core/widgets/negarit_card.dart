@@ -4,9 +4,14 @@ import 'package:negarit_mobile/core/theme/negarit_radius.dart';
 import 'package:negarit_mobile/core/theme/negarit_spacing.dart';
 
 class NegaritCard extends StatelessWidget {
-  const NegaritCard({required this.child, super.key});
+  const NegaritCard({
+    required this.child,
+    this.padding = const EdgeInsets.all(NegaritSpacing.lg),
+    super.key,
+  });
 
   final Widget child;
+  final EdgeInsetsGeometry padding;
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +27,7 @@ class NegaritCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(NegaritSpacing.lg),
-        child: child,
-      ),
+      child: Padding(padding: padding, child: child),
     );
   }
 }

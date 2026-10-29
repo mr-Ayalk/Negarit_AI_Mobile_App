@@ -183,6 +183,186 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Language, privacy controls, and offline packs will be available here.'**
   String get profileEmptyBody;
+
+  /// No description provided for @exploreHello.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi there,'**
+  String get exploreHello;
+
+  /// No description provided for @explorePromptLead.
+  ///
+  /// In en, this message translates to:
+  /// **'How can I '**
+  String get explorePromptLead;
+
+  /// No description provided for @explorePromptEmphasis.
+  ///
+  /// In en, this message translates to:
+  /// **'guide you'**
+  String get explorePromptEmphasis;
+
+  /// No description provided for @explorePromptEnd.
+  ///
+  /// In en, this message translates to:
+  /// **'?'**
+  String get explorePromptEnd;
+
+  /// No description provided for @exploreSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What would you like to see?'**
+  String get exploreSubtitle;
+
+  /// No description provided for @chipAsk.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask a question'**
+  String get chipAsk;
+
+  /// No description provided for @chipTour.
+  ///
+  /// In en, this message translates to:
+  /// **'Start a tour'**
+  String get chipTour;
+
+  /// No description provided for @chipZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Find a zone'**
+  String get chipZone;
+
+  /// No description provided for @chipSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved places'**
+  String get chipSaved;
+
+  /// No description provided for @suggestedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested for you'**
+  String get suggestedTitle;
+
+  /// No description provided for @suggestedStories.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories'**
+  String get suggestedStories;
+
+  /// No description provided for @suggestedAudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio'**
+  String get suggestedAudio;
+
+  /// No description provided for @notLoaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Not loaded'**
+  String get notLoaded;
+
+  /// No description provided for @tourTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adwa Museum'**
+  String get tourTitle;
+
+  /// No description provided for @tourBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories, audio, and stops are not loaded yet.'**
+  String get tourBody;
+
+  /// No description provided for @playAudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Play audio'**
+  String get playAudio;
+
+  /// No description provided for @audioUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio is not on this device yet.'**
+  String get audioUnavailable;
+
+  /// No description provided for @openMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Map'**
+  String get openMap;
+
+  /// No description provided for @guideTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask Negarit'**
+  String get guideTitle;
+
+  /// No description provided for @guideNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'The guide is not connected. Messages here are not museum answers.'**
+  String get guideNotice;
+
+  /// No description provided for @guideHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Type a message'**
+  String get guideHint;
+
+  /// No description provided for @guideSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get guideSend;
+
+  /// No description provided for @guideReply.
+  ///
+  /// In en, this message translates to:
+  /// **'I can\'t answer from museum sources yet. The guide is not connected.'**
+  String get guideReply;
+
+  /// No description provided for @mapPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Floor plan preview'**
+  String get mapPreview;
+
+  /// No description provided for @mapWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Zones are not loaded.'**
+  String get mapWaiting;
+
+  /// No description provided for @guestLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Guest'**
+  String get guestLabel;
+
+  /// No description provided for @profileLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get profileLanguage;
+
+  /// No description provided for @profilePrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy'**
+  String get profilePrivacy;
+
+  /// No description provided for @profileOffline.
+  ///
+  /// In en, this message translates to:
+  /// **'Offline pack'**
+  String get profileOffline;
+
+  /// No description provided for @notSetUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set up'**
+  String get notSetUp;
 }
 
 class _AppLocalizationsDelegate
