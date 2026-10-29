@@ -2,26 +2,62 @@
 
 Multilingual, BLE-beacon-triggered visitor companion and local-commerce platform for museums and venues. The first venue is Adwa Museum.
 
-The visitor app, API, and admin dashboard are not in this tree yet. The Windows toolchain for building them is installed and checked.
+The repository is a monorepo. The visitor shell, API health check, and admin app are scaffolds. Guided tours, beacons, and payments are not implemented yet.
 
 ## Stack
 
-Flutter and Dart, NestJS and TypeScript, PostgreSQL 18 with PostGIS and pgvector.
+Flutter and Dart, NestJS and TypeScript, Next.js admin, PostgreSQL 18 with PostGIS and pgvector.
 
-## Current state
+## Layout
 
-| Area | State |
+| Path | What it is |
 |---|---|
-| Requirements | Extracted to [docs/SRS.md](docs/SRS.md) |
-| Windows toolchain | Documented in [docs/SETUP_WINDOWS.md](docs/SETUP_WINDOWS.md) |
-| Decisions | [docs/DECISIONS.md](docs/DECISIONS.md) |
-| What is actually verified | [docs/STATUS.md](docs/STATUS.md) |
+| `mobile/` | Flutter app. Android first, web and iOS projects included. |
+| `api/` | NestJS API. Health at `/health`, OpenAPI at `/docs`. |
+| `admin/` | Next.js admin and merchant dashboard. |
+| `infra/` | Local Postgres notes. Docker is not used. |
+| `docs/` | Specification, setup, decisions, and status. |
 
-Check the machine:
+## Run locally
+
+Install the toolchain with [docs/SETUP_WINDOWS.md](docs/SETUP_WINDOWS.md), then:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File ".\scripts\check-env.ps1"
 ```
+
+API:
+
+```powershell
+cd api
+npm run start:dev
+```
+
+Admin (http://localhost:3001):
+
+```powershell
+cd admin
+npm run dev
+```
+
+Mobile, in Chrome until a phone is attached:
+
+```powershell
+cd mobile
+flutter run -d chrome
+```
+
+## Tests
+
+```powershell
+cd api; npm run lint; npm test; npm run test:e2e; npm run build
+cd ..\admin; npm run lint; npm run build
+cd ..\mobile; flutter analyze; flutter test
+```
+
+## Status
+
+What has actually been run is listed in [docs/STATUS.md](docs/STATUS.md). Decisions are in [docs/DECISIONS.md](docs/DECISIONS.md).
 
 ## License
 

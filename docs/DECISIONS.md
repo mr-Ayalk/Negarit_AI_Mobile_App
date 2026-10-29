@@ -2,6 +2,30 @@
 
 Short architecture decision records. The newest entry is at the top.
 
+## ADR-011 — Drift waits for the offline venue schema
+
+**Status:** Accepted (29 Oct 2026)
+
+The visitor app will store venue packs in Drift. The scaffold does not generate an empty database. The first Drift tables arrive with the offline pack, when there is a schema to migrate.
+
+## ADR-010 — Scaffold translations for Amharic and Arabic are drafts
+
+**Status:** Accepted (29 Oct 2026)
+
+English UI strings in the app shell are the source. Amharic and Arabic strings are included so right-to-left layout and Ethiopic text can be tested. They have not had a native-speaker review. Tier 1 content still requires that review before it is treated as human-verified.
+
+## ADR-009 — The API keeps Nest 12 oxlint and Vitest
+
+**Status:** Accepted (29 Oct 2026)
+
+`nest new` for Nest 12 generates oxlint and Vitest, not ESLint and Jest. Adding a second pair would duplicate the gates. The admin app still uses ESLint because that is what `create-next-app` generates.
+
+## ADR-008 — Mobile linting stays on flutter_lints
+
+**Status:** Accepted (29 Oct 2026)
+
+Flutter 3.47 scaffolds `flutter_lints` 6. That set is the analyzer gate for the app. `very_good_analysis` was not added on top.
+
 ## ADR-007 — pgvector on Windows is a community binary until `CREATE EXTENSION` succeeds
 
 **Status:** Accepted (29 Oct 2026)

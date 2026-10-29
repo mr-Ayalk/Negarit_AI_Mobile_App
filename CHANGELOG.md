@@ -12,3 +12,6 @@ and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 - Extracted SRS v2.0 into `docs/SRS.md`.
 - Windows toolchain guide and `scripts/check-env.ps1`.
 - Proprietary license, ignore rules, and environment template.
+- Flutter visitor shell with theme tokens, bundled fonts, and English, Amharic, and Arabic strings.
+- NestJS API with `GET /health`, OpenAPI at `/docs`, and empty feature modules.
+- Next.js admin scaffold, GitHub Actions CI, and the Postgres extension script.
