@@ -1,0 +1,23 @@
+name: Bug
+description: Something in Negarit AI does not behave as specified.
+title: "fix: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: How to reproduce
+    validations:
+      required: true
