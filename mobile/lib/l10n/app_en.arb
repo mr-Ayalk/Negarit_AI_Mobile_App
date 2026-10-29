@@ -1,0 +1,18 @@
+{
+  "@@locale": "en",
+  "appTitle": "Negarit AI",
+  "@appTitle": { "description": "Application name shown in the title bar." },
+  "navExplore": "Explore",
+  "navMap": "Map",
+  "navFavorites": "Favorites",
+  "navProfile": "Profile",
+  "exploreGreeting": "Welcome to Negarit",
+  "exploreEmptyTitle": "No venue loaded",
+  "exploreEmptyBody": "Guided tours appear here after a venue pack is installed. Adwa Museum content is not on this device yet.",
+  "mapEmptyTitle": "Map is waiting for a venue",
+  "mapEmptyBody": "Coffee, parking, restrooms, and exhibits will show on the venue map after a pack is installed.",
+  "favoritesEmptyTitle": "No saved places",
+  "favoritesEmptyBody": "Places you save during a visit will show up here.",
+  "profileEmptyTitle": "Profile is not set up",
+  "profileEmptyBody": "Language, privacy controls, and offline packs will be available here."
+}

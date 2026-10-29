@@ -1,0 +1,17 @@
+{
+  "@@locale": "am",
+  "appTitle": "ነጋሪት AI",
+  "navExplore": "ያስሱ",
+  "navMap": "ካርታ",
+  "navFavorites": "ተወዳጆች",
+  "navProfile": "መገለጫ",
+  "exploreGreeting": "እንኳን ወደ ነጋሪት በደህና መጡ",
+  "exploreEmptyTitle": "ቦታ አልተጫነም",
+  "exploreEmptyBody": "የጉብኝት መመሪያ የቦታ ጥቅል ከተጫነ በኋላ እዚህ ይታያል። የአድዋ ሙዚየም ይዘት በዚህ መሣሪያ ላይ እስካሁን የለም።",
+  "mapEmptyTitle": "ካርታው ቦታ እየጠበቀ ነው",
+  "mapEmptyBody": "ቡና፣ ማቆሚያ፣ መጸዳጃ ቤት እና ኤግዚቢሽኖች የቦታ ጥቅል ከተጫነ በኋላ በካርታው ላይ ይታያሉ።",
+  "favoritesEmptyTitle": "የተቀመጡ ቦታዎች የሉም",
+  "favoritesEmptyBody": "በጉብኝት ወቅት የሚያስቀምጧቸው ቦታዎች እዚህ ይታያሉ።",
+  "profileEmptyTitle": "መገለጫ አልተዘጋጀም",
+  "profileEmptyBody": "ቋንቋ፣ የግላዊነት መቆጣጠሪያዎች እና ከመስመር ውጭ ጥቅሎች እዚህ ይገኛሉ።"
+}
