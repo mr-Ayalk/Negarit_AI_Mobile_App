@@ -2,6 +2,12 @@
 
 Short architecture decision records. The newest entry is at the top.
 
+## ADR-024 — Admin Venues reads the public venue response
+
+**Status:** Accepted (30 Oct 2026)
+
+The Venues page asks `GET /venues/adwa-museum` on the local API and shows the venue, the eight zones, and any stored story text. The entrance keeps its placeholder sentence. Zones with no story say so. No operator is signed in, and the page does not edit content. If the API is down, the page says the venue service was not reached. The other admin pages still do not load venue data.
+
 ## ADR-023 — A place code stands in for a printed QR
 
 **Status:** Accepted (30 Oct 2026)

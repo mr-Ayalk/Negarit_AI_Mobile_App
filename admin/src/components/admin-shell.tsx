@@ -13,10 +13,12 @@ const areas = [
 export function AdminShell({
   title,
   audience,
+  notice = "No operator is signed in. Authentication is not connected, so these pages do not load venue data.",
   children,
 }: {
   title: string;
   audience: string;
+  notice?: string;
   children: ReactNode;
 }) {
   return (
@@ -25,10 +27,7 @@ export function AdminShell({
         <p className="text-sm font-semibold text-primary">Negarit AI</p>
         <h1 className="text-3xl font-semibold tracking-tight">{title}</h1>
         <p className="text-sm text-muted">Intended audience once sign-in exists: {audience}</p>
-        <p className="max-w-2xl text-muted">
-          No operator is signed in. Authentication is not connected, so these
-          pages do not load venue data.
-        </p>
+        <p className="max-w-2xl text-muted">{notice}</p>
         <nav className="flex flex-wrap gap-2" aria-label="Admin areas">
           {areas.map((area) => (
             <Link
