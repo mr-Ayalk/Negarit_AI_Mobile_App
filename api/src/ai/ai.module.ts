@@ -1,5 +1,8 @@
 ﻿import { Module } from '@nestjs/common';
+import { GuideController } from './guide.controller.js';
 
-/** Registered so the modular monolith has a home for this area. */
-@Module({})
+/** Mock guide. It classifies the visit list and does not call a model. */
+@Module({
+  controllers: [GuideController],
+})
 export class AiModule {}

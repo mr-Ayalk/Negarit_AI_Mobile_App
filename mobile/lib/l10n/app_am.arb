@@ -101,5 +101,8 @@
   "beaconCooldown": "ይህ ቦታ አስቀድሞ ተነግሯል።",
   "facilityOnVisit": "{name} በዚህ ጉብኝት ላይ ነው።",
   "facilitySchematic": "ይህ ሥዕል የተለካ መንገድ አይደለም።",
-  "facilityOpen": "ቦታውን ክፈት"
+  "facilityOpen": "ቦታውን ክፈት",
+  "guideUnknown": "ይህ በጉብኝቱ ዝርዝር ውስጥ የለም። የተረጋገጠ የሙዚየም ምንጭ አልተጫነም።",
+  "guideSource": "ከጉብኝቱ ዝርዝር። የተረጋገጠ የሙዚየም ምንጭ አይደለም።",
+  "guideLocal": "የጉብኝት አገልግሎቱ ስላልተደረሰ በዚህ ስልክ ላይ ተመልሷል።"
 }

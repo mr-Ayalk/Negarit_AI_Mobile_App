@@ -1,3 +1,5 @@
+import 'package:negarit_mobile/features/guide/data/guide_api.dart';
+import 'package:negarit_mobile/features/visit/data/visit_places.dart';
 import 'package:negarit_mobile/l10n/app_localizations.dart';
 
 /// Answers from the Adwa places stored on the phone.
@@ -32,7 +34,34 @@ String replyForVisit(String question, AppLocalizations l10n) {
       return l10n.guideStopReply(place.value);
     }
   }
-  return l10n.guideReply;
+  if (asked.contains('visit') ||
+      asked.contains('route') ||
+      asked.contains('ጉብኝት')) {
+    return l10n.guideReply;
+  }
+  return l10n.guideUnknown;
+}
+
+/// Sentence for a guide-service answer, in the visitor's language.
+String textForGuideAnswer(
+  GuideAnswer answer,
+  AppLocalizations l10n,
+  String languageCode,
+) {
+  switch (answer.kind) {
+    case 'halls':
+      return l10n.guideHallsReply;
+    case 'overview':
+      return l10n.guideReply;
+    case 'place':
+      final place = placeBySlug(answer.placeSlug ?? '');
+      if (place == null) {
+        return l10n.guideUnknown;
+      }
+      return l10n.guideStopReply(place.nameFor(languageCode));
+    default:
+      return l10n.guideUnknown;
+  }
 }
 
 /// Place to open on the map, when the question names one place.

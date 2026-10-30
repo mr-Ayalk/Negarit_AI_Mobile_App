@@ -5,6 +5,7 @@ import 'package:negarit_mobile/core/theme/negarit_colors.dart';
 import 'package:negarit_mobile/core/theme/negarit_radius.dart';
 import 'package:negarit_mobile/core/theme/negarit_spacing.dart';
 import 'package:negarit_mobile/core/widgets/negarit_background.dart';
+import 'package:negarit_mobile/features/guide/data/guide_api.dart';
 import 'package:negarit_mobile/features/guide/data/visit_guide.dart';
 import 'package:negarit_mobile/features/map/data/map_focus.dart';
 import 'package:negarit_mobile/l10n/app_localizations.dart';
@@ -17,11 +18,17 @@ class GuideScreen extends ConsumerStatefulWidget {
 }
 
 class _GuideMessage {
-  const _GuideMessage({required this.text, required this.mine, this.placeSlug});
+  const _GuideMessage({
+    required this.text,
+    required this.mine,
+    this.placeSlug,
+    this.note,
+  });
 
   final String text;
   final bool mine;
   final String? placeSlug;
+  final String? note;
 }
 
 class _GuideScreenState extends ConsumerState<GuideScreen> {
@@ -34,21 +41,38 @@ class _GuideScreenState extends ConsumerState<GuideScreen> {
     super.dispose();
   }
 
-  void _send(AppLocalizations l10n) {
+  Future<void> _send(AppLocalizations l10n) async {
     final text = _controller.text.trim();
     if (text.isEmpty) {
       return;
     }
+    final languageCode = Localizations.localeOf(context).languageCode;
     setState(() {
       _messages.add(_GuideMessage(text: text, mine: true));
+      _controller.clear();
+    });
+    final fetched = await askGuide(text);
+    if (!mounted) {
+      return;
+    }
+    final remote = fetched.answer;
+    setState(() {
       _messages.add(
         _GuideMessage(
-          text: replyForVisit(text, l10n),
+          text: remote == null
+              ? replyForVisit(text, l10n)
+              : textForGuideAnswer(remote, l10n, languageCode),
           mine: false,
-          placeSlug: placeSlugForQuestion(text),
+          placeSlug: remote == null
+              ? placeSlugForQuestion(text)
+              : remote.placeSlug,
+          note: remote != null
+              ? l10n.guideSource
+              : fetched.attempted
+              ? l10n.guideLocal
+              : null,
         ),
       );
-      _controller.clear();
     });
   }
 
@@ -139,6 +163,18 @@ class _GuideScreenState extends ConsumerState<GuideScreen> {
                                         : NegaritColors.text,
                                   ),
                                 ),
+                                if (message.note != null)
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: NegaritSpacing.xs,
+                                    ),
+                                    child: Text(
+                                      message.note!,
+                                      style: textTheme.bodySmall?.copyWith(
+                                        color: NegaritColors.textSecondary,
+                                      ),
+                                    ),
+                                  ),
                                 if (!message.mine && message.placeSlug != null)
                                   TextButton(
                                     onPressed: () {

@@ -318,4 +318,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get facilityOpen => 'افتح المكان';
+
+  @override
+  String get guideUnknown =>
+      'هذا ليس في قائمة الزيارة. لم يُحمَّل مصدر متحف مراجع.';
+
+  @override
+  String get guideSource => 'من قائمة الزيارة. ليس مصدر متحف مراجعاً.';
+
+  @override
+  String get guideLocal => 'أُجيب على هذا الهاتف لأن خدمة الدليل لم تُبلغ.';
 }

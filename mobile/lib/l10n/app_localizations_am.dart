@@ -311,4 +311,13 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get facilityOpen => 'ቦታውን ክፈት';
+
+  @override
+  String get guideUnknown => 'ይህ በጉብኝቱ ዝርዝር ውስጥ የለም። የተረጋገጠ የሙዚየም ምንጭ አልተጫነም።';
+
+  @override
+  String get guideSource => 'ከጉብኝቱ ዝርዝር። የተረጋገጠ የሙዚየም ምንጭ አይደለም።';
+
+  @override
+  String get guideLocal => 'የጉብኝት አገልግሎቱ ስላልተደረሰ በዚህ ስልክ ላይ ተመልሷል።';
 }

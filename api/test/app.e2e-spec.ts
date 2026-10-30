@@ -70,6 +70,20 @@ describe('AppController (e2e)', () => {
       .expect(401);
   });
 
+  it('/guide/ask (POST) stays on the visit list', () => {
+    return request(app.getHttpServer())
+      .post('/guide/ask')
+      .send({ question: 'Where is the coffee?' })
+      .expect(201)
+      .expect({
+        provider: 'mock',
+        verified: false,
+        source: 'visit-list',
+        kind: 'place',
+        placeSlug: 'coffee',
+      });
+  });
+
   it('/venues (GET) returns the unverified Adwa placeholder', () => {
     return request(app.getHttpServer())
       .get('/venues')

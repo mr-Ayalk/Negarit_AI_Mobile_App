@@ -9,6 +9,7 @@ and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
 ### Added
 
+- Ask Negarit can ask `POST /guide/ask`. The answer stays on the eight-place visit list, says it is not a reviewed source, and refuses a question that list does not cover. If the service is not reached, the phone answers from the same list and says so.
 - The app opens on a bright screen: a short wait, then the logo grows from a dot. Explore no longer leads with the logo, and the map keeps the drawing, place choices, and actions in separate bands. Asking where a place is can open it on that drawing.
 - Inside the visit, coffee, the restaurant, parking, restrooms, and the exits can be marked on the schematic. The card says it is not a measured route.
 - Choosing a place opens its card. The entrance shows the stored placeholder sentence. The other places say a reviewed story is not loaded.

@@ -2,6 +2,12 @@
 
 Short architecture decision records. The newest entry is at the top.
 
+## ADR-022 — Ask Negarit uses the visit list, not a model
+
+**Status:** Accepted (29 Oct 2026)
+
+`POST /guide/ask` classifies a question against the eight Adwa places. The response says `provider: mock`, `verified: false`, and `source: visit-list`. A named place, the two halls, or the visit path can be answered. Anything else is refused because a reviewed museum source is not loaded. The phone shows that source line. If the service is not reached, the phone answers from the same list and says so. No language model is called.
+
 ## ADR-021 — The indoor finder is a schematic
 
 **Status:** Accepted (29 Oct 2026)

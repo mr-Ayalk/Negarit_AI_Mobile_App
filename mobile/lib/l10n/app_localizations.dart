@@ -681,6 +681,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Open place'**
   String get facilityOpen;
+
+  /// No description provided for @guideUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'That is not in the visit list. A reviewed museum source is not loaded.'**
+  String get guideUnknown;
+
+  /// No description provided for @guideSource.
+  ///
+  /// In en, this message translates to:
+  /// **'From the visit list. Not a reviewed museum source.'**
+  String get guideSource;
+
+  /// No description provided for @guideLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'Answered on this phone because the guide service was not reached.'**
+  String get guideLocal;
 }
 
 class _AppLocalizationsDelegate

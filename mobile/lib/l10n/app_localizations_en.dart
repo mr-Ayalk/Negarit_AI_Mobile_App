@@ -320,4 +320,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get facilityOpen => 'Open place';
+
+  @override
+  String get guideUnknown =>
+      'That is not in the visit list. A reviewed museum source is not loaded.';
+
+  @override
+  String get guideSource =>
+      'From the visit list. Not a reviewed museum source.';
+
+  @override
+  String get guideLocal =>
+      'Answered on this phone because the guide service was not reached.';
 }
