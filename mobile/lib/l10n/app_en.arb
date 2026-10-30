@@ -120,5 +120,9 @@
   "facilityOpen": "Open place",
   "guideUnknown": "That is not in the visit list. A reviewed museum source is not loaded.",
   "guideSource": "From the visit list. Not a reviewed museum source.",
-  "guideLocal": "Answered on this phone because the guide service was not reached."
+  "guideLocal": "Answered on this phone because the guide service was not reached.",
+  "placeCodeHelp": "Type the text a printed QR would carry. The camera is not scanning.",
+  "placeCodeHint": "coffee",
+  "placeCodeUse": "Use this code",
+  "placeCodeUnknown": "That code is not a place on this visit."
 }

@@ -211,6 +211,33 @@ void main() {
     expect(find.text('You are at 5gna Ber.'), findsOneWidget);
   });
 
+  testWidgets('a printed place code opens that place', (tester) async {
+    await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.widgetWithText(NegaritChip, "I'm here"));
+    await tester.pumpAndSettle();
+    expect(
+      find.text(
+        'Type the text a printed QR would carry. The camera is not scanning.',
+      ),
+      findsOneWidget,
+    );
+
+    await tester.enterText(find.byType(TextField), 'lobby');
+    await tester.tap(find.text('Use this code'));
+    await tester.pumpAndSettle();
+    expect(
+      find.text('That code is not a place on this visit.'),
+      findsOneWidget,
+    );
+
+    await tester.enterText(find.byType(TextField), 'negarit://place/coffee');
+    await tester.tap(find.text('Use this code'));
+    await tester.pumpAndSettle();
+    expect(find.text('You are at Coffee.'), findsOneWidget);
+  });
+
   testWidgets('asking for coffee opens that place on the map', (tester) async {
     await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
     await tester.pumpAndSettle();

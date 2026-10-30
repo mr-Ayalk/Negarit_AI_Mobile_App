@@ -9,6 +9,7 @@ and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
 ### Added
 
+- I'm here accepts the text a printed QR would carry and opens that place. The camera does not scan, and an unknown code is refused.
 - Ask Negarit can ask `POST /guide/ask`. The answer stays on the eight-place visit list, says it is not a reviewed source, and refuses a question that list does not cover. If the service is not reached, the phone answers from the same list and says so.
 - The app opens on a bright screen: a short wait, then the logo grows from a dot. Explore no longer leads with the logo, and the map keeps the drawing, place choices, and actions in separate bands. Asking where a place is can open it on that drawing.
 - Inside the visit, coffee, the restaurant, parking, restrooms, and the exits can be marked on the schematic. The card says it is not a measured route.

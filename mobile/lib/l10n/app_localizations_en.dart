@@ -332,4 +332,17 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get guideLocal =>
       'Answered on this phone because the guide service was not reached.';
+
+  @override
+  String get placeCodeHelp =>
+      'Type the text a printed QR would carry. The camera is not scanning.';
+
+  @override
+  String get placeCodeHint => 'coffee';
+
+  @override
+  String get placeCodeUse => 'Use this code';
+
+  @override
+  String get placeCodeUnknown => 'That code is not a place on this visit.';
 }

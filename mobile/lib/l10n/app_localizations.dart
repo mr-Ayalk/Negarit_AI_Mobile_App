@@ -699,6 +699,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Answered on this phone because the guide service was not reached.'**
   String get guideLocal;
+
+  /// No description provided for @placeCodeHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Type the text a printed QR would carry. The camera is not scanning.'**
+  String get placeCodeHelp;
+
+  /// No description provided for @placeCodeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'coffee'**
+  String get placeCodeHint;
+
+  /// No description provided for @placeCodeUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Use this code'**
+  String get placeCodeUse;
+
+  /// No description provided for @placeCodeUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'That code is not a place on this visit.'**
+  String get placeCodeUnknown;
 }
 
 class _AppLocalizationsDelegate

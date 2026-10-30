@@ -328,4 +328,17 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get guideLocal => 'أُجيب على هذا الهاتف لأن خدمة الدليل لم تُبلغ.';
+
+  @override
+  String get placeCodeHelp =>
+      'اكتب النص الذي يحمله رمز QR المطبوع. الكاميرا لا تمسح.';
+
+  @override
+  String get placeCodeHint => 'coffee';
+
+  @override
+  String get placeCodeUse => 'استخدم هذا الرمز';
+
+  @override
+  String get placeCodeUnknown => 'هذا الرمز ليس مكاناً في هذه الزيارة.';
 }

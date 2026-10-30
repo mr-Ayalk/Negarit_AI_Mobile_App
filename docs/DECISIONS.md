@@ -2,6 +2,12 @@
 
 Short architecture decision records. The newest entry is at the top.
 
+## ADR-023 — A place code stands in for a printed QR
+
+**Status:** Accepted (30 Oct 2026)
+
+I'm here accepts the text a printed QR would carry: a place slug, the place name, `negarit://place/coffee`, or `negarit:adwa-museum:coffee`. A known code opens that place through the same simulated arrival used by the place list. An unknown code stays on the sheet. The camera does not scan, and NFC is not read.
+
 ## ADR-022 — Ask Negarit uses the visit list, not a model
 
 **Status:** Accepted (29 Oct 2026)

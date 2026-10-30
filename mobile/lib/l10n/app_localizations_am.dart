@@ -320,4 +320,16 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get guideLocal => 'የጉብኝት አገልግሎቱ ስላልተደረሰ በዚህ ስልክ ላይ ተመልሷል።';
+
+  @override
+  String get placeCodeHelp => 'የታተመ QR የሚይዘውን ጽሑፍ ይጻፉ። ካሜራው አይቃኝም።';
+
+  @override
+  String get placeCodeHint => 'coffee';
+
+  @override
+  String get placeCodeUse => 'ይህን ኮድ ተጠቀም';
+
+  @override
+  String get placeCodeUnknown => 'ይህ ኮድ በዚህ ጉብኝት ላይ ያለ ቦታ አይደለም።';
 }
