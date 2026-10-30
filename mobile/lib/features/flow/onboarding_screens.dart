@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:negarit_mobile/core/locale/locale_controller.dart';
 import 'package:negarit_mobile/core/theme/negarit_colors.dart';
+import 'package:negarit_mobile/features/flow/flow_copy.dart';
 import 'package:negarit_mobile/features/flow/flow_state.dart';
 import 'package:negarit_mobile/features/flow/premium_ui.dart';
 import 'package:negarit_mobile/features/profile/data/auth_api.dart';
-
-const _languages = <ChosenLanguage>[
-  ChosenLanguage('en', 'English'),
-  ChosenLanguage('am', 'አማርኛ'),
-  ChosenLanguage('ar', 'العربية'),
-  ChosenLanguage('fr', 'Français'),
-  ChosenLanguage('om', 'Afaan Oromoo'),
-  ChosenLanguage('ti', 'ትግርኛ · Soomaali'),
-];
+import 'package:negarit_mobile/features/profile/data/session_controller.dart';
 
 class LanguageScreen extends ConsumerStatefulWidget {
   const LanguageScreen({this.returnTo, super.key});
@@ -30,8 +22,9 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final chosen = ref.watch(chosenLanguageProvider);
-    final shown = _languages.where((language) {
+    final copy = copyOf(ref);
+    final chosen = ref.watch(chosenLanguageProvider).value ?? languageByCode('en');
+    final shown = visitLanguageChoices.where((language) {
       final query = _query.trim().toLowerCase();
       if (query.isEmpty) {
         return true;
@@ -42,7 +35,7 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
 
     return PremiumPage(
       footer: PremiumButton(
-        label: 'Continue',
+        label: copy.t('Continue'),
         onPressed: () {
           if (widget.returnTo != null && context.canPop()) {
             context.pop();
@@ -54,15 +47,15 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const PremiumTitle('Choose your language'),
-          const SizedBox(height: 6),
-          const PremiumMuted('You can change it any time in Profile.'),
-          const SizedBox(height: 14),
+          PremiumTitle(copy.t('Choose your language')),
+          const SizedBox(height: 8),
+          PremiumMuted(copy.t('You can change it any time in Profile.')),
+          const SizedBox(height: 20),
           PremiumSearch(
-            hint: 'Search 80+ languages',
+            hint: copy.t('Search 80+ languages'),
             onChanged: (value) => setState(() => _query = value),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 16),
           PremiumCard(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
             child: Column(
@@ -76,20 +69,14 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
                       ref
                           .read(chosenLanguageProvider.notifier)
                           .choose(shown[i]);
-                      const stored = ['en', 'am', 'ar'];
-                      if (stored.contains(shown[i].code)) {
-                        ref
-                            .read(localeProvider.notifier)
-                            .select(shown[i].code);
-                      }
                     },
                   ),
               ],
             ),
           ),
-          const SizedBox(height: 12),
-          const PremiumMuted(
-            'Other languages are translated by AI and labeled.',
+          const SizedBox(height: 16),
+          PremiumMuted(
+            copy.t('Other languages are translated by AI and labeled.'),
           ),
         ],
       ),
@@ -115,7 +102,7 @@ class _LanguageRow extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 9),
+        padding: const EdgeInsets.symmetric(vertical: 14),
         decoration: BoxDecoration(
           border: divider
               ? const Border(top: BorderSide(color: Color(0xFFEEF2FA)))
@@ -134,23 +121,22 @@ class _LanguageRow extends StatelessWidget {
               ),
             ),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              width: 28,
+              height: 28,
+              alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: selected ? NegaritColors.primary : Colors.white,
-                borderRadius: BorderRadius.circular(99),
+                shape: BoxShape.circle,
                 border: Border.all(
                   color: selected
                       ? NegaritColors.primary
                       : const Color(0xFFE1EAFA),
                 ),
               ),
-              child: Text(
-                selected ? '✓' : ' ',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 12,
-                ),
+              child: Icon(
+                Icons.check_rounded,
+                size: 18,
+                color: selected ? Colors.white : Colors.transparent,
               ),
             ),
           ],
@@ -160,30 +146,32 @@ class _LanguageRow extends StatelessWidget {
   }
 }
 
-class PermissionsScreen extends StatelessWidget {
+class PermissionsScreen extends ConsumerWidget {
   const PermissionsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final copy = copyOf(ref);
     return PremiumPage(
       footer: Column(
         children: [
           PremiumButton(
-            label: 'Allow and continue',
+            label: copy.t('Allow and continue'),
             onPressed: () => context.push('/sign-in'),
           ),
+          const SizedBox(height: 4),
           PremiumTextButton(
-            label: 'Not now – I’ll choose my spot manually',
+            label: copy.t('Not now – I’ll choose my spot manually'),
             onPressed: () => context.push('/sign-in'),
           ),
         ],
       ),
       child: Column(
         children: [
-          const SizedBox(height: 18),
+          const SizedBox(height: 12),
           Container(
-            width: 56,
-            height: 56,
+            width: 72,
+            height: 72,
             alignment: Alignment.center,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
@@ -199,35 +187,38 @@ class PermissionsScreen extends StatelessWidget {
                 ),
               ],
             ),
-            child: const Text(
-              '✦',
-              style: TextStyle(color: Colors.white, fontSize: 24),
+            child: const Icon(
+              Icons.auto_awesome_rounded,
+              color: Colors.white,
+              size: 32,
             ),
           ),
-          const SizedBox(height: 14),
-          const PremiumTitle('Let Negarit guide you', center: true),
-          const SizedBox(height: 6),
-          const PremiumMuted(
-            'A few permissions so the app can find where you are inside the museum.',
+          const SizedBox(height: 18),
+          PremiumTitle(copy.t('Let Negarit guide you'), center: true),
+          const SizedBox(height: 8),
+          PremiumMuted(
+            copy.t(
+              'A few permissions so the app can find where you are inside the museum.',
+            ),
             center: true,
           ),
-          const SizedBox(height: 16),
-          const _PermissionCard(
-            glyph: '📶',
-            title: 'Bluetooth',
-            body: 'Detects the exhibit you’re standing at',
+          const SizedBox(height: 20),
+          _PermissionCard(
+            icon: Icons.bluetooth_rounded,
+            title: copy.t('Bluetooth'),
+            body: copy.t('Detects the exhibit you’re standing at'),
           ),
-          const SizedBox(height: 10),
-          const _PermissionCard(
-            glyph: '📍',
-            title: 'Location',
-            body: 'Needed by Android for Bluetooth scanning',
+          const SizedBox(height: 12),
+          _PermissionCard(
+            icon: Icons.location_on_rounded,
+            title: copy.t('Location'),
+            body: copy.t('Needed by Android for Bluetooth scanning'),
           ),
-          const SizedBox(height: 10),
-          const _PermissionCard(
-            glyph: '🔔',
-            title: 'Notifications',
-            body: 'Optional. Tips when you enter a new area',
+          const SizedBox(height: 12),
+          _PermissionCard(
+            icon: Icons.notifications_rounded,
+            title: copy.t('Notifications'),
+            body: copy.t('Optional. Tips when you enter a new area'),
           ),
         ],
       ),
@@ -237,12 +228,12 @@ class PermissionsScreen extends StatelessWidget {
 
 class _PermissionCard extends StatelessWidget {
   const _PermissionCard({
-    required this.glyph,
+    required this.icon,
     required this.title,
     required this.body,
   });
 
-  final String glyph;
+  final IconData icon;
   final String title;
   final String body;
 
@@ -251,8 +242,8 @@ class _PermissionCard extends StatelessWidget {
     return PremiumCard(
       child: Row(
         children: [
-          PremiumIcon(glyph),
-          const SizedBox(width: 11),
+          PremiumIcon(icon),
+          const SizedBox(width: 14),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -284,29 +275,118 @@ class WelcomeSignInScreen extends ConsumerStatefulWidget {
 }
 
 class _WelcomeSignInScreenState extends ConsumerState<WelcomeSignInScreen> {
-  late final TextEditingController _phone = TextEditingController(
-    text: visitorPhone,
-  );
-  var _sending = false;
+  final _phone = TextEditingController();
+  final _code = TextEditingController();
+  var _busy = false;
+  var _codeSent = false;
+  String? _error;
 
   @override
   void dispose() {
     _phone.dispose();
+    _code.dispose();
     super.dispose();
   }
 
+  FlowCopy get _copy {
+    final code = ref.read(chosenLanguageProvider).value?.code ?? 'en';
+    return FlowCopy(code);
+  }
+
   Future<void> _sendCode() async {
-    if (_sending) {
+    final copy = _copy;
+    final destination = _phone.text.trim();
+    if (destination.length < 5) {
+      setState(() => _error = copy.t('Enter a phone number or email.'));
       return;
     }
-    setState(() => _sending = true);
+    setState(() {
+      _busy = true;
+      _error = null;
+    });
     try {
       await const AuthApi()
-          .requestCode(_phone.text.trim())
-          .timeout(const Duration(seconds: 3));
+          .requestCode(destination)
+          .timeout(const Duration(seconds: 4));
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _busy = false;
+        _codeSent = true;
+        _error = copy.t('The code is printed in the API log.');
+      });
+    } on SignInException {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _busy = false;
+        _error = copy.t(
+          'This phone cannot reach the API. Keep it connected to the computer and try again.',
+        );
+      });
     } catch (_) {
-      // The walk-through continues when the API is not on this phone.
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _busy = false;
+        _error = copy.t(
+          'This phone cannot reach the API. Keep it connected to the computer and try again.',
+        );
+      });
     }
+  }
+
+  Future<void> _confirm() async {
+    final copy = _copy;
+    final destination = _phone.text.trim();
+    final code = _code.text.trim();
+    if (code.length < 4) {
+      setState(() => _error = copy.t('That code is not valid.'));
+      return;
+    }
+    setState(() {
+      _busy = true;
+      _error = null;
+    });
+    try {
+      await const AuthApi()
+          .verifyCode(destination, code)
+          .timeout(const Duration(seconds: 4));
+      await ref.read(sessionProvider.notifier).signIn(destination);
+      if (!mounted) {
+        return;
+      }
+      context.go('/venue');
+    } on SignInException catch (error) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _busy = false;
+        _error = error.invalidCode
+            ? copy.t('That code is not valid.')
+            : copy.t(
+                'This phone cannot reach the API. Keep it connected to the computer and try again.',
+              );
+      });
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _busy = false;
+        _error = copy.t(
+          'This phone cannot reach the API. Keep it connected to the computer and try again.',
+        );
+      });
+    }
+  }
+
+  Future<void> _guest() async {
+    await ref.read(sessionProvider.notifier).signOut();
     if (!mounted) {
       return;
     }
@@ -315,59 +395,93 @@ class _WelcomeSignInScreenState extends ConsumerState<WelcomeSignInScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final copy = copyOf(ref);
     return PremiumPage(
-      footer: const PremiumMuted(
-        'By continuing you accept the Terms and Privacy Policy.',
+      footer: PremiumMuted(
+        copy.t('By continuing you accept the Terms and Privacy Policy.'),
         center: true,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 28),
-          const PremiumTitle('Welcome to Negarit'),
-          const SizedBox(height: 6),
-          const PremiumMuted(
-            'Sign in to save your visit and pay for local offers.',
+          const SizedBox(height: 24),
+          PremiumTitle(copy.t('Welcome to Negarit')),
+          const SizedBox(height: 8),
+          PremiumMuted(
+            copy.t('Sign in to save your visit and pay for local offers.'),
           ),
-          const SizedBox(height: 18),
+          const SizedBox(height: 20),
           PremiumCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const PremiumMuted('Phone number'),
+                PremiumMuted(copy.t('Phone number')),
                 TextField(
                   controller: _phone,
-                  keyboardType: TextInputType.phone,
+                  keyboardType: TextInputType.emailAddress,
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 18,
                     fontWeight: FontWeight.w800,
                     color: NegaritColors.text,
                   ),
                   decoration: const InputDecoration(
+                    hintText: '+251 9…',
                     isDense: true,
                     border: InputBorder.none,
-                    contentPadding: EdgeInsets.zero,
+                    contentPadding: EdgeInsets.symmetric(vertical: 8),
                   ),
                 ),
               ],
             ),
           ),
+          if (_codeSent) ...[
+            const SizedBox(height: 12),
+            PremiumCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  PremiumMuted(copy.t('Code')),
+                  TextField(
+                    controller: _code,
+                    keyboardType: TextInputType.number,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 4,
+                      color: NegaritColors.text,
+                    ),
+                    decoration: const InputDecoration(
+                      isDense: true,
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.symmetric(vertical: 8),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+          if (_error != null) ...[
+            const SizedBox(height: 12),
+            PremiumMuted(_error!),
+          ],
+          const SizedBox(height: 16),
+          PremiumButton(
+            label: _codeSent ? copy.t('Confirm code') : copy.t('Send code'),
+            onPressed: _busy ? null : (_codeSent ? _confirm : _sendCode),
+          ),
+          const SizedBox(height: 12),
+          Center(child: PremiumMuted(copy.t('— or —'))),
           const SizedBox(height: 12),
           PremiumButton(
-            label: 'Send code',
-            onPressed: _sending ? null : _sendCode,
-          ),
-          const SizedBox(height: 8),
-          const Center(child: PremiumMuted('— or —')),
-          const SizedBox(height: 8),
-          PremiumButton(
-            label: 'Continue as guest',
+            label: copy.t('Continue as guest'),
             ghost: true,
-            onPressed: () => context.go('/venue'),
+            onPressed: _busy ? null : _guest,
           ),
-          const SizedBox(height: 10),
-          const PremiumMuted(
-            'Guests can use the guide and map. Payments need an account.',
+          const SizedBox(height: 12),
+          PremiumMuted(
+            copy.t(
+              'Guests can use the guide and map. Payments need an account.',
+            ),
             center: true,
           ),
         ],
@@ -467,7 +581,11 @@ class _AdwaCard extends StatelessWidget {
                   ],
                 ),
               ),
-              PremiumChip(label: '✓', selected: true),
+              Icon(
+                Icons.check_circle_rounded,
+                color: NegaritColors.primary,
+                size: 28,
+              ),
             ],
           ),
         ],

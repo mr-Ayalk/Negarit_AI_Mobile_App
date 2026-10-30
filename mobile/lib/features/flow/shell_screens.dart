@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:negarit_mobile/core/theme/negarit_colors.dart';
+import 'package:negarit_mobile/features/beacons/data/beacon_engine.dart';
+import 'package:negarit_mobile/features/flow/flow_copy.dart';
 import 'package:negarit_mobile/features/flow/flow_state.dart';
 import 'package:negarit_mobile/features/flow/premium_ui.dart';
+import 'package:negarit_mobile/features/profile/data/session_controller.dart';
 import 'package:negarit_mobile/features/visit/data/saved_places_controller.dart';
 import 'package:negarit_mobile/features/visit/data/visit_places.dart';
 
@@ -12,29 +15,32 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final language = ref.watch(chosenLanguageProvider);
+    final copy = copyOf(ref);
+    final language = ref.watch(chosenLanguageProvider).value ?? languageByCode('en');
+    final name = visitorLabel(ref.watch(sessionProvider).value, copy.t('Guest'));
     return SafeArea(
       child: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+        padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
         children: [
           Row(
             children: [
-              const Expanded(
+              Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PremiumMuted('Good morning'),
-                    PremiumTitle('Hi $visitorName'),
+                    PremiumMuted(copy.t('Good morning')),
+                    PremiumTitle(copy.fill('Hi {name}', {'name': name})),
                   ],
                 ),
               ),
               PremiumChip(
-                label: '🌐 ${language.code.toUpperCase()}',
+                icon: Icons.language_rounded,
+                label: language.code.toUpperCase(),
                 onTap: () => context.push('/language?return=home'),
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 16),
           PremiumPhoto(
             height: 150,
             child: Column(
@@ -43,7 +49,7 @@ class HomeScreen extends ConsumerWidget {
               children: [
                 GestureDetector(
                   onTap: () => context.push('/venue'),
-                  child: const PremiumTag('Your place · Change'),
+                  child: PremiumTag(copy.t('Your place · Change')),
                 ),
                 const SizedBox(height: 4),
                 const Text(
@@ -51,40 +57,44 @@ class HomeScreen extends ConsumerWidget {
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w800,
-                    fontSize: 15,
+                    fontSize: 18,
                   ),
                 ),
-                const Text(
-                  '40 m away · Open until 6 pm',
-                  style: TextStyle(color: Colors.white, fontSize: 12),
+                Text(
+                  copy.t('Open until 6 pm'),
+                  style: const TextStyle(color: Colors.white, fontSize: 13),
                 ),
               ],
             ),
           ),
           const SizedBox(height: 12),
           PremiumButton(
-            label: 'Start guided tour',
+            label: copy.t('Start guided tour'),
             onPressed: () => context.push('/entrance'),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 16),
           Wrap(
-            spacing: 6,
-            runSpacing: 6,
+            spacing: 8,
+            runSpacing: 8,
             children: [
               PremiumChip(
-                label: '☕ Coffee',
+                icon: Icons.coffee_rounded,
+                label: copy.t('Coffee'),
                 onTap: () => context.go('/map'),
               ),
               PremiumChip(
-                label: '🍽 Food',
+                icon: Icons.restaurant_rounded,
+                label: copy.t('Food'),
                 onTap: () => context.push('/break'),
               ),
               PremiumChip(
-                label: '🅿 Parking',
+                icon: Icons.local_parking_rounded,
+                label: copy.t('Parking'),
                 onTap: () => context.go('/map'),
               ),
               PremiumChip(
-                label: '🚻 Restrooms',
+                icon: Icons.wc_rounded,
+                label: copy.t('Restrooms'),
                 onTap: () => context.go('/map'),
               ),
             ],
@@ -92,19 +102,19 @@ class HomeScreen extends ConsumerWidget {
           const SizedBox(height: 16),
           Row(
             children: [
-              const Expanded(
+              Expanded(
                 child: Text(
-                  'Nearby exhibits',
-                  style: TextStyle(
+                  copy.t('Nearby exhibits'),
+                  style: const TextStyle(
                     fontWeight: FontWeight.w800,
-                    fontSize: 15,
+                    fontSize: 16,
                     color: NegaritColors.text,
                   ),
                 ),
               ),
               GestureDetector(
                 onTap: () => context.push('/plan'),
-                child: const PremiumMuted('See all'),
+                child: PremiumMuted(copy.t('See all')),
               ),
             ],
           ),
@@ -202,28 +212,31 @@ class _VisitorProfileScreenState extends ConsumerState<VisitorProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final language = ref.watch(chosenLanguageProvider);
+    final copy = copyOf(ref);
+    final language = ref.watch(chosenLanguageProvider).value ?? languageByCode('en');
+    final signedIn = ref.watch(sessionProvider).value;
+    final name = visitorLabel(signedIn, copy.t('Guest'));
     return SafeArea(
       child: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
+        padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
         children: [
-          const Row(
+          Row(
             children: [
-              _LetterAvatar(),
-              SizedBox(width: 11),
+              const _LetterAvatar(),
+              const SizedBox(width: 14),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      visitorFullName,
-                      style: TextStyle(
+                      name,
+                      style: const TextStyle(
                         fontWeight: FontWeight.w800,
-                        fontSize: 15,
+                        fontSize: 18,
                         color: NegaritColors.text,
                       ),
                     ),
-                    PremiumMuted(visitorPhone),
+                    PremiumMuted(signedIn ?? copy.t('Sign in')),
                   ],
                 ),
               ),
@@ -235,21 +248,20 @@ class _VisitorProfileScreenState extends ConsumerState<VisitorProfileScreen> {
             child: Column(
               children: [
                 _ProfileRow(
-                  label: '🌐 Language',
+                  label: copy.t('Language'),
                   value: language.label,
                   onTap: () => context.push('/language?return=profile'),
                 ),
                 _ProfileRow(
-                  label: '⭐ Interests',
-                  value: 'History, Photos',
+                  label: copy.t('Interests'),
+                  value: copy.t('History, Photos'),
                   divider: true,
                   onTap: () => context.push('/plan'),
                 ),
-                const _ProfileRow(
-                  label: '⬇ Offline: Adwa Museum',
-                  value: 'Ready',
+                _ProfileRow(
+                  label: copy.t('Offline: Adwa Museum'),
+                  value: copy.t('Not on this phone'),
                   divider: true,
-                  valueColor: NegaritColors.success,
                 ),
               ],
             ),
@@ -260,18 +272,18 @@ class _VisitorProfileScreenState extends ConsumerState<VisitorProfileScreen> {
             child: Column(
               children: [
                 _ToggleRow(
-                  label: 'Audio narration',
+                  label: copy.t('Audio narration'),
                   on: _audio,
                   onTap: () => setState(() => _audio = !_audio),
                 ),
                 _ToggleRow(
-                  label: 'Offers near me',
+                  label: copy.t('Offers near me'),
                   on: _offers,
                   divider: true,
                   onTap: () => setState(() => _offers = !_offers),
                 ),
                 _ToggleRow(
-                  label: 'Break suggestions',
+                  label: copy.t('Break suggestions'),
                   on: _breaks,
                   divider: true,
                   onTap: () => setState(() => _breaks = !_breaks),
@@ -279,19 +291,31 @@ class _VisitorProfileScreenState extends ConsumerState<VisitorProfileScreen> {
               ],
             ),
           ),
-          const SizedBox(height: 10),
-          const PremiumCard(
-            padding: EdgeInsets.symmetric(horizontal: 13, vertical: 4),
+          const SizedBox(height: 12),
+          PremiumCard(
+            padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 4),
             child: Column(
               children: [
-                _ProfileRow(label: '🔒 Privacy and data', trailing: '›'),
+                _ProfileRow(label: copy.t('Privacy and data'), trailing: '›'),
                 _ProfileRow(
-                  label: 'Help and feedback',
+                  label: copy.t('Help and feedback'),
                   trailing: '›',
                   divider: true,
                 ),
               ],
             ),
+          ),
+          const SizedBox(height: 20),
+          PremiumButton(
+            label: signedIn == null ? copy.t('Sign in') : copy.t('Sign out'),
+            ghost: signedIn != null,
+            onPressed: () async {
+              if (signedIn == null) {
+                context.push('/sign-in');
+                return;
+              }
+              await ref.read(sessionProvider.notifier).signOut();
+            },
           ),
         ],
       ),
@@ -333,7 +357,6 @@ class _ProfileRow extends StatelessWidget {
     this.value,
     this.trailing,
     this.divider = false,
-    this.valueColor,
     this.onTap,
   });
 
@@ -341,7 +364,6 @@ class _ProfileRow extends StatelessWidget {
   final String? value;
   final String? trailing;
   final bool divider;
-  final Color? valueColor;
   final VoidCallback? onTap;
 
   @override
@@ -369,7 +391,7 @@ class _ProfileRow extends StatelessWidget {
                 style: TextStyle(
                   fontWeight: FontWeight.w800,
                   fontSize: 14,
-                  color: valueColor ?? NegaritColors.text,
+                  color: NegaritColors.text,
                 ),
               ),
             if (trailing != null)
@@ -476,7 +498,7 @@ class _GuideChatScreenState extends State<GuideChatScreen> {
                 Row(
                   children: [
                     PremiumIcon(
-                      '←',
+                      Icons.arrow_back_rounded,
                       onTap: () => context.canPop()
                           ? context.pop()
                           : context.go('/explore'),
@@ -545,7 +567,11 @@ class _GuideChatScreenState extends State<GuideChatScreen> {
                           ),
                         ),
                       ),
-                      const Text('🎤', style: TextStyle(fontSize: 16)),
+                      const Icon(
+                        Icons.mic_none_rounded,
+                        size: 22,
+                        color: NegaritColors.textSecondary,
+                      ),
                       const SizedBox(width: 6),
                       Material(
                         color: Colors.transparent,
@@ -562,9 +588,10 @@ class _GuideChatScreenState extends State<GuideChatScreen> {
                                 colors: [Color(0xFF3474FF), Color(0xFF1748E8)],
                               ),
                             ),
-                            child: const Text(
-                              '➤',
-                              style: TextStyle(color: Colors.white, fontSize: 14),
+                            child: const Icon(
+                              Icons.send_rounded,
+                              color: Colors.white,
+                              size: 18,
                             ),
                           ),
                         ),

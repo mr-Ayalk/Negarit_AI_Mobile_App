@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:negarit_mobile/core/theme/negarit_colors.dart';
+import 'package:negarit_mobile/features/beacons/data/beacon_engine.dart';
+import 'package:negarit_mobile/features/flow/flow_copy.dart';
 import 'package:negarit_mobile/features/flow/flow_state.dart';
 import 'package:negarit_mobile/features/flow/premium_ui.dart';
+import 'package:negarit_mobile/features/profile/data/session_controller.dart';
 import 'package:negarit_mobile/features/visit/data/saved_places_controller.dart';
 
 void _note(BuildContext context, String message) {
@@ -15,16 +18,19 @@ class EntranceScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final language = ref.watch(chosenLanguageProvider);
+    final copy = copyOf(ref);
+    final name = visitorLabel(ref.watch(sessionProvider).value, copy.t('Guest'));
+    final language =
+        ref.watch(chosenLanguageProvider).value?.label ?? 'English';
     return PremiumPage(
       footer: Column(
         children: [
           PremiumButton(
-            label: 'Begin my visit',
+            label: copy.t('Begin my visit'),
             onPressed: () => context.push('/exhibit'),
           ),
           PremiumTextButton(
-            label: 'Change language',
+            label: copy.t('Change language'),
             onPressed: () => context.push('/language?return=welcome'),
           ),
         ],
@@ -48,10 +54,10 @@ class EntranceScreen extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 8),
-          const PremiumTag('Entrance detected'),
+          PremiumTag(copy.t('Entrance detected')),
           const SizedBox(height: 12),
           PremiumTitle(
-            'Hello $visitorName, welcome to Adwa Museum',
+            copy.fill('Hello {name}, welcome to Adwa Museum', {'name': name}),
             center: true,
           ),
           const SizedBox(height: 8),
@@ -62,24 +68,24 @@ class EntranceScreen extends ConsumerWidget {
           const SizedBox(height: 16),
           PremiumCard(
             child: InkWell(
-              onTap: () => _note(context, 'No audio file is loaded.'),
+              onTap: () => _note(context, copy.t('No audio file is loaded.')),
               child: Row(
                 children: [
-                  const PremiumIcon('▶'),
-                  const SizedBox(width: 11),
+                  const PremiumIcon(Icons.play_arrow_rounded),
+                  const SizedBox(width: 14),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Hear the welcome',
-                          style: TextStyle(
+                        Text(
+                          copy.t('Hear the welcome'),
+                          style: const TextStyle(
                             fontWeight: FontWeight.w800,
-                            fontSize: 15,
+                            fontSize: 16,
                             color: NegaritColors.text,
                           ),
                         ),
-                        PremiumMuted('0:24 · ${language.label}'),
+                        PremiumMuted('0:24 · $language'),
                       ],
                     ),
                   ),
@@ -127,27 +133,30 @@ class ExhibitScreen extends ConsumerWidget {
                           Row(
                             children: [
                               PremiumIcon(
-                                '←',
+                                Icons.arrow_back_rounded,
                                 onTap: () => context.canPop()
                                     ? context.pop()
                                     : context.go('/explore'),
                               ),
                               const Spacer(),
                               PremiumIcon(
-                                kept ? '♥' : '♡',
+                                kept
+                                    ? Icons.favorite_rounded
+                                    : Icons.favorite_border_rounded,
                                 onTap: () => ref
                                     .read(savedPlacesProvider.notifier)
                                     .toggle('5gna-ber'),
                               ),
                               const SizedBox(width: 8),
-                              const PremiumIcon('⤴'),
+                              const PremiumIcon(Icons.ios_share_rounded),
                             ],
                           ),
                           const Spacer(),
                           Row(
                             children: [
                               _Pill(
-                                label: '▶  Play audio',
+                                icon: Icons.play_arrow_rounded,
+                                label: 'Play audio',
                                 onTap: () => _note(
                                   context,
                                   'No audio file is loaded.',
@@ -155,7 +164,8 @@ class ExhibitScreen extends ConsumerWidget {
                               ),
                               const Spacer(),
                               _Pill(
-                                label: '🗺  Map',
+                                icon: Icons.map_rounded,
+                                label: 'Map',
                                 light: true,
                                 onTap: () => context.go('/map'),
                               ),
@@ -249,10 +259,16 @@ class ExhibitScreen extends ConsumerWidget {
 }
 
 class _Pill extends StatelessWidget {
-  const _Pill({required this.label, required this.onTap, this.light = false});
+  const _Pill({
+    required this.label,
+    required this.onTap,
+    this.icon,
+    this.light = false,
+  });
 
   final String label;
   final VoidCallback onTap;
+  final IconData? icon;
   final bool light;
 
   @override
@@ -264,14 +280,27 @@ class _Pill extends StatelessWidget {
         onTap: onTap,
         borderRadius: BorderRadius.circular(99),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
-          child: Text(
-            label,
-            style: TextStyle(
-              color: light ? NegaritColors.text : Colors.white,
-              fontWeight: FontWeight.w700,
-              fontSize: 12,
-            ),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (icon != null) ...[
+                Icon(
+                  icon,
+                  size: 18,
+                  color: light ? NegaritColors.text : Colors.white,
+                ),
+                const SizedBox(width: 6),
+              ],
+              Text(
+                label,
+                style: TextStyle(
+                  color: light ? NegaritColors.text : Colors.white,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 13,
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -305,14 +334,14 @@ class OfferScreen extends StatelessWidget {
           Row(
             children: [
               PremiumIcon(
-                '←',
+                Icons.arrow_back_rounded,
                 onTap: () =>
                     context.canPop() ? context.pop() : context.go('/exhibit'),
               ),
               const Spacer(),
               const PremiumTag('Sponsored'),
               const Spacer(),
-              const PremiumIcon('⤴'),
+              const PremiumIcon(Icons.ios_share_rounded),
             ],
           ),
           const SizedBox(height: 12),
@@ -339,7 +368,7 @@ class OfferScreen extends StatelessWidget {
           const PremiumCard(
             child: Row(
               children: [
-                PremiumIcon('📍'),
+                PremiumIcon(Icons.location_on_rounded),
                 SizedBox(width: 11),
                 Expanded(
                   child: Column(
@@ -415,7 +444,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           Row(
             children: [
               PremiumIcon(
-                '←',
+                Icons.arrow_back_rounded,
                 onTap: () =>
                     context.canPop() ? context.pop() : context.go('/offer'),
               ),
@@ -474,21 +503,21 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           ),
           const SizedBox(height: 8),
           _PayRow(
-            glyph: '📱',
+            icon: Icons.phone_android_rounded,
             label: 'Telebirr',
             selected: _method == 'telebirr',
             onTap: () => setState(() => _method = 'telebirr'),
           ),
           const SizedBox(height: 8),
           _PayRow(
-            glyph: '💳',
+            icon: Icons.credit_card_rounded,
             label: 'Chapa',
             selected: _method == 'chapa',
             onTap: () => setState(() => _method = 'chapa'),
           ),
           const SizedBox(height: 8),
           _PayRow(
-            glyph: '🏪',
+            icon: Icons.storefront_rounded,
             label: 'Pay at the shop',
             selected: _method == 'shop',
             onTap: () => setState(() => _method = 'shop'),
@@ -505,13 +534,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
 class _PayRow extends StatelessWidget {
   const _PayRow({
-    required this.glyph,
+    required this.icon,
     required this.label,
     required this.selected,
     required this.onTap,
   });
 
-  final String glyph;
+  final IconData icon;
   final String label;
   final bool selected;
   final VoidCallback onTap;
@@ -525,7 +554,7 @@ class _PayRow extends StatelessWidget {
         selected: selected,
         child: Row(
           children: [
-            PremiumIcon(glyph),
+            PremiumIcon(icon),
             const SizedBox(width: 11),
             Expanded(
               child: Text(
@@ -590,15 +619,15 @@ class BreakScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     const _BreakPlace(
-                      glyph: '☕',
+                      icon: Icons.coffee_rounded,
                       name: 'Museum Café',
-                      detail: '80 m · Open',
+                      detail: 'On this visit',
                     ),
                     const SizedBox(height: 8),
                     const _BreakPlace(
-                      glyph: '🍽',
+                      icon: Icons.restaurant_rounded,
                       name: 'Tigist Restaurant',
-                      detail: '200 m · Open',
+                      detail: 'On this visit',
                     ),
                     const SizedBox(height: 12),
                     PremiumButton(
@@ -642,12 +671,12 @@ class BreakScreen extends StatelessWidget {
 
 class _BreakPlace extends StatelessWidget {
   const _BreakPlace({
-    required this.glyph,
+    required this.icon,
     required this.name,
     required this.detail,
   });
 
-  final String glyph;
+  final IconData icon;
   final String name;
   final String detail;
 
@@ -656,7 +685,7 @@ class _BreakPlace extends StatelessWidget {
     return PremiumCard(
       child: Row(
         children: [
-          PremiumIcon(glyph),
+          PremiumIcon(icon),
           const SizedBox(width: 11),
           Expanded(
             child: Column(
@@ -832,12 +861,12 @@ class _MapCanvas extends StatelessWidget {
           Positioned(
             right: 28,
             top: 48,
-            child: _Pin(glyph: '☕', color: NegaritColors.success),
+            child: _Pin(icon: Icons.coffee_rounded, color: NegaritColors.success),
           ),
           Positioned(
             left: 24,
             top: 90,
-            child: _Pin(glyph: '🅿', color: Color(0xFF8A94A8)),
+            child: _Pin(icon: Icons.local_parking_rounded, color: Color(0xFF8A94A8)),
           ),
         ],
       ),
@@ -863,9 +892,10 @@ class _MapLabel extends StatelessWidget {
 }
 
 class _Pin extends StatelessWidget {
-  const _Pin({required this.glyph, this.color = NegaritColors.primary});
+  const _Pin({this.glyph, this.icon, this.color = NegaritColors.primary});
 
-  final String glyph;
+  final String? glyph;
+  final IconData? icon;
   final Color color;
 
   @override
@@ -882,14 +912,16 @@ class _Pin extends StatelessWidget {
           BoxShadow(color: Color(0x3D142E5C), blurRadius: 8, offset: Offset(0, 3)),
         ],
       ),
-      child: Text(
-        glyph,
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 12,
-          fontWeight: FontWeight.w800,
-        ),
-      ),
+      child: icon != null
+          ? Icon(icon, color: Colors.white, size: 16)
+          : Text(
+              glyph ?? '',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 12,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
     );
   }
 }
@@ -922,12 +954,35 @@ class _VenueMapScreenState extends State<VenueMapScreen> {
                     spacing: 6,
                     runSpacing: 6,
                     children: [
-                      for (final filter in ['All', '☕', '🍽', '🅿', '🚻'])
-                        PremiumChip(
-                          label: filter,
-                          selected: _filter == filter,
-                          onTap: () => setState(() => _filter = filter),
-                        ),
+                      PremiumChip(
+                        label: 'All',
+                        selected: _filter == 'All',
+                        onTap: () => setState(() => _filter = 'All'),
+                      ),
+                      PremiumChip(
+                        label: '',
+                        icon: Icons.coffee_rounded,
+                        selected: _filter == 'coffee',
+                        onTap: () => setState(() => _filter = 'coffee'),
+                      ),
+                      PremiumChip(
+                        label: '',
+                        icon: Icons.restaurant_rounded,
+                        selected: _filter == 'food',
+                        onTap: () => setState(() => _filter = 'food'),
+                      ),
+                      PremiumChip(
+                        label: '',
+                        icon: Icons.local_parking_rounded,
+                        selected: _filter == 'parking',
+                        onTap: () => setState(() => _filter = 'parking'),
+                      ),
+                      PremiumChip(
+                        label: '',
+                        icon: Icons.wc_rounded,
+                        selected: _filter == 'restrooms',
+                        onTap: () => setState(() => _filter = 'restrooms'),
+                      ),
                     ],
                   ),
                 ),
@@ -967,7 +1022,7 @@ class _VenueMapScreenState extends State<VenueMapScreen> {
                             color: NegaritColors.text,
                           ),
                         ),
-                        PremiumMuted('Museum Café · 80 m · 2 min walk'),
+                        PremiumMuted('On this visit'),
                       ],
                     ),
                   ),

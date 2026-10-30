@@ -9,7 +9,7 @@ and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
 ### Added
 
-- The visitor app opens on Choose language and follows the 14-screen redesign. Pay, reserve, and audio say they are not connected. Distances, prices, and the guide sample are the layout, not a surveyed route or a reviewed source.
+- The visitor screens use sized icons, larger buttons, and wider spacing. Choosing a language changes those screens and stays on the phone. Send code waits for the code from the API log, and confirm code stores the phone or email. Pay, reserve, and audio stay unconnected.
 - Explore lists a visit order from the entrance to the exits. Interests on the phone replace the two halls. The order is not a measured route.
 - The admin Venues page reads Adwa Museum and its zones from the public API. It still says no operator is signed in.
 - I'm here accepts the text a printed QR would carry and opens that place. The camera does not scan, and an unknown code is refused.

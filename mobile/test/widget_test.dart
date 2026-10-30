@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:negarit_mobile/app.dart';
@@ -26,7 +27,12 @@ void main() {
     await tester.tap(find.text('Not now – I’ll choose my spot manually'));
     await tester.pumpAndSettle();
     expect(find.text('Welcome to Negarit'), findsOneWidget);
-    expect(find.text('+251 9 12 345 678'), findsOneWidget);
+    expect(find.text('Phone number'), findsOneWidget);
+
+    await tester.tap(find.text('Send code'));
+    await tester.pumpAndSettle();
+    expect(find.text('Enter a phone number or email.'), findsOneWidget);
+    expect(find.text('Where are you visiting?'), findsNothing);
 
     await tester.tap(find.text('Continue as guest'));
     await tester.pumpAndSettle();
@@ -36,7 +42,7 @@ void main() {
 
     await tester.tap(find.text('Enter Adwa Museum'));
     await tester.pumpAndSettle();
-    expect(find.text('Hi Abebe'), findsOneWidget);
+    expect(find.text('Hi Guest'), findsOneWidget);
     expect(find.text('Start guided tour'), findsOneWidget);
     expect(find.text('Nearby exhibits'), findsOneWidget);
     expect(find.text('Explore'), findsOneWidget);
@@ -44,7 +50,7 @@ void main() {
     await tester.tap(find.text('Start guided tour'));
     await tester.pumpAndSettle();
     expect(
-      find.text('Hello Abebe, welcome to Adwa Museum'),
+      find.text('Hello Guest, welcome to Adwa Museum'),
       findsOneWidget,
     );
     expect(find.text('Hear the welcome'), findsOneWidget);
@@ -75,7 +81,7 @@ void main() {
     await tester.tap(find.text('Map'));
     await tester.pumpAndSettle();
     expect(find.text('Nearest coffee'), findsOneWidget);
-    expect(find.text('Museum Café · 80 m · 2 min walk'), findsOneWidget);
+    expect(find.text('On this visit'), findsWidgets);
 
     await tester.tap(find.text('Explore'));
     await tester.pumpAndSettle();
@@ -90,18 +96,32 @@ void main() {
     expect(find.text('Negarit guide'), findsOneWidget);
     expect(find.text('من هو الراس ألولا؟'), findsOneWidget);
 
-    await tester.tap(find.text('←').hitTestable());
+    await tester.tap(find.byIcon(Icons.arrow_back_rounded).hitTestable());
     await tester.pumpAndSettle();
     await tester.tap(find.text('Profile').hitTestable());
     await tester.pumpAndSettle();
-    expect(find.text('Abebe Kebede'), findsOneWidget);
+    expect(find.text('Guest'), findsOneWidget);
     expect(find.text('Audio narration'), findsOneWidget);
-    expect(find.text('Ready'), findsOneWidget);
+    expect(find.text('Not on this phone'), findsOneWidget);
+    expect(find.text('Sign in'), findsWidgets);
+  });
+
+  testWidgets('choosing Amharic changes the screen language', (tester) async {
+    await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('አማርኛ'));
+    await tester.pumpAndSettle();
+    expect(find.text('ቋንቋ ይምረጡ'), findsOneWidget);
+
+    await tester.tap(find.text('ቀጥል'));
+    await tester.pumpAndSettle();
+    expect(find.text('ነጋሪት ይምራዎት'), findsOneWidget);
   });
 
   testWidgets('food opens the break sheet', (tester) async {
     await _openHome(tester);
-    await tester.tap(find.text('🍽 Food'));
+    await tester.tap(find.text('Food'));
     await tester.pumpAndSettle();
     expect(find.text('Need a break?'), findsOneWidget);
     expect(find.text('Museum Café'), findsOneWidget);

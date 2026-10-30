@@ -2,6 +2,16 @@
 
 Short architecture decision records. The newest entry is at the top.
 
+## ADR-027 — Language and sign-in are real on the redesign screens
+
+**Status:** Accepted (30 Oct 2026)
+
+Choosing English, Amharic, Arabic, French, Afaan Oromoo, Tigrinya, or Somali changes the visitor screens and stays on the phone. Amharic, Arabic, French, Afaan Oromoo, Tigrinya, and Somali strings are drafts until a person reviews them. Arabic lays the screens out from right to left.
+
+Send code asks the API for a code and waits on the sign-in screen. The code is still printed in the API log, not sent by SMS. Confirm code accepts that code and stores the phone or email on this phone. A wrong code or a phone that cannot reach the API stays on the screen and says so. Continue as guest does not store an account. Profile can sign in and sign out.
+
+Pay, reserve, and audio still say they are not connected. The map does not show a measured distance. Bluetooth is not scanned.
+
 ## ADR-026 — The visitor app opens on the 14-screen redesign
 
 **Status:** Accepted (30 Oct 2026)
