@@ -2,6 +2,14 @@
 
 Short architecture decision records. The newest entry is at the top.
 
+## ADR-026 — The visitor app opens on the 14-screen redesign
+
+**Status:** Accepted (30 Oct 2026)
+
+The phone opens on Choose language, then permissions, sign-in, and the place list, then the home screen. The other screens follow the buttons in the premium redesign: entrance welcome, exhibit, offer, checkout, venue map, guide chat, break, itinerary, saved, and profile. The previous explore, map, profile, place, and guide layouts are not in the flow, and the opening logo is not shown first.
+
+The screens use the redesign’s own wording, including distances, prices, the warrior-cape offer, and the guide sample. Those lines are the layout. They are not a surveyed route, a reviewed museum source, a downloaded offline pack, or a payment. Pay, reserve, and the audio controls say the service is not connected. Send code still asks the API to print a code, then continues into the place list. Continue as guest skips that. Bluetooth is not scanned.
+
 ## ADR-025 — A visit order follows interests and is not a route
 
 **Status:** Accepted (30 Oct 2026)

@@ -27,6 +27,9 @@ class NegaritButton extends StatelessWidget {
           backgroundColor: NegaritColors.primary,
           disabledBackgroundColor: NegaritColors.primary.withValues(alpha: 0.4),
           foregroundColor: Colors.white,
+          elevation: _enabled ? 2 : 0,
+          shadowColor: NegaritColors.primary.withValues(alpha: 0.28),
+          textStyle: const TextStyle(fontWeight: FontWeight.w700),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(NegaritRadius.button),
           ),

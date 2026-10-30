@@ -25,6 +25,9 @@ class AppLocalizationsAm extends AppLocalizations {
   String get navProfile => 'መገለጫ';
 
   @override
+  String get navAsk => 'ጠይቅ';
+
+  @override
   String get exploreGreeting => 'እንኳን ወደ ነጋሪት በደህና መጡ';
 
   @override

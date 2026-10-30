@@ -1,27 +1,59 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:negarit_mobile/core/widgets/app_shell.dart';
-import 'package:negarit_mobile/features/explore/presentation/explore_screen.dart';
-import 'package:negarit_mobile/features/favorites/presentation/favorites_screen.dart';
-import 'package:negarit_mobile/features/guide/presentation/guide_screen.dart';
-import 'package:negarit_mobile/features/map/presentation/map_screen.dart';
-import 'package:negarit_mobile/features/profile/presentation/profile_screen.dart';
-import 'package:negarit_mobile/features/profile/presentation/sign_in_screen.dart';
-import 'package:negarit_mobile/features/visit/presentation/place_screen.dart';
+import 'package:negarit_mobile/features/flow/onboarding_screens.dart';
+import 'package:negarit_mobile/features/flow/shell_screens.dart';
+import 'package:negarit_mobile/features/flow/visit_screens.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
-    initialLocation: '/explore',
+    initialLocation: '/language',
     routes: [
-      GoRoute(path: '/guide', builder: (context, state) => const GuideScreen()),
       GoRoute(
-        path: '/place/:slug',
-        builder: (context, state) =>
-            PlaceScreen(slug: state.pathParameters['slug'] ?? ''),
+        path: '/language',
+        builder: (context, state) => LanguageScreen(
+          returnTo: state.uri.queryParameters['return'],
+        ),
+      ),
+      GoRoute(
+        path: '/permissions',
+        builder: (context, state) => const PermissionsScreen(),
       ),
       GoRoute(
         path: '/sign-in',
-        builder: (context, state) => const SignInScreen(),
+        builder: (context, state) => const WelcomeSignInScreen(),
+      ),
+      GoRoute(
+        path: '/venue',
+        builder: (context, state) => const VenuePickScreen(),
+      ),
+      GoRoute(
+        path: '/entrance',
+        builder: (context, state) => const EntranceScreen(),
+      ),
+      GoRoute(
+        path: '/exhibit',
+        builder: (context, state) => const ExhibitScreen(),
+      ),
+      GoRoute(
+        path: '/offer',
+        builder: (context, state) => const OfferScreen(),
+      ),
+      GoRoute(
+        path: '/checkout',
+        builder: (context, state) => const CheckoutScreen(),
+      ),
+      GoRoute(
+        path: '/break',
+        builder: (context, state) => const BreakScreen(),
+      ),
+      GoRoute(
+        path: '/plan',
+        builder: (context, state) => const PlanScreen(),
+      ),
+      GoRoute(
+        path: '/guide',
+        builder: (context, state) => const GuideChatScreen(),
       ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
@@ -32,7 +64,7 @@ final routerProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: '/explore',
-                builder: (context, state) => const ExploreScreen(),
+                builder: (context, state) => const HomeScreen(),
               ),
             ],
           ),
@@ -40,7 +72,7 @@ final routerProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: '/map',
-                builder: (context, state) => const MapScreen(),
+                builder: (context, state) => const VenueMapScreen(),
               ),
             ],
           ),
@@ -48,7 +80,7 @@ final routerProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: '/favorites',
-                builder: (context, state) => const FavoritesScreen(),
+                builder: (context, state) => const SavedScreen(),
               ),
             ],
           ),
@@ -56,7 +88,7 @@ final routerProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: '/profile',
-                builder: (context, state) => const ProfileScreen(),
+                builder: (context, state) => const VisitorProfileScreen(),
               ),
             ],
           ),

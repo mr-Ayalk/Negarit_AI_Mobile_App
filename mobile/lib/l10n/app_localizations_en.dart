@@ -25,6 +25,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navProfile => 'Profile';
 
   @override
+  String get navAsk => 'Ask AI';
+
+  @override
   String get exploreGreeting => 'Welcome to Negarit';
 
   @override

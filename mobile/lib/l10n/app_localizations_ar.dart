@@ -25,6 +25,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get navProfile => 'الملف';
 
   @override
+  String get navAsk => 'اسأل';
+
+  @override
   String get exploreGreeting => 'أهلاً بك في نيغاريت';
 
   @override

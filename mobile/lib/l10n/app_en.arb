@@ -6,6 +6,7 @@
   "navMap": "Map",
   "navFavorites": "Favorites",
   "navProfile": "Profile",
+  "navAsk": "Ask AI",
   "exploreGreeting": "Welcome to Negarit",
   "exploreEmptyTitle": "No venue loaded",
   "exploreEmptyBody": "Guided tours appear here after a venue pack is installed. Adwa Museum content is not on this device yet.",

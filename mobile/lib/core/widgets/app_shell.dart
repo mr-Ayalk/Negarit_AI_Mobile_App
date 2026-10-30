@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:negarit_mobile/l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
-import 'package:negarit_mobile/core/widgets/negarit_background.dart';
+import 'package:negarit_mobile/features/flow/premium_ui.dart';
 
 class AppShell extends StatelessWidget {
   const AppShell({required this.navigationShell, super.key});
@@ -10,42 +9,26 @@ class AppShell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    return NegaritBackground(
+    final branch = navigationShell.currentIndex;
+    final selected = branch >= 2 ? branch + 1 : branch;
+    return PremiumBackdrop(
       child: Scaffold(
-      backgroundColor: Colors.transparent,
-      body: navigationShell,
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: navigationShell.currentIndex,
-        onDestinationSelected: (index) {
-          navigationShell.goBranch(
-            index,
-            initialLocation: index == navigationShell.currentIndex,
-          );
-        },
-        destinations: [
-          NavigationDestination(
-            icon: const Icon(Icons.explore_outlined),
-            selectedIcon: const Icon(Icons.explore),
-            label: l10n.navExplore,
-          ),
-          NavigationDestination(
-            icon: const Icon(Icons.map_outlined),
-            selectedIcon: const Icon(Icons.map),
-            label: l10n.navMap,
-          ),
-          NavigationDestination(
-            icon: const Icon(Icons.favorite_outline),
-            selectedIcon: const Icon(Icons.favorite),
-            label: l10n.navFavorites,
-          ),
-          NavigationDestination(
-            icon: const Icon(Icons.person_outline),
-            selectedIcon: const Icon(Icons.person),
-            label: l10n.navProfile,
-          ),
-        ],
-      ),
+        backgroundColor: Colors.transparent,
+        body: navigationShell,
+        bottomNavigationBar: PremiumTabBar(
+          index: selected,
+          onSelected: (index) {
+            if (index == 2) {
+              context.push('/guide');
+              return;
+            }
+            final next = index > 2 ? index - 1 : index;
+            navigationShell.goBranch(
+              next,
+              initialLocation: next == branch,
+            );
+          },
+        ),
       ),
     );
   }

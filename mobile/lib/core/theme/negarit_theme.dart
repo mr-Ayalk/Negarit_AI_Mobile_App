@@ -45,8 +45,8 @@ abstract final class NegaritTheme {
         }),
         labelTextStyle: WidgetStateProperty.resolveWith((states) {
           final selected = states.contains(WidgetState.selected);
-          return textTheme.labelMedium?.copyWith(
-            fontWeight: FontWeight.w600,
+          return textTheme.labelSmall?.copyWith(
+            fontWeight: FontWeight.w700,
             color: selected
                 ? NegaritColors.primary
                 : NegaritColors.textSecondary,

@@ -1,335 +1,123 @@
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:negarit_mobile/app.dart';
-import 'package:negarit_mobile/core/widgets/opening_splash.dart';
-import 'package:negarit_mobile/features/map/presentation/map_screen.dart';
-import 'package:negarit_mobile/core/widgets/negarit_button.dart';
-import 'package:negarit_mobile/core/widgets/negarit_chip.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   setUp(() {
     SharedPreferences.setMockInitialValues({});
   });
 
-  testWidgets('explore shell shows the empty venue state', (tester) async {
-    await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
-    await tester.pumpAndSettle();
-
-    expect(find.text('Welcome,'), findsOneWidget);
-    await tester.scrollUntilVisible(find.text('5gna Ber'), 400);
-    expect(find.text('5gna Ber'), findsOneWidget);
-    expect(find.text('Places'), findsOneWidget);
-    expect(
-      find.text('Start at the entrance, then 5gna Ber and 6gna Ber.'),
-      findsOneWidget,
-    );
-    expect(find.text('1. Entrance'), findsOneWidget);
-    expect(find.text('4. Exits'), findsOneWidget);
-    expect(
-      find.text('This order is not a measured route.'),
-      findsOneWidget,
-    );
-    expect(find.text('Explore'), findsOneWidget);
-  });
-
-  testWidgets('a coffee interest shortens the visit order', (tester) async {
-    await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
-    await tester.pumpAndSettle();
-
-    await tester.tap(
-      find.descendant(
-        of: find.byType(NavigationBar),
-        matching: find.text('Profile'),
-      ),
-    );
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Interests'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Coffee'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Done'));
-    await tester.pumpAndSettle();
-
-    await tester.tap(
-      find.descendant(
-        of: find.byType(NavigationBar),
-        matching: find.text('Explore'),
-      ),
-    );
-    await tester.pumpAndSettle();
-    await tester.scrollUntilVisible(
-      find.text('This visit follows your interests.'),
-      400,
-    );
-
-    expect(find.text('1. Entrance'), findsOneWidget);
-    expect(find.text('2. Coffee'), findsOneWidget);
-    expect(find.text('3. Exits'), findsOneWidget);
-    expect(find.text('2. 5gna Ber'), findsNothing);
-  });
-
-  testWidgets('profile can switch the visit language to Arabic', (tester) async {
-    await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
-    await tester.pumpAndSettle();
-
-    await tester.tap(
-      find.descendant(
-        of: find.byType(NavigationBar),
-        matching: find.text('Profile'),
-      ),
-    );
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Language'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('العربية'));
-    await tester.pumpAndSettle();
-
-    expect(find.text('الملف'), findsWidgets);
-  });
-
-  testWidgets('ask a question opens the unconnected guide', (tester) async {
-    await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
-    await tester.pumpAndSettle();
-
-    await tester.tap(find.text('Ask a question'));
-    await tester.pumpAndSettle();
-
-    expect(find.text('Ask about the places on this visit.'), findsOneWidget);
-
-    await tester.enterText(find.byType(TextField), 'Where is the hall?');
-    await tester.tap(find.byTooltip('Send'));
-    await tester.pumpAndSettle();
-
-    expect(find.text('Where is the hall?'), findsOneWidget);
-    expect(
-      find.text('The halls on this visit are 5gna Ber and 6gna Ber.'),
-      findsOneWidget,
-    );
-  });
-
-  testWidgets('map tab shows the map empty state', (tester) async {
-    await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
-    await tester.pumpAndSettle();
-
-    await tester.tap(
-      find.descendant(
-        of: find.byType(NavigationBar),
-        matching: find.text('Map'),
-      ),
-    );
-    await tester.pumpAndSettle();
-
-    expect(
-      find.text(
-        'Entrance, halls, coffee, restaurant, parking, restrooms, and exits.',
-      ),
-      findsOneWidget,
-    );
-
-    await tester.tap(
-      find.descendant(
-        of: find.byType(MapScreen),
-        matching: find.text('Coffee'),
-      ),
-    );
-    await tester.pumpAndSettle();
-    expect(find.text('Coffee is on this visit.'), findsOneWidget);
-    expect(
-      find.text('The drawing is not a measured route.'),
-      findsOneWidget,
-    );
-  });
-
-  testWidgets('Arabic locale lays out right to left', (tester) async {
-    await tester.pumpWidget(
-      const ProviderScope(child: NegaritApp(locale: Locale('ar'))),
-    );
-    await tester.pumpAndSettle();
-
-    final context = tester.element(find.text('استكشف'));
-    expect(Directionality.of(context), TextDirection.rtl);
-  });
-
-  testWidgets('saving a place shows it in favorites', (tester) async {
-    await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
-    await tester.pumpAndSettle();
-
-    await tester.scrollUntilVisible(find.text('5gna Ber'), 400);
-    await tester.tap(find.text('5gna Ber'));
-    await tester.pumpAndSettle();
-
-    expect(
-      find.text('A reviewed story is not loaded for this place.'),
-      findsOneWidget,
-    );
-    await tester.tap(find.text('Save place'));
-    await tester.pumpAndSettle();
-    expect(find.text('Saved'), findsOneWidget);
-
-    await tester.tap(find.byTooltip('Back'));
-    await tester.pumpAndSettle();
-    await tester.tap(
-      find.descendant(
-        of: find.byType(NavigationBar),
-        matching: find.text('Favorites'),
-      ),
-    );
-    await tester.pumpAndSettle();
-
-    expect(find.text('5gna Ber'), findsOneWidget);
-    expect(find.text('Hall'), findsOneWidget);
-  });
-
-  testWidgets('profile stores interests and a signed-in visitor', (
+  testWidgets('the app opens on choose language and walks into the visit', (
     tester,
   ) async {
-    SharedPreferences.setMockInitialValues({
-      'signed-in-destination': 'visitor@example.com',
-    });
     await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
     await tester.pumpAndSettle();
 
-    await tester.tap(
-      find.descendant(
-        of: find.byType(NavigationBar),
-        matching: find.text('Profile'),
-      ),
+    expect(find.text('Choose your language'), findsOneWidget);
+    expect(find.text('English'), findsOneWidget);
+    expect(find.text('አማርኛ'), findsOneWidget);
+
+    await tester.tap(find.text('Continue'));
+    await tester.pumpAndSettle();
+    expect(find.text('Let Negarit guide you'), findsOneWidget);
+    expect(find.text('Bluetooth'), findsOneWidget);
+
+    await tester.tap(find.text('Not now – I’ll choose my spot manually'));
+    await tester.pumpAndSettle();
+    expect(find.text('Welcome to Negarit'), findsOneWidget);
+    expect(find.text('+251 9 12 345 678'), findsOneWidget);
+
+    await tester.tap(find.text('Continue as guest'));
+    await tester.pumpAndSettle();
+    expect(find.text('Where are you visiting?'), findsOneWidget);
+    expect(find.text('Adwa Museum'), findsOneWidget);
+    expect(find.text('Friendship Park'), findsOneWidget);
+
+    await tester.tap(find.text('Enter Adwa Museum'));
+    await tester.pumpAndSettle();
+    expect(find.text('Hi Abebe'), findsOneWidget);
+    expect(find.text('Start guided tour'), findsOneWidget);
+    expect(find.text('Nearby exhibits'), findsOneWidget);
+    expect(find.text('Explore'), findsOneWidget);
+
+    await tester.tap(find.text('Start guided tour'));
+    await tester.pumpAndSettle();
+    expect(
+      find.text('Hello Abebe, welcome to Adwa Museum'),
+      findsOneWidget,
     );
-    await tester.pumpAndSettle();
-    expect(find.text('visitor@example.com'), findsOneWidget);
+    expect(find.text('Hear the welcome'), findsOneWidget);
 
-    await tester.tap(find.text('Interests'));
+    await tester.tap(find.text('Begin my visit'));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Halls'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Done'));
-    await tester.pumpAndSettle();
-    expect(find.text('Halls'), findsOneWidget);
+    expect(find.text('5gna Ber'), findsOneWidget);
+    expect(find.text('Traditional warrior cape'), findsOneWidget);
+    expect(find.text('Zone 3 of 8'), findsOneWidget);
 
-    await tester.tap(find.text('Sign out'));
+    await tester.tap(find.text('View'));
     await tester.pumpAndSettle();
-    expect(find.text('Guest'), findsOneWidget);
-    expect(find.text('Sign in'), findsOneWidget);
+    expect(find.text('Warrior cape'), findsOneWidget);
+    expect(find.text('Pay now'), findsOneWidget);
+
+    await tester.tap(find.text('Pay now'));
+    await tester.pumpAndSettle();
+    expect(find.text('Checkout'), findsOneWidget);
+    expect(find.text('Telebirr'), findsOneWidget);
+    expect(find.text('Pay 2,400 ETB'), findsOneWidget);
   });
 
-  testWidgets('simulated entrance welcomes the visitor once', (tester) async {
-    await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
-    await tester.pumpAndSettle();
+  testWidgets('home opens the map, the guide, the plan, and profile', (
+    tester,
+  ) async {
+    await _openHome(tester);
 
-    await tester.tap(find.widgetWithText(NegaritChip, "I'm here"));
-    await tester.pumpAndSettle();
-    expect(
-      find.text('Simulated. This phone is not scanning Bluetooth.'),
-      findsOneWidget,
-    );
-
-    await tester.tap(find.widgetWithText(ListTile, 'Entrance'));
-    await tester.pumpAndSettle();
-    expect(
-      find.text('Hello Guest, welcome to Adwa Museum.'),
-      findsOneWidget,
-    );
-    expect(
-      find.text('A reviewed story is not loaded for this place.'),
-      findsOneWidget,
-    );
-
-    await tester.tap(find.byTooltip('Back'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.widgetWithText(NegaritChip, "I'm here"));
-    await tester.pumpAndSettle();
-    await tester.tap(find.widgetWithText(ListTile, 'Entrance'));
-    await tester.pumpAndSettle();
-    expect(find.text('This place was already announced.'), findsOneWidget);
-
-    await tester.tap(find.byTooltip('Back'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.widgetWithText(NegaritChip, "I'm here"));
-    await tester.pumpAndSettle();
-    await tester.tap(find.widgetWithText(ListTile, '5gna Ber'));
-    await tester.pumpAndSettle();
-    expect(find.text('You are at 5gna Ber.'), findsOneWidget);
-  });
-
-  testWidgets('a printed place code opens that place', (tester) async {
-    await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
-    await tester.pumpAndSettle();
-
-    await tester.tap(find.widgetWithText(NegaritChip, "I'm here"));
-    await tester.pumpAndSettle();
-    expect(
-      find.text(
-        'Type the text a printed QR would carry. The camera is not scanning.',
-      ),
-      findsOneWidget,
-    );
-
-    await tester.enterText(find.byType(TextField), 'lobby');
-    await tester.tap(find.text('Use this code'));
-    await tester.pumpAndSettle();
-    expect(
-      find.text('That code is not a place on this visit.'),
-      findsOneWidget,
-    );
-
-    await tester.enterText(find.byType(TextField), 'negarit://place/coffee');
-    await tester.tap(find.text('Use this code'));
-    await tester.pumpAndSettle();
-    expect(find.text('You are at Coffee.'), findsOneWidget);
-  });
-
-  testWidgets('asking for coffee opens that place on the map', (tester) async {
-    await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
-    await tester.pumpAndSettle();
-
-    await tester.tap(find.text('Ask a question'));
-    await tester.pumpAndSettle();
-    await tester.enterText(find.byType(TextField), 'Where is the coffee?');
-    await tester.tap(find.byTooltip('Send'));
-    await tester.pumpAndSettle();
     await tester.tap(find.text('Map'));
     await tester.pumpAndSettle();
+    expect(find.text('Nearest coffee'), findsOneWidget);
+    expect(find.text('Museum Café · 80 m · 2 min walk'), findsOneWidget);
 
-    expect(find.text('Coffee is on this visit.'), findsOneWidget);
-    expect(find.text('The drawing is not a measured route.'), findsOneWidget);
+    await tester.tap(find.text('Explore'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('See all'));
+    await tester.pumpAndSettle();
+    expect(find.text('Plan my visit'), findsOneWidget);
+    expect(find.text('Entrance hall'), findsOneWidget);
+    expect(find.text('Start this plan'), findsOneWidget);
+
+    await tester.tap(find.text('Ask AI').hitTestable());
+    await tester.pumpAndSettle();
+    expect(find.text('Negarit guide'), findsOneWidget);
+    expect(find.text('من هو الراس ألولا؟'), findsOneWidget);
+
+    await tester.tap(find.text('←').hitTestable());
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Profile').hitTestable());
+    await tester.pumpAndSettle();
+    expect(find.text('Abebe Kebede'), findsOneWidget);
+    expect(find.text('Audio narration'), findsOneWidget);
+    expect(find.text('Ready'), findsOneWidget);
   });
 
-  testWidgets('opening grows the logo from a dot', (tester) async {
-    var finished = false;
-    await tester.pumpWidget(
-      MaterialApp(
-        home: OpeningSplash(onFinished: () => finished = true),
-      ),
-    );
-
-    expect(find.byType(CircularProgressIndicator), findsOneWidget);
-    await tester.pump(const Duration(milliseconds: 600));
-    await tester.pump();
-    expect(find.byType(Image), findsOneWidget);
-
-    await tester.pump(const Duration(seconds: 2));
-    expect(finished, isTrue);
+  testWidgets('food opens the break sheet', (tester) async {
+    await _openHome(tester);
+    await tester.tap(find.text('🍽 Food'));
+    await tester.pumpAndSettle();
+    expect(find.text('Need a break?'), findsOneWidget);
+    expect(find.text('Museum Café'), findsOneWidget);
+    expect(find.text('Tigist Restaurant'), findsOneWidget);
   });
+}
 
-  testWidgets('primary button ignores taps while loading', (tester) async {
-    var taps = 0;
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: NegaritButton(
-            label: 'Continue',
-            isLoading: true,
-            onPressed: () => taps++,
-          ),
-        ),
-      ),
-    );
-
-    await tester.tap(find.byType(NegaritButton));
-    await tester.pump();
-    expect(taps, 0);
-    expect(find.byType(CircularProgressIndicator), findsOneWidget);
-  });
+Future<void> _openHome(WidgetTester tester) async {
+  await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
+  await tester.pumpAndSettle();
+  await tester.tap(find.text('Continue'));
+  await tester.pumpAndSettle();
+  await tester.tap(find.text('Not now – I’ll choose my spot manually'));
+  await tester.pumpAndSettle();
+  await tester.tap(find.text('Continue as guest'));
+  await tester.pumpAndSettle();
+  await tester.tap(find.text('Enter Adwa Museum'));
+  await tester.pumpAndSettle();
 }

@@ -9,11 +9,12 @@ and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
 ### Added
 
+- The visitor app opens on Choose language and follows the 14-screen redesign. Pay, reserve, and audio say they are not connected. Distances, prices, and the guide sample are the layout, not a surveyed route or a reviewed source.
 - Explore lists a visit order from the entrance to the exits. Interests on the phone replace the two halls. The order is not a measured route.
 - The admin Venues page reads Adwa Museum and its zones from the public API. It still says no operator is signed in.
 - I'm here accepts the text a printed QR would carry and opens that place. The camera does not scan, and an unknown code is refused.
 - Ask Negarit can ask `POST /guide/ask`. The answer stays on the eight-place visit list, says it is not a reviewed source, and refuses a question that list does not cover. If the service is not reached, the phone answers from the same list and says so.
-- The app opens on a bright screen: a short wait, then the logo grows from a dot. Explore no longer leads with the logo, and the map keeps the drawing, place choices, and actions in separate bands. Asking where a place is can open it on that drawing.
+- The opening logo is no longer the first screen.
 - Inside the visit, coffee, the restaurant, parking, restrooms, and the exits can be marked on the schematic. The card says it is not a measured route.
 - Choosing a place opens its card. The entrance shows the stored placeholder sentence. The other places say a reviewed story is not loaded.
 - Visitors can mark the place they are standing in. The control is labeled simulated, and the same place is not announced again for five minutes. The phone does not scan Bluetooth.

@@ -19,11 +19,12 @@ class NegaritCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: NegaritColors.surface,
         borderRadius: BorderRadius.circular(NegaritRadius.card),
+        border: Border.all(color: NegaritColors.line),
         boxShadow: [
           BoxShadow(
-            color: NegaritColors.primary.withValues(alpha: 0.08),
-            blurRadius: 24,
-            offset: const Offset(0, 8),
+            color: NegaritColors.primary.withValues(alpha: 0.06),
+            blurRadius: 20,
+            offset: const Offset(0, 7),
           ),
         ],
       ),

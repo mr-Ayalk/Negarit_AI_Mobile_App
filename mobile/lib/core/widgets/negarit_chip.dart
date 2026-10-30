@@ -19,8 +19,10 @@ class NegaritChip extends StatelessWidget {
     return Material(
       color: NegaritColors.surface,
       elevation: 0,
-      shadowColor: NegaritColors.primary.withValues(alpha: 0.08),
-      borderRadius: BorderRadius.circular(999),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(999),
+        side: const BorderSide(color: NegaritColors.line),
+      ),
       child: InkWell(
         onTap: onPressed,
         borderRadius: BorderRadius.circular(999),
