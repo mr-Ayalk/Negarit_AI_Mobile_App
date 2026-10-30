@@ -25,7 +25,49 @@ void main() {
       find.text('Start at the entrance, then 5gna Ber and 6gna Ber.'),
       findsOneWidget,
     );
+    expect(find.text('1. Entrance'), findsOneWidget);
+    expect(find.text('4. Exits'), findsOneWidget);
+    expect(
+      find.text('This order is not a measured route.'),
+      findsOneWidget,
+    );
     expect(find.text('Explore'), findsOneWidget);
+  });
+
+  testWidgets('a coffee interest shortens the visit order', (tester) async {
+    await tester.pumpWidget(const ProviderScope(child: NegaritApp()));
+    await tester.pumpAndSettle();
+
+    await tester.tap(
+      find.descendant(
+        of: find.byType(NavigationBar),
+        matching: find.text('Profile'),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Interests'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Coffee'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Done'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(
+      find.descendant(
+        of: find.byType(NavigationBar),
+        matching: find.text('Explore'),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(
+      find.text('This visit follows your interests.'),
+      400,
+    );
+
+    expect(find.text('1. Entrance'), findsOneWidget);
+    expect(find.text('2. Coffee'), findsOneWidget);
+    expect(find.text('3. Exits'), findsOneWidget);
+    expect(find.text('2. 5gna Ber'), findsNothing);
   });
 
   testWidgets('profile can switch the visit language to Arabic', (tester) async {

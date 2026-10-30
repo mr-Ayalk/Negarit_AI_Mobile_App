@@ -107,6 +107,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tourBody => 'Start at the entrance, then 5gna Ber and 6gna Ber.';
 
   @override
+  String get tourOrder => 'This order is not a measured route.';
+
+  @override
+  String get tourInterests => 'This visit follows your interests.';
+
+  @override
   String get playAudio => 'Play audio';
 
   @override

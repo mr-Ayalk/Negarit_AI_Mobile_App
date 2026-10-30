@@ -11,6 +11,7 @@ import 'package:negarit_mobile/features/beacons/presentation/presence_sheet.dart
 import 'package:negarit_mobile/features/visit/data/interests_controller.dart';
 import 'package:negarit_mobile/features/visit/data/saved_places_controller.dart';
 import 'package:negarit_mobile/features/visit/data/visit_places.dart';
+import 'package:negarit_mobile/features/visit/data/visit_plan.dart';
 import 'package:negarit_mobile/l10n/app_localizations.dart';
 
 class ExploreScreen extends ConsumerWidget {
@@ -221,7 +222,11 @@ class ExploreScreen extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: NegaritSpacing.lg),
-        _TourCard(l10n: l10n),
+        _TourCard(
+          l10n: l10n,
+          languageCode: languageCode,
+          interests: interests,
+        ),
       ],
     );
   }
@@ -263,13 +268,20 @@ class _Suggestion extends StatelessWidget {
 }
 
 class _TourCard extends StatelessWidget {
-  const _TourCard({required this.l10n});
+  const _TourCard({
+    required this.l10n,
+    required this.languageCode,
+    required this.interests,
+  });
 
   final AppLocalizations l10n;
+  final String languageCode;
+  final List<String> interests;
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final plan = visitPlan(interests);
     return DecoratedBox(
       decoration: BoxDecoration(
         color: NegaritColors.surface,
@@ -300,8 +312,29 @@ class _TourCard extends StatelessWidget {
                   ),
                   const SizedBox(height: NegaritSpacing.xs),
                   Text(
-                    l10n.tourBody,
+                    interests.isEmpty ? l10n.tourBody : l10n.tourInterests,
                     style: textTheme.bodyMedium?.copyWith(
+                      color: NegaritColors.textSecondary,
+                    ),
+                  ),
+                  const SizedBox(height: NegaritSpacing.sm),
+                  for (var index = 0; index < plan.length; index++)
+                    InkWell(
+                      onTap: () => context.push('/place/${plan[index].slug}'),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: NegaritSpacing.xxs,
+                        ),
+                        child: Text(
+                          '${index + 1}. ${plan[index].nameFor(languageCode)}',
+                          style: textTheme.bodyMedium,
+                        ),
+                      ),
+                    ),
+                  const SizedBox(height: NegaritSpacing.xs),
+                  Text(
+                    l10n.tourOrder,
+                    style: textTheme.bodySmall?.copyWith(
                       color: NegaritColors.textSecondary,
                     ),
                   ),

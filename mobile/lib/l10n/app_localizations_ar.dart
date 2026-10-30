@@ -107,6 +107,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get tourBody => 'ابدأ من المدخل، ثم القاعة الخامسة والقاعة السادسة.';
 
   @override
+  String get tourOrder => 'هذا الترتيب ليس مساراً مقيساً.';
+
+  @override
+  String get tourInterests => 'تتبع هذه الزيارة اهتماماتك.';
+
+  @override
   String get playAudio => 'تشغيل الصوت';
 
   @override

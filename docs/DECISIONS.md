@@ -2,6 +2,12 @@
 
 Short architecture decision records. The newest entry is at the top.
 
+## ADR-025 — A visit order follows interests and is not a route
+
+**Status:** Accepted (30 Oct 2026)
+
+Explore lists a visit order: the entrance, then either the two halls or the places that match the interests stored on the phone, then the exits. Each stop opens that place. The card says the order is not a measured route. No walking time is shown. Merchant offers are still empty, so no sponsored card is added.
+
 ## ADR-024 — Admin Venues reads the public venue response
 
 **Status:** Accepted (30 Oct 2026)

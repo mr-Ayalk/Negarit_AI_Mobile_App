@@ -286,6 +286,18 @@ abstract class AppLocalizations {
   /// **'Start at the entrance, then 5gna Ber and 6gna Ber.'**
   String get tourBody;
 
+  /// No description provided for @tourOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'This order is not a measured route.'**
+  String get tourOrder;
+
+  /// No description provided for @tourInterests.
+  ///
+  /// In en, this message translates to:
+  /// **'This visit follows your interests.'**
+  String get tourInterests;
+
   /// No description provided for @playAudio.
   ///
   /// In en, this message translates to:

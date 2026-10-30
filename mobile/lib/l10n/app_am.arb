@@ -31,6 +31,8 @@
   "notLoaded": "አልተጫነም",
   "tourTitle": "የአድዋ ሙዚየም",
   "tourBody": "ከመግቢያ ይጀምሩ፣ ከዚያ 5ኛ ቤር እና 6ኛ ቤር።",
+  "tourOrder": "ይህ ቅደም ተከተል የተለካ መንገድ አይደለም።",
+  "tourInterests": "ይህ ጉብኝት የእርስዎን ፍላጎት ይከተላል።",
   "playAudio": "ድምጽ ያጫውቱ",
   "audioUnavailable": "ድምጽ በዚህ መሣሪያ ላይ እስካሁን የለም።",
   "openMap": "ካርታ",

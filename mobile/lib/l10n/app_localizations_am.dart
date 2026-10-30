@@ -105,6 +105,12 @@ class AppLocalizationsAm extends AppLocalizations {
   String get tourBody => 'ከመግቢያ ይጀምሩ፣ ከዚያ 5ኛ ቤር እና 6ኛ ቤር።';
 
   @override
+  String get tourOrder => 'ይህ ቅደም ተከተል የተለካ መንገድ አይደለም።';
+
+  @override
+  String get tourInterests => 'ይህ ጉብኝት የእርስዎን ፍላጎት ይከተላል።';
+
+  @override
   String get playAudio => 'ድምጽ ያጫውቱ';
 
   @override

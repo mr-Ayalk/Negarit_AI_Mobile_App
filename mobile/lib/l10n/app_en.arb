@@ -32,6 +32,8 @@
   "notLoaded": "Not loaded",
   "tourTitle": "Adwa Museum",
   "tourBody": "Start at the entrance, then 5gna Ber and 6gna Ber.",
+  "tourOrder": "This order is not a measured route.",
+  "tourInterests": "This visit follows your interests.",
   "playAudio": "Play audio",
   "audioUnavailable": "Audio is not on this device yet.",
   "openMap": "Map",
